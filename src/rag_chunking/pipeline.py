@@ -17,6 +17,8 @@ from rag_chunking.evaluation.answer_key import (
     load_answer_key,
     validate_against_document,
 )
+from rag_chunking.generation import CachedLLM
+from rag_chunking.generation.prompts import SYSTEM_PROMPT, user_prompt
 from rag_chunking.inspection import Cut, cut_summary, find_cuts, summary_stats
 from rag_chunking.normalize import normalize
 from rag_chunking.results import sha256, write_json
@@ -105,6 +107,37 @@ def retrieve(
     return result
 
 
+def generate(
+    config: Config, run: RunConfig, chunks: list[Chunk], retrievals: dict[str, Any], llm: CachedLLM
+) -> dict[str, Any]:
+    """Answer every question from its in-context chunks and write answers.json."""
+    by_id = {c.id: c for c in chunks}
+    answers = []
+    for q in retrievals["questions"]:
+        context = [by_id[cid] for cid in q["context_ids"]]
+        generation = llm.generate(SYSTEM_PROMPT, user_prompt(q["question"], context))
+        answers.append(
+            {
+                "id": q["id"],
+                "question": q["question"],
+                "context_ids": q["context_ids"],
+                # The prompt numbers sources by rank; this maps citations back to chunks.
+                "sources": {str(i): cid for i, cid in enumerate(q["context_ids"], start=1)},
+                "answer": generation.text,
+                "latency_s": generation.latency_s,
+            }
+        )
+    result = {
+        "run_id": run.id,
+        "model": llm.model_id,
+        "temperature": llm.config.temperature,
+        "system_prompt_sha256": sha256(SYSTEM_PROMPT),
+        "answers": answers,
+    }
+    write_json(config.settings.results_dir / run.id / "answers.json", result)
+    return result
+
+
 def _git_commit() -> str:
     try:
         sha = subprocess.run(
@@ -121,7 +154,9 @@ def _git_commit() -> str:
         return "unknown"
 
 
-def execute(config: Config, run: RunConfig, embedder: GeminiEmbedder) -> dict[str, Any]:
+def execute(
+    config: Config, run: RunConfig, embedder: GeminiEmbedder, llm: CachedLLM
+) -> dict[str, Any]:
     """Run every implemented stage and write manifest.json.
 
     The manifest is the run log: it records when the run happened and how many API calls
@@ -142,6 +177,10 @@ def execute(config: Config, run: RunConfig, embedder: GeminiEmbedder) -> dict[st
 
     retrievals = retrieve(config, run, key, Index(chunked.chunks, chunk_vectors), query_vectors)
 
+    llm_calls_before = llm.api_calls
+    if run.generate:
+        generate(config, run, chunked.chunks, retrievals, llm)
+
     manifest = {
         "run_id": run.id,
         "created_at": datetime.now(UTC).isoformat(timespec="seconds"),
@@ -154,7 +193,14 @@ def execute(config: Config, run: RunConfig, embedder: GeminiEmbedder) -> dict[st
             for k, v in asdict(embedder.config).items()
             if k not in ("api_key_env", "batch_size")
         },
-        "llm": {"model": config.llm.model, "temperature": config.llm.temperature},
+        "llm": {
+            "provider": config.llm.provider,
+            "model": config.llm.model,
+            "temperature": config.llm.temperature,
+            "system_prompt_sha256": sha256(SYSTEM_PROMPT),
+        }
+        if run.generate
+        else None,
         "settings": {
             "k": config.settings.k,
             "retrieve_n": config.settings.retrieve_n,
@@ -162,7 +208,10 @@ def execute(config: Config, run: RunConfig, embedder: GeminiEmbedder) -> dict[st
         },
         "chunk_stats": chunked.stats,
         "mean_context_tokens": retrievals["mean_context_tokens"],
-        "api_calls": {"embedding": embedder.api_calls - calls_before},
+        "api_calls": {
+            "embedding": embedder.api_calls - calls_before,
+            "generation": llm.api_calls - llm_calls_before,
+        },
         "embedding_cache": {
             "hits": embedder.cache.hits - hits_before,
             "misses": embedder.cache.misses - misses_before,

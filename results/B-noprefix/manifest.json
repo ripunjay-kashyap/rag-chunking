@@ -1,7 +1,7 @@
 {
   "run_id": "B-noprefix",
-  "created_at": "2026-10-05T18:35:34+00:00",
-  "git_commit": "7c154d24ac213685a5f714425b4c83e28ea5f86f-dirty",
+  "created_at": "2026-10-05T19:21:13+00:00",
+  "git_commit": "2e373d1fcbf8c01077038baf58f707d9dd4e3d6b-dirty",
   "run": {
     "id": "B-noprefix",
     "strategy": "structure",
@@ -26,8 +26,10 @@
     "tokens_per_minute": 30000
   },
   "llm": {
-    "model": "gemini-3.8-flash",
-    "temperature": 0.0
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "temperature": 0.0,
+    "system_prompt_sha256": "2a5cdcfc7ee47e34dacbb8fd8ee731773aa58a48a7bde07087d4a265f590a1ed"
   },
   "settings": {
     "k": 3,
@@ -44,7 +46,8 @@
   },
   "mean_context_tokens": 462.2,
   "api_calls": {
-    "embedding": 0
+    "embedding": 0,
+    "generation": 0
   },
   "embedding_cache": {
     "hits": 21,

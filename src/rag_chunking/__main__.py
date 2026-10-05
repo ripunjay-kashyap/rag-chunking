@@ -11,7 +11,9 @@ from dotenv import load_dotenv
 from rag_chunking import pipeline
 from rag_chunking.config import DEFAULT_CONFIG, Config, ConfigError, load_config
 from rag_chunking.embeddings import make_embedder
+from rag_chunking.embeddings.throttle import RetryError
 from rag_chunking.evaluation.answer_key import AnswerKeyError
+from rag_chunking.generation import make_llm
 from rag_chunking.inspection import cut_summary, format_table
 
 
@@ -68,16 +70,17 @@ def _cmd_run(config: Config, run_ids: list[str]) -> int:
     # One embedder for all runs, so runs that share chunks (A-500 / A-500-budget) share
     # the cache within a single invocation too.
     embedder = make_embedder(config.embedding, config.settings.cache_dir)
+    llm = make_llm(config.llm, config.settings.cache_dir)
     for run_id in run_ids:
-        m = pipeline.execute(config, config.run(run_id), embedder)
+        m = pipeline.execute(config, config.run(run_id), embedder, llm)
         cache = m["embedding_cache"]
         print(
             f"{run_id:<16} chunks={m['chunk_stats']['chunks']:<3} "
-            f"embedding calls={m['api_calls']['embedding']} "
+            f"calls: embedding={m['api_calls']['embedding']} "
+            f"generation={m['api_calls']['generation']} "
             f"(cache hits={cache['hits']}, misses={cache['misses']}) "
             f"mean context tokens={m['mean_context_tokens']}"
         )
-    print("generation is not implemented yet (P8).")
     return 0
 
 
@@ -109,6 +112,10 @@ def main(argv: list[str] | None = None) -> int:
         return 1
     except AnswerKeyError as exc:
         print(f"Answer key error: {exc}", file=sys.stderr)
+        return 1
+    except RetryError as exc:
+        # Completed calls are cached, so re-running resumes where this stopped.
+        print(f"API error: {exc}\nRe-run the same command to resume.", file=sys.stderr)
         return 1
     return 0
 

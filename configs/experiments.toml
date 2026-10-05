@@ -30,14 +30,18 @@ temperature = 0.0
 
 [llm.gemini]
 provider = "gemini"
-model = "gemini-3.8-flash"
+# 3.8-flash's free tier is 20 requests/day, too few for ~50 calls (P8).
+# 3.5-flash-lite free tier: 500 requests/day, 15 requests/minute.
+model = "gemini-3.5-flash-lite"
 api_key_env = "GEMINI_API_KEY"
+requests_per_minute = 15
 
 [llm.groq]
 provider = "openai_compat"
 model = "llama-3.3-70b-versatile"
 base_url = "https://api.groq.com/openai/v1"
 api_key_env = "GROQ_API_KEY"
+requests_per_minute = 30
 
 [llm.ollama]
 provider = "openai_compat"

@@ -50,6 +50,7 @@ class LLMConfig:
     api_key_env: str
     base_url: str | None
     temperature: float
+    requests_per_minute: int
 
 
 @dataclass(frozen=True)
@@ -181,7 +182,9 @@ def _parse_llms(generation: dict[str, Any], profiles: dict[str, Any]) -> dict[st
     parsed = {}
     for name, raw in profiles.items():
         where = f"llm.{name}"
-        _check_unknown(raw, {"provider", "model", "api_key_env", "base_url"}, where)
+        _check_unknown(
+            raw, {"provider", "model", "api_key_env", "base_url", "requests_per_minute"}, where
+        )
         provider = _require(raw, "provider", str, where)
         if provider not in ("gemini", "openai_compat"):
             raise ConfigError(
@@ -197,6 +200,9 @@ def _parse_llms(generation: dict[str, Any], profiles: dict[str, Any]) -> dict[st
             api_key_env=_require(raw, "api_key_env", str, where),
             base_url=base_url,
             temperature=float(temperature),
+            requests_per_minute=_positive(
+                raw.get("requests_per_minute", 10), "requests_per_minute", where
+            ),
         )
     return parsed
 

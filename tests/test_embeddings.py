@@ -6,7 +6,7 @@ from google.genai import errors
 
 from rag_chunking.config import load_config
 from rag_chunking.embeddings import EmbeddingCache, GeminiEmbedder
-from rag_chunking.embeddings.gemini import _is_retryable
+from rag_chunking.embeddings.gemini import is_retryable
 from rag_chunking.embeddings.throttle import RateLimiter, RetryError, with_retries
 
 CONFIG = load_config().embedding
@@ -89,20 +89,23 @@ def test_retry_then_give_up():
             raise exc
         return "ok"
 
-    assert with_retries(call, _is_retryable, sleep=sleeps.append) == "ok"
+    assert with_retries(call, is_retryable, sleep=sleeps.append) == "ok"
     assert len(sleeps) == 2
 
     def always_429():
         raise errors.APIError(429, {})
 
     with pytest.raises(RetryError, match="gave up after 2"):
-        with_retries(always_429, _is_retryable, max_retries=2, sleep=sleeps.append)
+        with_retries(always_429, is_retryable, max_retries=2, sleep=sleeps.append)
 
     def bad_request():
         raise errors.APIError(400, {})
 
     with pytest.raises(errors.APIError):  # not retried
-        with_retries(bad_request, _is_retryable, sleep=lambda s: pytest.fail("slept"))
+        with_retries(bad_request, is_retryable, sleep=lambda s: pytest.fail("slept"))
+
+    daily = errors.APIError(429, {"error": {"message": "quotaId: RequestsPerDayPerProject"}})
+    assert not is_retryable(daily)
 
 
 def test_rate_limiter_waits_for_window():

@@ -16,10 +16,15 @@ from rag_chunking.tokens import estimate_tokens
 log = logging.getLogger(__name__)
 
 
-def _is_retryable(exc: Exception) -> bool:
+def is_retryable(exc: Exception) -> bool:
     from google.genai import errors
 
-    return isinstance(exc, errors.APIError) and (exc.code == 429 or exc.code >= 500)
+    if not isinstance(exc, errors.APIError):
+        return False
+    # A per-day quota resets in hours: retrying only burns time, so fail fast.
+    if exc.code == 429 and "PerDay" in str(exc):
+        return False
+    return exc.code == 429 or exc.code >= 500
 
 
 class GeminiEmbedder:
@@ -78,7 +83,7 @@ class GeminiEmbedder:
             lambda: self._client.models.embed_content(
                 model=self.config.model, contents=contents, config=cfg
             ),
-            _is_retryable,
+            is_retryable,
         )
         self.api_calls += 1
         vectors = np.array([e.values for e in response.embeddings], dtype=np.float32)
