@@ -14,6 +14,7 @@ from rag_chunking.embeddings import make_embedder
 from rag_chunking.embeddings.throttle import RetryError
 from rag_chunking.evaluation.answer_key import AnswerKeyError
 from rag_chunking.evaluation.metrics import run_metrics
+from rag_chunking.evaluation.report import write_report
 from rag_chunking.evaluation.review import write_review
 from rag_chunking.generation import make_llm
 from rag_chunking.inspection import cut_summary, format_table
@@ -46,11 +47,6 @@ def _build_parser() -> argparse.ArgumentParser:
     sub.add_parser("report", help="build results/comparison.md from all runs")
     sub.add_parser("list", help="list the runs defined in the config")
     return parser
-
-
-def _not_implemented(command: str, phase: str) -> int:
-    print(f"'{command}' is not implemented yet ({phase}).", file=sys.stderr)
-    return 2
 
 
 def _cmd_chunk(config: Config, run_id: str) -> int:
@@ -131,7 +127,15 @@ def main(argv: list[str] | None = None) -> int:
             run_ids = list(config.runs) if args.all else [config.run(args.run_id).id]
             return _cmd_review(config, run_ids)
         if args.command == "report":
-            return _not_implemented("report", "P12")
+            key = pipeline.load_checked_key(config, pipeline.load_document(config))
+            out, updated = write_report(config, key, readme=Path("README.md"))
+            print(f"wrote {out}")
+            print(
+                "refreshed the results block in README.md"
+                if updated
+                else "README.md has no results markers; left unchanged"
+            )
+            return 0
     except ConfigError as exc:
         print(f"Config error: {exc}", file=sys.stderr)
         return 1
