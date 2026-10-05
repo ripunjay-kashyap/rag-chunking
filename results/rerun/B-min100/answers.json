@@ -1,0 +1,168 @@
+{
+  "run_id": "B-min100",
+  "model": "gemini-3.5-flash-lite",
+  "temperature": 0.0,
+  "system_prompt_sha256": "2a5cdcfc7ee47e34dacbb8fd8ee731773aa58a48a7bde07087d4a265f590a1ed",
+  "answers": [
+    {
+      "id": "Q1",
+      "question": "What are the two main diagnostic criteria for Type 2 diabetes based on HbA1c and fasting plasma glucose?",
+      "context_ids": [
+        "B-4-diagnostic-criteria",
+        "B-1-overview",
+        "B-7-monitoring-and-follow-up"
+      ],
+      "sources": {
+        "1": "B-4-diagnostic-criteria",
+        "2": "B-1-overview",
+        "3": "B-7-monitoring-and-follow-up"
+      },
+      "answer": "Based on the sources, diagnosis is based on laboratory blood tests with the following standard thresholds for diabetes:\n- Fasting Plasma Glucose (FPG): 126 mg/dL or higher [1]\n- HbA1c (glycated hemoglobin): 6.5% or higher [1]",
+      "latency_s": 2.67
+    },
+    {
+      "id": "Q2",
+      "question": "What HbA1c range indicates prediabetes?",
+      "context_ids": [
+        "B-4-diagnostic-criteria",
+        "B-7-monitoring-and-follow-up",
+        "B-10-frequently-asked-questions"
+      ],
+      "sources": {
+        "1": "B-4-diagnostic-criteria",
+        "2": "B-7-monitoring-and-follow-up",
+        "3": "B-10-frequently-asked-questions"
+      },
+      "answer": "The HbA1c range that indicates prediabetes is 5.7%–6.4% [1].",
+      "latency_s": 3.08
+    },
+    {
+      "id": "Q3",
+      "question": "Name three first-line oral medications used to treat Type 2 diabetes.",
+      "context_ids": [
+        "B-5-treatment-approaches",
+        "B-5-1-lifestyle-modifications",
+        "B-10-frequently-asked-questions"
+      ],
+      "sources": {
+        "1": "B-5-treatment-approaches",
+        "2": "B-5-1-lifestyle-modifications",
+        "3": "B-10-frequently-asked-questions"
+      },
+      "answer": "The sources state that Metformin is usually the first-line drug for Type 2 diabetes [1]. They do not contain a list of three first-line oral medications.",
+      "latency_s": 1.64
+    },
+    {
+      "id": "Q4",
+      "question": "What are the classic symptoms of hyperglycemia?",
+      "context_ids": [
+        "B-3-symptoms",
+        "B-9-when-to-seek-emergency-care",
+        "B-4-diagnostic-criteria"
+      ],
+      "sources": {
+        "1": "B-3-symptoms",
+        "2": "B-9-when-to-seek-emergency-care",
+        "3": "B-4-diagnostic-criteria"
+      },
+      "answer": "The sources do not use the phrase \"classic symptoms of hyperglycemia,\" but they state that symptoms of Type 2 diabetes arise primarily from persistently elevated blood glucose (hyperglycemia) [1]. When symptoms appear, they commonly include:\n\n- Increased thirst and frequent urination [1]\n- Increased hunger [1]\n- Unexplained weight loss [1]\n- Fatigue [1]\n- Blurred vision [1]\n- Slow-healing sores or frequent infections [1]\n- Tingling or numbness in the hands or feet [1]",
+      "latency_s": 2.26
+    },
+    {
+      "id": "Q5",
+      "question": "What lifestyle modifications are recommended for managing Type 2 diabetes?",
+      "context_ids": [
+        "B-5-1-lifestyle-modifications",
+        "B-8-self-management-and-lifestyle-tips",
+        "B-10-frequently-asked-questions"
+      ],
+      "sources": {
+        "1": "B-5-1-lifestyle-modifications",
+        "2": "B-8-self-management-and-lifestyle-tips",
+        "3": "B-10-frequently-asked-questions"
+      },
+      "answer": "The recommended lifestyle modifications for managing Type 2 diabetes are:\n\n- Weight loss of even 5-7% of body weight [1]\n- Regular physical activity (at least 150 minutes per week of moderate exercise) [1]\n- A diet emphasizing whole grains, vegetables, lean protein, and reduced refined sugar and processed carbohydrates [1]\n- Smoking cessation [1]\n- Limiting alcohol intake [1]",
+      "latency_s": 3.67
+    },
+    {
+      "id": "Q6",
+      "question": "Name two microvascular complications of diabetes.",
+      "context_ids": [
+        "B-6-complications",
+        "B-7-monitoring-and-follow-up",
+        "B-1-overview"
+      ],
+      "sources": {
+        "1": "B-6-complications",
+        "2": "B-7-monitoring-and-follow-up",
+        "3": "B-1-overview"
+      },
+      "answer": "Based on the provided sources, two microvascular complications of diabetes are:\n1. Diabetic retinopathy [1]\n2. Diabetic nephropathy [1] (or diabetic neuropathy [1])",
+      "latency_s": 2.33
+    },
+    {
+      "id": "Q7",
+      "question": "Name two macrovascular complications of diabetes.",
+      "context_ids": [
+        "B-6-complications",
+        "B-1-overview",
+        "B-7-monitoring-and-follow-up"
+      ],
+      "sources": {
+        "1": "B-6-complications",
+        "2": "B-1-overview",
+        "3": "B-7-monitoring-and-follow-up"
+      },
+      "answer": "Based on the provided sources, two macrovascular complications of diabetes are:\n1. Coronary artery disease\n2. Cerebrovascular disease \n*(Peripheral vascular disease is also listed as a macrovascular complication.)* [1]",
+      "latency_s": 1.78
+    },
+    {
+      "id": "Q8",
+      "question": "How often should HbA1c be monitored in someone with stable Type 2 diabetes?",
+      "context_ids": [
+        "B-7-monitoring-and-follow-up",
+        "B-4-diagnostic-criteria",
+        "B-8-self-management-and-lifestyle-tips"
+      ],
+      "sources": {
+        "1": "B-7-monitoring-and-follow-up",
+        "2": "B-4-diagnostic-criteria",
+        "3": "B-8-self-management-and-lifestyle-tips"
+      },
+      "answer": "HbA1c testing should be done every 3-6 months, depending on how stable blood sugar control is [1].",
+      "latency_s": 3.78
+    },
+    {
+      "id": "Q9",
+      "question": "What blood glucose target range is recommended for most adults with Type 2 diabetes?",
+      "context_ids": [
+        "B-4-diagnostic-criteria",
+        "B-8-self-management-and-lifestyle-tips",
+        "B-5-1-lifestyle-modifications"
+      ],
+      "sources": {
+        "1": "B-4-diagnostic-criteria",
+        "2": "B-8-self-management-and-lifestyle-tips",
+        "3": "B-5-1-lifestyle-modifications"
+      },
+      "answer": "The documents do not contain this information.",
+      "latency_s": 2.34
+    },
+    {
+      "id": "Q10",
+      "question": "What symptoms should prompt someone to seek emergency medical care?",
+      "context_ids": [
+        "B-9-when-to-seek-emergency-care",
+        "B-3-symptoms",
+        "B-8-self-management-and-lifestyle-tips"
+      ],
+      "sources": {
+        "1": "B-9-when-to-seek-emergency-care",
+        "2": "B-3-symptoms",
+        "3": "B-8-self-management-and-lifestyle-tips"
+      },
+      "answer": "Based on the provided sources, the symptoms and situations that should prompt someone to seek immediate medical attention are:\n\n* Very high blood glucose readings (typically above 300 mg/dL) accompanied by nausea, vomiting, confusion, or rapid breathing [1].\n* Signs of severe low blood sugar: confusion, slurred speech, seizures, or loss of consciousness [1].\n* Sudden chest pain, shortness of breath, or one-sided weakness [1].\n* A foot wound that is rapidly worsening, especially with redness, swelling, or fever [1].",
+      "latency_s": 2.05
+    }
+  ]
+}

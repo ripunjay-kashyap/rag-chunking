@@ -12,7 +12,7 @@ from rag_chunking.evaluation.autocheck import (
     is_relevant,
 )
 from rag_chunking.evaluation.metrics import run_metrics
-from rag_chunking.evaluation.review import read_review, write_review
+from rag_chunking.evaluation.review import answer_hash, read_review, write_review
 
 KEY = load_answer_key(Path("data/answer_key.json"))
 Q = {q.id: q for q in KEY.questions}
@@ -96,7 +96,7 @@ def _fake_run(run_dir: Path) -> None:
 def test_metrics_end_to_end_on_dummy_run(tmp_path):
     run_dir = tmp_path / "dummy"
     _fake_run(run_dir)
-    rows = write_review(KEY, run_dir)
+    rows, _ = write_review(KEY, run_dir)
     m = run_metrics(KEY, run_dir, rows)
     # Q1 and Q8 retrieved (yes), the other 7 answerable questions not (no).
     assert m["retrieval_accuracy_auto"] == pytest.approx(100 * 2 / 9, abs=0.1)
@@ -124,7 +124,8 @@ def test_review_round_trip_keeps_manual_labels(tmp_path):
         writer.writeheader()
         writer.writerows(rows)
 
-    rows_again = write_review(KEY, run_dir)  # refresh
+    rows_again, warnings = write_review(KEY, run_dir)  # refresh
+    assert warnings == []  # nothing changed under the manual labels
     kept = read_review(path)
     assert kept["Q2"]["retrieval_label_final"] == "yes"
     assert kept["Q2"]["notes"] == "manual, with a comma, and a\nnewline"
@@ -139,14 +140,27 @@ def test_review_round_trip_keeps_manual_labels(tmp_path):
 def test_suggestions_fill_their_own_columns_and_final_labels_win(tmp_path):
     run_dir = tmp_path / "dummy"
     _fake_run(run_dir)
+    no_idea = answer_hash("no idea")
     suggestions = {
         "dummy": {
-            "Q1": {"retrieval": "partial", "answer": "no", "reason": "header missing"},
-            "Q8": {"retrieval": "yes", "answer": "yes", "reason": "fine"},
+            "Q1": {
+                "retrieval": "partial",
+                "answer": "no",
+                "reason": "header missing",
+                "context_ids": "c-Q1",
+                "answer_sha256": no_idea,
+            },
+            "Q8": {
+                "retrieval": "yes",
+                "answer": "yes",
+                "reason": "fine",
+                "context_ids": "c-Q8",
+                "answer_sha256": no_idea,
+            },
         }
     }
     (tmp_path / "review_suggestions.json").write_text(json.dumps(suggestions), encoding="utf-8")
-    rows = {r["question_id"]: r for r in write_review(KEY, run_dir)}
+    rows = {r["question_id"]: r for r in write_review(KEY, run_dir)[0]}
     assert rows["Q1"]["retrieval_label_suggested"] == "partial"
     assert rows["Q1"]["retrieval_label_final"] == ""  # suggestions never fill final columns
     assert rows["Q1"]["suggestion_reason"] == "header missing"
@@ -157,7 +171,7 @@ def test_suggestions_fill_their_own_columns_and_final_labels_win(tmp_path):
     path = run_dir / "review.csv"
     text = path.read_text(encoding="utf-8").replace("header missing,,,", "header missing,yes,,", 1)
     path.write_text(text, encoding="utf-8")
-    rows = write_review(KEY, run_dir)
+    rows, _ = write_review(KEY, run_dir)
     m = run_metrics(KEY, run_dir, rows)
     assert m["per_question"]["Q1"]["retrieval"] == "yes"  # the reviewer's label wins
 
@@ -165,10 +179,67 @@ def test_suggestions_fill_their_own_columns_and_final_labels_win(tmp_path):
 def test_suggestion_without_reason_is_rejected(tmp_path):
     run_dir = tmp_path / "dummy"
     _fake_run(run_dir)
-    bad = {"dummy": {"Q1": {"retrieval": "yes", "answer": "", "reason": ""}}}
+    bad = {"dummy": {"Q1": {"retrieval": "yes", "answer": "", "reason": "", "context_ids": "x"}}}
     (tmp_path / "review_suggestions.json").write_text(json.dumps(bad), encoding="utf-8")
     with pytest.raises(ValueError, match="no reason"):
         write_review(KEY, run_dir)
+    unbound = {"dummy": {"Q1": {"retrieval": "yes", "answer": "", "reason": "ok"}}}
+    (tmp_path / "review_suggestions.json").write_text(json.dumps(unbound), encoding="utf-8")
+    with pytest.raises(ValueError, match="judged context"):
+        write_review(KEY, run_dir)
+
+
+def _set_answer(run_dir: Path, qid: str, text: str) -> None:
+    path = run_dir / "answers.json"
+    data = json.loads(path.read_text(encoding="utf-8"))
+    for a in data["answers"]:
+        if a["id"] == qid:
+            a["answer"] = text
+    path.write_text(json.dumps(data), encoding="utf-8")
+
+
+def test_stale_suggestion_is_not_applied_after_regeneration(tmp_path):
+    run_dir = tmp_path / "dummy"
+    _fake_run(run_dir)
+    suggestions = {
+        "dummy": {
+            "Q8": {
+                "retrieval": "partial",
+                "answer": "no",
+                "reason": "judged an older answer",
+                "context_ids": "c-Q8",
+                "answer_sha256": answer_hash("no idea"),
+            }
+        }
+    }
+    (tmp_path / "review_suggestions.json").write_text(json.dumps(suggestions), encoding="utf-8")
+    _set_answer(run_dir, "Q8", "Every 3-6 months.")  # a re-generated, different answer
+    rows = {r["question_id"]: r for r in write_review(KEY, run_dir)[0]}
+    assert rows["Q8"]["retrieval_label_suggested"] == "partial"  # same context: applies
+    assert rows["Q8"]["answer_label_suggested"] == ""  # different answer: not applied
+    assert rows["Q8"]["suggestion_reason"].startswith("[not applied: the answer changed")
+    m = run_metrics(KEY, run_dir, list(rows.values()))
+    assert m["per_question"]["Q8"]["answer"] == "yes"  # falls back to the automatic label
+
+
+def test_manual_label_on_a_changed_answer_is_kept_but_flagged(tmp_path):
+    run_dir = tmp_path / "dummy"
+    _fake_run(run_dir)
+    write_review(KEY, run_dir)
+    path = run_dir / "review.csv"
+    with path.open(encoding="utf-8", newline="") as fh:
+        rows = list(csv.DictReader(fh))
+    rows[7]["answer_label"] = "no"  # Q8
+    with path.open("w", encoding="utf-8", newline="") as fh:
+        writer = csv.DictWriter(fh, fieldnames=rows[0].keys(), lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(rows)
+    _set_answer(run_dir, "Q8", "Every 3-6 months.")
+    new_rows, warnings = write_review(KEY, run_dir)
+    assert new_rows[7]["answer_label"] == "no"  # never discarded
+    assert warnings == [
+        "dummy Q8: answer changed since the manual label was entered; please re-check it"
+    ]
 
 
 def test_invalid_manual_label_is_rejected(tmp_path):

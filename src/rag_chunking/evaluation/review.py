@@ -11,6 +11,7 @@ Re-running refreshes the first two but never touches what the reviewer typed.
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
 from pathlib import Path
 from typing import Any
@@ -53,8 +54,16 @@ def read_review(path: Path) -> dict[str, dict[str, str]]:
     return rows
 
 
+def answer_hash(answer: str) -> str:
+    return hashlib.sha256(answer.encode("utf-8")).hexdigest()
+
+
 def load_suggestions(path: Path) -> dict[str, dict[str, dict[str, str]]]:
-    """{run_id: {question_id: {"retrieval", "answer", "reason"}}}, validated."""
+    """{run_id: {question_id: {retrieval, answer, reason, context_ids, answer_sha256}}}.
+
+    context_ids / answer_sha256 record exactly what was judged, so a suggestion is never
+    applied to a context or answer it has not seen (e.g. after a re-generation).
+    """
     data = _load(path) or {}
     for run_id, questions in data.items():
         for qid, s in questions.items():
@@ -63,6 +72,10 @@ def load_suggestions(path: Path) -> dict[str, dict[str, dict[str, str]]]:
                     raise ValueError(f"{path}: {run_id} {qid} {field} = {s[field]!r}")
             if not s.get("reason"):
                 raise ValueError(f"{path}: {run_id} {qid} has no reason")
+            if s.get("retrieval") and not s.get("context_ids"):
+                raise ValueError(f"{path}: {run_id} {qid} does not record the judged context")
+            if s.get("answer") and not s.get("answer_sha256"):
+                raise ValueError(f"{path}: {run_id} {qid} does not record the judged answer")
     return data
 
 
@@ -98,21 +111,48 @@ def build_rows(key: AnswerKey, run_dir: Path) -> list[dict[str, str]]:
     return rows
 
 
-def write_review(key: AnswerKey, run_dir: Path) -> list[dict[str, str]]:
+def _apply_suggestion(row: dict[str, str], suggestion: dict[str, str]) -> None:
+    same_context = suggestion.get("context_ids") == row["context_ids"]
+    same_answer = suggestion.get("answer_sha256") == answer_hash(row["answer"])
+    row["retrieval_label_suggested"] = suggestion.get("retrieval", "") if same_context else ""
+    row["answer_label_suggested"] = suggestion.get("answer", "") if same_answer else ""
+    stale = [
+        what
+        for what, used, ok in (
+            ("context", suggestion.get("retrieval"), same_context),
+            ("answer", suggestion.get("answer"), same_answer),
+        )
+        if used and not ok
+    ]
+    reason = suggestion.get("reason", "")
+    if stale:
+        reason = f"[not applied: the {' and '.join(stale)} changed since review] {reason}"
+    row["suggestion_reason"] = reason
+
+
+def write_review(key: AnswerKey, run_dir: Path) -> tuple[list[dict[str, str]], list[str]]:
+    """Write review.csv. Returns (rows, warnings about manual labels on changed rows)."""
     path = run_dir / "review.csv"
     existing = read_review(path)
     suggestions = load_suggestions(run_dir.parent / SUGGESTIONS_FILE).get(run_dir.name, {})
     rows = build_rows(key, run_dir)
+    warnings = []
     for row in rows:
-        suggestion = suggestions.get(row["question_id"], {})
-        row["retrieval_label_suggested"] = suggestion.get("retrieval", "")
-        row["answer_label_suggested"] = suggestion.get("answer", "")
-        row["suggestion_reason"] = suggestion.get("reason", "")
+        _apply_suggestion(row, suggestions.get(row["question_id"], {}))
         old = existing.get(row["question_id"], {})
         for col in MANUAL_COLUMNS:
             row[col] = old.get(col, "")
+        # Manual labels are never discarded, but a label typed for a different context
+        # or answer must not pass silently.
+        if old and (old.get("retrieval_label_final") or old.get("answer_label")):
+            changed = [c for c in ("context_ids", "answer") if old.get(c, "") != row[c]]
+            if changed:
+                warnings.append(
+                    f"{run_dir.name} {row['question_id']}: {' and '.join(changed)} changed "
+                    "since the manual label was entered; please re-check it"
+                )
     with path.open("w", encoding="utf-8", newline="") as fh:
         writer = csv.DictWriter(fh, fieldnames=COLUMNS, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
-    return rows
+    return rows, warnings

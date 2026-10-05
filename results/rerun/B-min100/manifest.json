@@ -1,0 +1,62 @@
+{
+  "run_id": "B-min100",
+  "created_at": "2026-10-05T19:44:11+00:00",
+  "git_commit": "f4da4bab2614ad972fd23e5e7cc7f3468a58c9ad-dirty",
+  "run": {
+    "id": "B-min100",
+    "strategy": "structure",
+    "params": {
+      "min_tokens": 100,
+      "max_tokens": 512,
+      "overlap_tokens": 50,
+      "prefix": true
+    },
+    "retrieval": "top_k",
+    "generate": true
+  },
+  "document_sha256": "fe88894b2506a02447e6c745cc1189dc54771e700edb49bd7a04c0687184c259",
+  "answer_key_sha256": "85bf3987f34339fc1a535171c81874a89075c3e2fe5574e26ece50868ec97fc6",
+  "embedding": {
+    "provider": "gemini",
+    "model": "gemini-embedding-2",
+    "dimensions": 768,
+    "document_template": "title: none | text: {text}",
+    "query_template": "task: search result | query: {text}",
+    "requests_per_minute": 100,
+    "tokens_per_minute": 30000
+  },
+  "llm": {
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "temperature": 0.0,
+    "system_prompt_sha256": "2a5cdcfc7ee47e34dacbb8fd8ee731773aa58a48a7bde07087d4a265f590a1ed"
+  },
+  "settings": {
+    "k": 3,
+    "retrieve_n": 5,
+    "token_budget": 400
+  },
+  "chunk_stats": {
+    "chunks": 11,
+    "mean_tokens": 184.1,
+    "min_tokens": 144,
+    "max_tokens": 289,
+    "total_tokens": 2025,
+    "redundancy": 1.07
+  },
+  "mean_context_tokens": 529.0,
+  "timings": {
+    "chunking_ms_median": 0.362,
+    "embedding_s_this_run": 0.004,
+    "retrieval_ms_this_run": 0.97,
+    "generation_latency_s_total": 25.6
+  },
+  "api_calls": {
+    "embedding": 0,
+    "generation": 0
+  },
+  "embedding_cache": {
+    "hits": 21,
+    "misses": 0
+  }
+}

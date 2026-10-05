@@ -16,6 +16,7 @@ from rag_chunking.evaluation.answer_key import AnswerKeyError
 from rag_chunking.evaluation.metrics import run_metrics
 from rag_chunking.evaluation.report import write_report
 from rag_chunking.evaluation.review import write_review
+from rag_chunking.evaluation.stability import compare
 from rag_chunking.generation import make_llm
 from rag_chunking.inspection import cut_summary, format_table
 from rag_chunking.results import write_json
@@ -45,8 +46,19 @@ def _build_parser() -> argparse.ArgumentParser:
     review_target.add_argument("--all", action="store_true", help="every run in the config")
 
     sub.add_parser("report", help="build results/comparison.md from all runs")
+    stability = sub.add_parser(
+        "stability", help="compare answers with a second generation of the same prompts"
+    )
+    stability.add_argument(
+        "--other", type=Path, required=True, help="results dir of the second generation"
+    )
     sub.add_parser("list", help="list the runs defined in the config")
     return parser
+
+
+def _warn(messages: list[str]) -> None:
+    for message in messages:
+        print(f"warning: {message}", file=sys.stderr)
 
 
 def _cmd_chunk(config: Config, run_id: str) -> int:
@@ -76,7 +88,9 @@ def _cmd_run(config: Config, run_ids: list[str]) -> int:
     for run_id in run_ids:
         m = pipeline.execute(config, config.run(run_id), embedder, llm)
         run_dir = config.settings.results_dir / run_id
-        write_json(run_dir / "metrics.json", run_metrics(key, run_dir, write_review(key, run_dir)))
+        rows, warnings = write_review(key, run_dir)
+        _warn(warnings)
+        write_json(run_dir / "metrics.json", run_metrics(key, run_dir, rows))
         cache = m["embedding_cache"]
         print(
             f"{run_id:<16} chunks={m['chunk_stats']['chunks']:<3} "
@@ -92,7 +106,8 @@ def _cmd_review(config: Config, run_ids: list[str]) -> int:
     key = pipeline.load_checked_key(config, pipeline.load_document(config))
     for run_id in run_ids:
         run_dir = config.settings.results_dir / run_id
-        rows = write_review(key, run_dir)
+        rows, warnings = write_review(key, run_dir)
+        _warn(warnings)
         metrics = run_metrics(key, run_dir, rows)
         write_json(run_dir / "metrics.json", metrics)
         shown = {k: v for k, v in metrics.items() if k not in ("per_question", "chunks", "run_id")}
@@ -126,6 +141,13 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "review":
             run_ids = list(config.runs) if args.all else [config.run(args.run_id).id]
             return _cmd_review(config, run_ids)
+        if args.command == "stability":
+            key = pipeline.load_checked_key(config, pipeline.load_document(config))
+            first = config.settings.results_dir
+            out = first / "answer_stability.md"
+            out.write_text(compare(key, first, args.other, list(config.runs)), encoding="utf-8")
+            print(f"wrote {out}")
+            return 0
         if args.command == "report":
             key = pipeline.load_checked_key(config, pipeline.load_document(config))
             out, updated = write_report(config, key, readme=Path("README.md"))

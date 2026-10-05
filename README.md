@@ -12,8 +12,11 @@ questions. Each comparison changes exactly one thing.
 
 **Short answer:** B retrieved better (100% vs 94.4% retrieval accuracy, hit@1 1.0 vs
 0.889) and kept that lead with *less* text under an equal token budget. Its answers were
-not better (80% vs 90%): the whole gap is one question, where the LLM refused despite a
-perfect context. Details, ablations and the written analysis follow.
+not measurably better. In the committed run B scored 80% vs A's 90%, but a second
+generation of the identical prompts gave 90% vs 90%: at temperature 0, answer accuracy
+moved by up to 10 points between runs, while retrieval reproduced exactly
+([`results/answer_stability.md`](results/answer_stability.md)). Details, ablations and
+the written analysis follow.
 
 ## Contents
 
@@ -45,6 +48,7 @@ uv run python -m rag_chunking chunk --run B-min100    # inspect chunks (no API c
 uv run python -m rag_chunking run --all               # chunk → embed → retrieve → generate → auto-check
 uv run python -m rag_chunking review --all            # refresh review.csv + metrics.json
 uv run python -m rag_chunking report                  # results/comparison.md + tables in this README
+uv run python -m rag_chunking stability --other results/rerun   # answer noise between two generations
 ```
 
 - **Caching:** every API call goes through a disk cache (`.cache/`), so a re-run with a
@@ -197,7 +201,10 @@ strategy. It has not changed since.
 2. **Suggested:** a by-hand reading of every retrieved context and every answer, each with
    a written reason (`results/review_suggestions.json`). It disagrees with the automatic
    label once in 92 rows: A-800 Q1, where "126 mg/dL" was retrieved without its row label
-   or column header.
+   or column header. Each suggestion records the exact context and answer it judged
+   (chunk IDs and a hash of the answer). If either changes, for example after a
+   re-generation, the suggestion is not applied and the row falls back to the automatic
+   label.
 3. **Final:** the human reviewer's `retrieval_label_final` / `answer_label` columns. When
    they are filled in, they override everything above, and `report` regenerates every
    table.
@@ -284,10 +291,13 @@ Volume does not explain the gap. At top-3, B passes about 44% more text (529 vs 
 tokens), but under an equal 400-token budget it still scored 100% using less text (334
 tokens).
 
-Answers did not follow retrieval. B-min100 scored 80% against A's 90%, and the whole gap
-is Q4, where the model refused even though the full symptom list was ranked first. Both
-strategies handled the traps the same way: the Q3 premise was flagged, the Q8 range
-kept, and Q9 refused.
+Answers did not separate the strategies. In the committed run B-min100 scored 80%
+against A's 90%, entirely from one Q4 refusal despite the full symptom list ranking
+first. Regenerating the identical prompts from a clean clone changed 6–8 of 10 answer
+texts per run and turned that refusal into a correct answer (90% vs 90%). So differences
+of 5–10 points are run-to-run noise here, while retrieval reproduced exactly. Both
+strategies handled the traps alike: the Q3 premise was flagged, the Q8 range kept, and
+Q9 refused.
 
 Trade-offs: A is 46 lines with one parameter and chunks in 0.12 ms. B is about 430 lines
 of merge, fallback and atomic-table rules and takes 0.32 ms: negligible at runtime, but
@@ -319,7 +329,7 @@ mainly for robustness, because A's good result here was partly luck.
 | Volume confounder | Ignore, equal budget | Extra runs with a 400-token budget | B's chunks are bigger; separates boundaries from amount of text |
 | LLM | Gemini 3.8 Flash, 3.5 Flash-Lite, Groq Llama | `gemini-3.5-flash-lite`, temperature 0 | 3.8 Flash's free tier is 20 requests/day; one provider; Groq/Ollama via config |
 | Source labels in prompt | Chunk IDs, numbers | `[1]…[n]` | B's IDs name sections and would leak heading context |
-| Prompt tuning | Tune after seeing answers, freeze | Frozen | Tuning on the test questions would bias the comparison; the Q4 failure is reported instead |
+| Prompt tuning | Tune after seeing answers, freeze | Frozen | Tuning on the test questions would bias the comparison; the Q4 refusal was reported instead (and turned out to be run-to-run noise) |
 | Scoring | LLM-as-a-judge, RAGAS, key + manual | Frozen key → automatic → suggested → human | The brief asks for manual judgement; the key makes it reproducible |
 
 ## 10. Limitations and production next steps
@@ -331,9 +341,11 @@ mainly for robustness, because A's good result here was partly luck.
 - **Labels:** suggested labels stand in until the reviewer's final labels are filled in.
   The automatic check can't see a missing header (A-800 Q1). hit@1 counts any chunk
   holding a fact as relevant, including lures like a headerless table fragment.
-- **One LLM, one sample:** temperature 0 still isn't a guarantee. The Q4 refusal is a
-  single generation. Several samples or a second model would separate model noise from
-  strategy effects.
+- **Answers are noisy even at temperature 0.** A second generation of the identical
+  prompts (`results/rerun/`, compared in `results/answer_stability.md`) changed 6–8 of 10
+  answer texts per run and moved answer accuracy by up to 10 points. The committed
+  run's B-min100 Q4 refusal did not reproduce. Answer-level comparisons need many samples
+  per prompt; retrieval, which is deterministic, is the reliable signal here.
 - **FAQ boundaries:** §10's bold questions aren't split points, so a question about the
   FAQ retrieves all three answers together.
 - **Production next steps:** convert PDF/HTML to Markdown first, so B has headings to work
@@ -356,6 +368,8 @@ src/rag_chunking/
   pipeline.py, inspection.py, normalize.py, tokens.py, __main__.py (CLI)
 results/<run>/               chunks, retrievals, answers, review.csv, metrics, manifest
 results/comparison.md        generated cross-run report
-results/review_suggestions.json   suggested labels with reasons
+results/review_suggestions.json   suggested labels with reasons (bound to the judged context/answer)
+results/rerun/<run>/         a second, independent generation of the same prompts
+results/answer_stability.md  generated comparison of the two generations
 tests/                       pytest suite (no API calls)
 ```
