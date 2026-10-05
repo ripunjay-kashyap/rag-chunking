@@ -18,6 +18,11 @@ dimensions = 768
 # Identical for both strategies, so it doesn't favour either one.
 document_template = "title: none | text: {text}"
 query_template = "task: search result | query: {text}"
+api_key_env = "GEMINI_API_KEY"
+# Free-tier limits for this account; the client throttles to stay under them.
+requests_per_minute = 100
+tokens_per_minute = 30000
+batch_size = 100    # texts per batchEmbedContents request
 
 [generation]
 active = "gemini"   # which [llm.*] profile to use

@@ -36,6 +36,10 @@ class EmbeddingConfig:
     dimensions: int
     document_template: str
     query_template: str
+    api_key_env: str
+    requests_per_minute: int
+    tokens_per_minute: int
+    batch_size: int
 
 
 @dataclass(frozen=True)
@@ -143,8 +147,12 @@ def _parse_settings(raw: dict[str, Any]) -> Settings:
 
 def _parse_embedding(raw: dict[str, Any]) -> EmbeddingConfig:
     where = "embedding"
+    limits = ("requests_per_minute", "tokens_per_minute", "batch_size")
     _check_unknown(
-        raw, {"provider", "model", "dimensions", "document_template", "query_template"}, where
+        raw,
+        {"provider", "model", "dimensions", "document_template", "query_template", "api_key_env"}
+        | set(limits),
+        where,
     )
     provider = _require(raw, "provider", str, where)
     if provider != "gemini":
@@ -159,7 +167,9 @@ def _parse_embedding(raw: dict[str, Any]) -> EmbeddingConfig:
         provider=provider,
         model=_require(raw, "model", str, where),
         dimensions=_positive(_require(raw, "dimensions", int, where), "dimensions", where),
+        api_key_env=_require(raw, "api_key_env", str, where),
         **templates,
+        **{key: _positive(_require(raw, key, int, where), key, where) for key in limits},
     )
 
 

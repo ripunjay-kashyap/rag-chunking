@@ -1,0 +1,52 @@
+{
+  "run_id": "B-min100",
+  "created_at": "2026-10-05T18:08:50+00:00",
+  "git_commit": "11fdeb0be4e4807fe6842731924d79e57a51c127-dirty",
+  "run": {
+    "id": "B-min100",
+    "strategy": "structure",
+    "params": {
+      "min_tokens": 100,
+      "max_tokens": 512,
+      "overlap_tokens": 50,
+      "prefix": true
+    },
+    "retrieval": "top_k",
+    "generate": true
+  },
+  "document_sha256": "fe88894b2506a02447e6c745cc1189dc54771e700edb49bd7a04c0687184c259",
+  "answer_key_sha256": "85bf3987f34339fc1a535171c81874a89075c3e2fe5574e26ece50868ec97fc6",
+  "embedding": {
+    "provider": "gemini",
+    "model": "gemini-embedding-2",
+    "dimensions": 768,
+    "document_template": "title: none | text: {text}",
+    "query_template": "task: search result | query: {text}",
+    "requests_per_minute": 100,
+    "tokens_per_minute": 30000
+  },
+  "llm": {
+    "model": "gemini-3.8-flash",
+    "temperature": 0.0
+  },
+  "settings": {
+    "k": 3,
+    "retrieve_n": 5,
+    "token_budget": 400
+  },
+  "chunk_stats": {
+    "chunks": 11,
+    "mean_tokens": 184.1,
+    "min_tokens": 144,
+    "max_tokens": 289,
+    "total_tokens": 2025,
+    "redundancy": 1.07
+  },
+  "api_calls": {
+    "embedding": 0
+  },
+  "embedding_cache": {
+    "hits": 21,
+    "misses": 0
+  }
+}

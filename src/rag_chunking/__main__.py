@@ -4,16 +4,15 @@ from __future__ import annotations
 
 import argparse
 import sys
-from dataclasses import asdict
 from pathlib import Path
 
 from dotenv import load_dotenv
 
-from rag_chunking.chunking import make_chunker
+from rag_chunking import pipeline
 from rag_chunking.config import DEFAULT_CONFIG, Config, ConfigError, load_config
-from rag_chunking.inspection import cut_summary, find_cuts, format_table, summary_stats
-from rag_chunking.normalize import normalize
-from rag_chunking.results import sha256, write_json
+from rag_chunking.embeddings import make_embedder
+from rag_chunking.evaluation.answer_key import AnswerKeyError
+from rag_chunking.inspection import cut_summary, format_table
 
 
 def _build_parser() -> argparse.ArgumentParser:
@@ -49,24 +48,9 @@ def _not_implemented(command: str, phase: str) -> int:
 
 def _cmd_chunk(config: Config, run_id: str) -> int:
     run = config.run(run_id)
-    document = normalize(config.settings.document.read_text(encoding="utf-8"))
-    chunks = make_chunker(run.params).chunk(document)
-    stats = summary_stats(chunks, document)
-    cuts = find_cuts(chunks, document)
+    chunked = pipeline.chunk_run(config, run, pipeline.load_document(config))
+    chunks, stats, cuts = chunked.chunks, chunked.stats, chunked.cuts
     out = config.settings.results_dir / run.id / "chunks.json"
-    write_json(
-        out,
-        {
-            "run_id": run.id,
-            "strategy": run.strategy,
-            "params": asdict(run.params),
-            "document_sha256": sha256(document),
-            "stats": stats,
-            "cut_summary": cut_summary(cuts),
-            "cuts": [asdict(c) for c in cuts],
-            "chunks": [c.to_dict() for c in chunks],
-        },
-    )
     print(format_table(chunks))
     print()
     print("stats:", ", ".join(f"{k}={v}" for k, v in stats.items()))
@@ -77,6 +61,22 @@ def _cmd_chunk(config: Config, run_id: str) -> int:
             flag = "mid-word" if cut.mid_word else ""
             print(f"  {cut.chunk_id:<12} {cut.kind:<13} {flag:<9} {cut.context}")
     print(f"\nwrote {out}")
+    return 0
+
+
+def _cmd_run(config: Config, run_ids: list[str]) -> int:
+    # One embedder for all runs, so runs that share chunks (A-500 / A-500-budget) share
+    # the cache within a single invocation too.
+    embedder = make_embedder(config.embedding, config.settings.cache_dir)
+    for run_id in run_ids:
+        m = pipeline.execute(config, config.run(run_id), embedder)
+        cache = m["embedding_cache"]
+        print(
+            f"{run_id:<16} chunks={m['chunk_stats']['chunks']:<3} "
+            f"embedding calls={m['api_calls']['embedding']} "
+            f"(cache hits={cache['hits']}, misses={cache['misses']})"
+        )
+    print("retrieval and generation are not implemented yet (P7, P8).")
     return 0
 
 
@@ -96,9 +96,8 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "chunk":
             return _cmd_chunk(config, args.run)
         if args.command == "run":
-            if args.run_id:
-                config.run(args.run_id)
-            return _not_implemented("run", "P6–P10")
+            run_ids = list(config.runs) if args.all else [config.run(args.run_id).id]
+            return _cmd_run(config, run_ids)
         if args.command == "review":
             config.run(args.run)
             return _not_implemented("review", "P9")
@@ -106,6 +105,9 @@ def main(argv: list[str] | None = None) -> int:
             return _not_implemented("report", "P12")
     except ConfigError as exc:
         print(f"Config error: {exc}", file=sys.stderr)
+        return 1
+    except AnswerKeyError as exc:
+        print(f"Answer key error: {exc}", file=sys.stderr)
         return 1
     return 0
 
