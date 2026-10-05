@@ -1,0 +1,32 @@
+question_id,question,context_ids,context_tokens,retrieval_auto,facts_in_context,answer,answer_auto,facts_in_answer,retrieval_label_final,answer_label,notes
+Q1,What are the two main diagnostic criteria for Type 2 diabetes based on HbA1c and fasting plasma glucose?,B-4-diagnostic-criteria B-1-overview B-7-monitoring-and-follow-up,517,yes,HbA1c threshold; FPG threshold,"Based on the sources, the standard thresholds for diagnosing diabetes are:
+- **Fast Plasma Glucose (FPG):** 126 mg/dL or higher [1]
+- **HbA1c (glycated hemoglobin):** 6.5% or higher [1]
+
+A diagnosis is usually confirmed by repeating the abnormal test on a second occasion, unless the patient has clear symptoms of hyperglycemia along with a random glucose reading above 200 mg/dL [1].",yes,HbA1c threshold; FPG threshold,,,
+Q2,What HbA1c range indicates prediabetes?,B-4-diagnostic-criteria B-7-monitoring-and-follow-up B-10-frequently-asked-questions,591,yes,lower bound; upper bound,The HbA1c range that indicates prediabetes is 5.7%–6.4% [1].,yes,lower bound; upper bound,,,
+Q3,Name three first-line oral medications used to treat Type 2 diabetes.,B-5-treatment-approaches B-5-1-lifestyle-modifications B-10-frequently-asked-questions,671,yes,Metformin; Sulfonylureas; DPP-4 inhibitors; SGLT2 inhibitors; GLP-1 receptor agonists,The sources do not list three first-line oral medications; they state that **metformin** is usually the first-line drug [1].,partial,Metformin,,,
+Q4,What are the classic symptoms of hyperglycemia?,B-3-symptoms B-9-when-to-seek-emergency-care B-4-diagnostic-criteria,511,yes,thirst; frequent urination; hunger; weight loss; fatigue; blurred vision; slow-healing sores / infections; tingling / numbness,The document does not contain this information.,no,,,,
+Q5,What lifestyle modifications are recommended for managing Type 2 diabetes?,B-5-1-lifestyle-modifications B-8-self-management-and-lifestyle-tips B-10-frequently-asked-questions,529,yes,weight loss 5-7%; 150 min/week exercise; diet; smoking cessation; limit alcohol; home glucose log; regular meals; daily foot checks; vaccinations,"The lifestyle modifications recommended for managing Type 2 diabetes include:
+
+- Weight loss of even 5-7% of body weight [1]
+- Regular physical activity (at least 150 minutes per week of moderate exercise) [1]
+- A diet emphasizing whole grains, vegetables, lean protein, and reduced refined sugar and processed carbohydrates [1]
+- Smoking cessation [1]
+- Limiting alcohol intake [1]",partial,weight loss 5-7%; 150 min/week exercise; diet; smoking cessation; limit alcohol,,,
+Q6,Name two microvascular complications of diabetes.,B-6-complications B-7-monitoring-and-follow-up B-1-overview,509,yes,retinopathy; nephropathy; neuropathy,"Based on the provided sources, two microvascular complications of diabetes are:
+1. Diabetic retinopathy [1]
+2. Diabetic nephropathy (or diabetic neuropathy) [1]",yes,retinopathy; nephropathy; neuropathy,,,
+Q7,Name two macrovascular complications of diabetes.,B-6-complications B-1-overview B-7-monitoring-and-follow-up,509,yes,coronary artery disease; cerebrovascular disease; peripheral vascular disease,"Based on the provided sources, two macrovascular complications of diabetes are:
+
+- Coronary artery disease
+- Cerebrovascular disease 
+*(Peripheral vascular disease is also listed as a macrovascular complication.)* [1]",yes,coronary artery disease; cerebrovascular disease; peripheral vascular disease,,,
+Q8,How often should HbA1c be monitored in someone with stable Type 2 diabetes?,B-7-monitoring-and-follow-up B-4-diagnostic-criteria B-8-self-management-and-lifestyle-tips,502,yes,every 3-6 months,"HbA1c testing should be done every 3-6 months, depending on how stable blood sugar control is [1].",yes,every 3-6 months,,,
+Q9,What blood glucose target range is recommended for most adults with Type 2 diabetes?,B-4-diagnostic-criteria B-8-self-management-and-lifestyle-tips B-5-1-lifestyle-modifications,504,N/A,,The documents do not contain this information.,yes,,,,
+Q10,What symptoms should prompt someone to seek emergency medical care?,B-9-when-to-seek-emergency-care B-3-symptoms B-8-self-management-and-lifestyle-tips,447,yes,very high glucose (>300 mg/dL) with nausea/vomiting/confusion; severe low blood sugar; heart attack / stroke signs; worsening foot wound,"According to the sources, you should seek immediate medical attention for the following symptoms or signs:
+
+- Very high blood glucose readings (typically above 300 mg/dL) accompanied by nausea, vomiting, confusion, or rapid breathing [1].
+- Signs of severe low blood sugar: confusion, slurred speech, seizures, or loss of consciousness [1].
+- Sudden chest pain, shortness of breath, or one-sided weakness [1].
+- A foot wound that is rapidly worsening, especially with redness, swelling, or fever [1].",yes,very high glucose (>300 mg/dL) with nausea/vomiting/confusion; severe low blood sugar; heart attack / stroke signs; worsening foot wound,,,

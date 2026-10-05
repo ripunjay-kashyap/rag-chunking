@@ -1,0 +1,61 @@
+{
+  "run_id": "A-500-budget",
+  "chunks": {
+    "chunks": 17,
+    "mean_tokens": 122.6,
+    "min_tokens": 84,
+    "max_tokens": 125,
+    "total_tokens": 2084,
+    "redundancy": 1.11
+  },
+  "mean_context_tokens": 366.8,
+  "retrieval_accuracy_auto": 94.4,
+  "retrieval_accuracy": 94.4,
+  "retrieval_manually_reviewed": 0,
+  "hit_at_1_top5": 0.889,
+  "mrr_top5": 0.944,
+  "answer_accuracy_auto": 90.0,
+  "answer_accuracy": null,
+  "per_question": {
+    "Q1": {
+      "retrieval": "yes",
+      "answer": "yes"
+    },
+    "Q2": {
+      "retrieval": "yes",
+      "answer": "yes"
+    },
+    "Q3": {
+      "retrieval": "yes",
+      "answer": "partial"
+    },
+    "Q4": {
+      "retrieval": "yes",
+      "answer": "yes"
+    },
+    "Q5": {
+      "retrieval": "partial",
+      "answer": "partial"
+    },
+    "Q6": {
+      "retrieval": "yes",
+      "answer": "yes"
+    },
+    "Q7": {
+      "retrieval": "yes",
+      "answer": "yes"
+    },
+    "Q8": {
+      "retrieval": "yes",
+      "answer": "yes"
+    },
+    "Q9": {
+      "retrieval": "N/A",
+      "answer": "yes"
+    },
+    "Q10": {
+      "retrieval": "yes",
+      "answer": "yes"
+    }
+  }
+}

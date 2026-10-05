@@ -13,8 +13,11 @@ from rag_chunking.config import DEFAULT_CONFIG, Config, ConfigError, load_config
 from rag_chunking.embeddings import make_embedder
 from rag_chunking.embeddings.throttle import RetryError
 from rag_chunking.evaluation.answer_key import AnswerKeyError
+from rag_chunking.evaluation.metrics import run_metrics
+from rag_chunking.evaluation.review import write_review
 from rag_chunking.generation import make_llm
 from rag_chunking.inspection import cut_summary, format_table
+from rag_chunking.results import write_json
 
 
 def _build_parser() -> argparse.ArgumentParser:
@@ -36,7 +39,9 @@ def _build_parser() -> argparse.ArgumentParser:
     target.add_argument("--all", action="store_true", help="every run in the config")
 
     review = sub.add_parser("review", help="create or refresh results/<run>/review.csv")
-    review.add_argument("--run", required=True, help="run id from the config")
+    review_target = review.add_mutually_exclusive_group(required=True)
+    review_target.add_argument("--run", dest="run_id", help="run id from the config")
+    review_target.add_argument("--all", action="store_true", help="every run in the config")
 
     sub.add_parser("report", help="build results/comparison.md from all runs")
     sub.add_parser("list", help="list the runs defined in the config")
@@ -71,8 +76,11 @@ def _cmd_run(config: Config, run_ids: list[str]) -> int:
     # the cache within a single invocation too.
     embedder = make_embedder(config.embedding, config.settings.cache_dir)
     llm = make_llm(config.llm, config.settings.cache_dir)
+    key = pipeline.load_checked_key(config, pipeline.load_document(config))
     for run_id in run_ids:
         m = pipeline.execute(config, config.run(run_id), embedder, llm)
+        run_dir = config.settings.results_dir / run_id
+        write_json(run_dir / "metrics.json", run_metrics(key, run_dir, write_review(key, run_dir)))
         cache = m["embedding_cache"]
         print(
             f"{run_id:<16} chunks={m['chunk_stats']['chunks']:<3} "
@@ -81,6 +89,23 @@ def _cmd_run(config: Config, run_ids: list[str]) -> int:
             f"(cache hits={cache['hits']}, misses={cache['misses']}) "
             f"mean context tokens={m['mean_context_tokens']}"
         )
+    return 0
+
+
+def _cmd_review(config: Config, run_ids: list[str]) -> int:
+    key = pipeline.load_checked_key(config, pipeline.load_document(config))
+    for run_id in run_ids:
+        run_dir = config.settings.results_dir / run_id
+        rows = write_review(key, run_dir)
+        metrics = run_metrics(key, run_dir, rows)
+        write_json(run_dir / "metrics.json", metrics)
+        shown = {k: v for k, v in metrics.items() if k not in ("per_question", "chunks", "run_id")}
+        print(f"{run_id:<16} " + ", ".join(f"{k}={v}" for k, v in shown.items()))
+        labels = " ".join(
+            f"{qid}:{v['retrieval'][0] if v['retrieval'] != 'N/A' else '-'}"
+            for qid, v in metrics["per_question"].items()
+        )
+        print(f"{'':<16} retrieval labels {labels}")
     return 0
 
 
@@ -103,15 +128,15 @@ def main(argv: list[str] | None = None) -> int:
             run_ids = list(config.runs) if args.all else [config.run(args.run_id).id]
             return _cmd_run(config, run_ids)
         if args.command == "review":
-            config.run(args.run)
-            return _not_implemented("review", "P9")
+            run_ids = list(config.runs) if args.all else [config.run(args.run_id).id]
+            return _cmd_review(config, run_ids)
         if args.command == "report":
             return _not_implemented("report", "P12")
     except ConfigError as exc:
         print(f"Config error: {exc}", file=sys.stderr)
         return 1
-    except AnswerKeyError as exc:
-        print(f"Answer key error: {exc}", file=sys.stderr)
+    except (AnswerKeyError, FileNotFoundError, ValueError) as exc:
+        print(f"Error: {exc}", file=sys.stderr)
         return 1
     except RetryError as exc:
         # Completed calls are cached, so re-running resumes where this stopped.

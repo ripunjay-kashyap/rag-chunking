@@ -1,7 +1,7 @@
 {
   "run_id": "A-800",
-  "created_at": "2026-10-05T19:21:13+00:00",
-  "git_commit": "2e373d1fcbf8c01077038baf58f707d9dd4e3d6b-dirty",
+  "created_at": "2026-10-05T19:33:23+00:00",
+  "git_commit": "8728b739e2c1c29e35c7cfc840783be9696b23fe-dirty",
   "run": {
     "id": "A-800",
     "strategy": "fixed",
@@ -38,6 +38,12 @@
     "redundancy": 1.11
   },
   "mean_context_tokens": 565.2,
+  "timings": {
+    "chunking_ms_median": 0.093,
+    "embedding_s_this_run": 0.006,
+    "retrieval_ms_this_run": 1.628,
+    "generation_latency_s_total": null
+  },
   "api_calls": {
     "embedding": 0,
     "generation": 0

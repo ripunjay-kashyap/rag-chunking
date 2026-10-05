@@ -1,0 +1,61 @@
+{
+  "run_id": "B-min40",
+  "chunks": {
+    "chunks": 13,
+    "mean_tokens": 158.5,
+    "min_tokens": 104,
+    "max_tokens": 236,
+    "total_tokens": 2061,
+    "redundancy": 1.09
+  },
+  "mean_context_tokens": 492.6,
+  "retrieval_accuracy_auto": 100.0,
+  "retrieval_accuracy": 100.0,
+  "retrieval_manually_reviewed": 0,
+  "hit_at_1_top5": 1.0,
+  "mrr_top5": 1.0,
+  "answer_accuracy_auto": 85.0,
+  "answer_accuracy": null,
+  "per_question": {
+    "Q1": {
+      "retrieval": "yes",
+      "answer": "yes"
+    },
+    "Q2": {
+      "retrieval": "yes",
+      "answer": "yes"
+    },
+    "Q3": {
+      "retrieval": "yes",
+      "answer": "yes"
+    },
+    "Q4": {
+      "retrieval": "yes",
+      "answer": "no"
+    },
+    "Q5": {
+      "retrieval": "yes",
+      "answer": "partial"
+    },
+    "Q6": {
+      "retrieval": "yes",
+      "answer": "yes"
+    },
+    "Q7": {
+      "retrieval": "yes",
+      "answer": "yes"
+    },
+    "Q8": {
+      "retrieval": "yes",
+      "answer": "yes"
+    },
+    "Q9": {
+      "retrieval": "N/A",
+      "answer": "yes"
+    },
+    "Q10": {
+      "retrieval": "yes",
+      "answer": "yes"
+    }
+  }
+}

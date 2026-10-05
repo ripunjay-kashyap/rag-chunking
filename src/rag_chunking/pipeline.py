@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import statistics
 import subprocess
+import time
 from dataclasses import asdict, dataclass
 from datetime import UTC, datetime
 from typing import Any
@@ -35,6 +37,17 @@ class ChunkedRun:
 
 def load_document(config: Config) -> str:
     return normalize(config.settings.document.read_text(encoding="utf-8"))
+
+
+def time_chunking(run: RunConfig, document: str, repeats: int = 50) -> float:
+    """Median milliseconds to chunk the document (for the speed/complexity comparison)."""
+    chunker = make_chunker(run.params)
+    times = []
+    for _ in range(repeats):
+        start = time.perf_counter()
+        chunker.chunk(document)
+        times.append((time.perf_counter() - start) * 1000)
+    return round(statistics.median(times), 3)
 
 
 def chunk_run(config: Config, run: RunConfig, document: str) -> ChunkedRun:
@@ -168,6 +181,7 @@ def execute(
 
     calls_before = embedder.api_calls
     hits_before, misses_before = embedder.cache.hits, embedder.cache.misses
+    stage_start = time.perf_counter()
     chunk_vectors = embedder.embed_documents([c.text for c in chunked.chunks])
     query_vectors = embedder.embed_queries([q.question for q in key.questions])
     for name, vectors in (("chunk", chunk_vectors), ("query", query_vectors)):
@@ -175,11 +189,18 @@ def execute(
         if vectors.shape[1] != embedder.config.dimensions or not np.allclose(norms, 1, atol=1e-3):
             raise RuntimeError(f"{name} vectors have shape {vectors.shape} / norms {norms}")
 
+    embed_s = time.perf_counter() - stage_start
+    stage_start = time.perf_counter()
     retrievals = retrieve(config, run, key, Index(chunked.chunks, chunk_vectors), query_vectors)
+    retrieve_s = time.perf_counter() - stage_start
 
     llm_calls_before = llm.api_calls
     if run.generate:
-        generate(config, run, chunked.chunks, retrievals, llm)
+        answers = generate(config, run, chunked.chunks, retrievals, llm)
+        # Latency of the original API calls (stored in the cache), not of this re-run.
+        generation_latency = round(sum(a["latency_s"] for a in answers["answers"]), 2)
+    else:
+        generation_latency = None
 
     manifest = {
         "run_id": run.id,
@@ -208,6 +229,13 @@ def execute(
         },
         "chunk_stats": chunked.stats,
         "mean_context_tokens": retrievals["mean_context_tokens"],
+        # Wall-clock timings of this invocation; embedding is near zero on a warm cache.
+        "timings": {
+            "chunking_ms_median": time_chunking(run, document),
+            "embedding_s_this_run": round(embed_s, 3),
+            "retrieval_ms_this_run": round(retrieve_s * 1000, 3),
+            "generation_latency_s_total": generation_latency,
+        },
         "api_calls": {
             "embedding": embedder.api_calls - calls_before,
             "generation": llm.api_calls - llm_calls_before,
