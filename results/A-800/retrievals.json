@@ -1,0 +1,480 @@
+{
+  "run_id": "A-800",
+  "mode": "top_k",
+  "k": 3,
+  "token_budget": null,
+  "retrieve_n": 5,
+  "mean_context_tokens": 565.2,
+  "questions": [
+    {
+      "id": "Q1",
+      "question": "What are the two main diagnostic criteria for Type 2 diabetes based on HbA1c and fasting plasma glucose?",
+      "context_ids": [
+        "A-003",
+        "A-001",
+        "A-000"
+      ],
+      "context_tokens": 600,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "A-003",
+          "score": 0.800106,
+          "est_tokens": 200,
+          "in_context": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "A-001",
+          "score": 0.75713,
+          "est_tokens": 200,
+          "in_context": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "A-000",
+          "score": 0.753452,
+          "est_tokens": 200,
+          "in_context": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "A-002",
+          "score": 0.751326,
+          "est_tokens": 200,
+          "in_context": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "A-009",
+          "score": 0.726554,
+          "est_tokens": 200,
+          "in_context": false
+        }
+      ]
+    },
+    {
+      "id": "Q2",
+      "question": "What HbA1c range indicates prediabetes?",
+      "context_ids": [
+        "A-003",
+        "A-002",
+        "A-010"
+      ],
+      "context_tokens": 484,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "A-003",
+          "score": 0.724972,
+          "est_tokens": 200,
+          "in_context": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "A-002",
+          "score": 0.710752,
+          "est_tokens": 200,
+          "in_context": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "A-010",
+          "score": 0.690709,
+          "est_tokens": 84,
+          "in_context": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "A-001",
+          "score": 0.662673,
+          "est_tokens": 200,
+          "in_context": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "A-004",
+          "score": 0.65758,
+          "est_tokens": 200,
+          "in_context": false
+        }
+      ]
+    },
+    {
+      "id": "Q3",
+      "question": "Name three first-line oral medications used to treat Type 2 diabetes.",
+      "context_ids": [
+        "A-004",
+        "A-003",
+        "A-005"
+      ],
+      "context_tokens": 600,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "A-004",
+          "score": 0.777484,
+          "est_tokens": 200,
+          "in_context": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "A-003",
+          "score": 0.742372,
+          "est_tokens": 200,
+          "in_context": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "A-005",
+          "score": 0.732134,
+          "est_tokens": 200,
+          "in_context": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "A-010",
+          "score": 0.731217,
+          "est_tokens": 84,
+          "in_context": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "A-000",
+          "score": 0.712727,
+          "est_tokens": 200,
+          "in_context": false
+        }
+      ]
+    },
+    {
+      "id": "Q4",
+      "question": "What are the classic symptoms of hyperglycemia?",
+      "context_ids": [
+        "A-002",
+        "A-001",
+        "A-008"
+      ],
+      "context_tokens": 600,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "A-002",
+          "score": 0.743422,
+          "est_tokens": 200,
+          "in_context": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "A-001",
+          "score": 0.696131,
+          "est_tokens": 200,
+          "in_context": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "A-008",
+          "score": 0.690827,
+          "est_tokens": 200,
+          "in_context": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "A-003",
+          "score": 0.686359,
+          "est_tokens": 200,
+          "in_context": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "A-009",
+          "score": 0.674189,
+          "est_tokens": 200,
+          "in_context": false
+        }
+      ]
+    },
+    {
+      "id": "Q5",
+      "question": "What lifestyle modifications are recommended for managing Type 2 diabetes?",
+      "context_ids": [
+        "A-010",
+        "A-004",
+        "A-009"
+      ],
+      "context_tokens": 484,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "A-010",
+          "score": 0.806616,
+          "est_tokens": 84,
+          "in_context": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "A-004",
+          "score": 0.800269,
+          "est_tokens": 200,
+          "in_context": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "A-009",
+          "score": 0.778625,
+          "est_tokens": 200,
+          "in_context": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "A-003",
+          "score": 0.77684,
+          "est_tokens": 200,
+          "in_context": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "A-000",
+          "score": 0.776804,
+          "est_tokens": 200,
+          "in_context": false
+        }
+      ]
+    },
+    {
+      "id": "Q6",
+      "question": "Name two microvascular complications of diabetes.",
+      "context_ids": [
+        "A-006",
+        "A-005",
+        "A-007"
+      ],
+      "context_tokens": 600,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "A-006",
+          "score": 0.798404,
+          "est_tokens": 200,
+          "in_context": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "A-005",
+          "score": 0.74828,
+          "est_tokens": 200,
+          "in_context": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "A-007",
+          "score": 0.702671,
+          "est_tokens": 200,
+          "in_context": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "A-002",
+          "score": 0.683458,
+          "est_tokens": 200,
+          "in_context": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "A-000",
+          "score": 0.679153,
+          "est_tokens": 200,
+          "in_context": false
+        }
+      ]
+    },
+    {
+      "id": "Q7",
+      "question": "Name two macrovascular complications of diabetes.",
+      "context_ids": [
+        "A-006",
+        "A-005",
+        "A-000"
+      ],
+      "context_tokens": 600,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "A-006",
+          "score": 0.787945,
+          "est_tokens": 200,
+          "in_context": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "A-005",
+          "score": 0.717817,
+          "est_tokens": 200,
+          "in_context": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "A-000",
+          "score": 0.689493,
+          "est_tokens": 200,
+          "in_context": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "A-001",
+          "score": 0.684595,
+          "est_tokens": 200,
+          "in_context": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "A-007",
+          "score": 0.682558,
+          "est_tokens": 200,
+          "in_context": false
+        }
+      ]
+    },
+    {
+      "id": "Q8",
+      "question": "How often should HbA1c be monitored in someone with stable Type 2 diabetes?",
+      "context_ids": [
+        "A-007",
+        "A-003",
+        "A-010"
+      ],
+      "context_tokens": 484,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "A-007",
+          "score": 0.76102,
+          "est_tokens": 200,
+          "in_context": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "A-003",
+          "score": 0.728256,
+          "est_tokens": 200,
+          "in_context": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "A-010",
+          "score": 0.710658,
+          "est_tokens": 84,
+          "in_context": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "A-009",
+          "score": 0.707202,
+          "est_tokens": 200,
+          "in_context": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "A-000",
+          "score": 0.70047,
+          "est_tokens": 200,
+          "in_context": false
+        }
+      ]
+    },
+    {
+      "id": "Q9",
+      "question": "What blood glucose target range is recommended for most adults with Type 2 diabetes?",
+      "context_ids": [
+        "A-003",
+        "A-000",
+        "A-001"
+      ],
+      "context_tokens": 600,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "A-003",
+          "score": 0.778269,
+          "est_tokens": 200,
+          "in_context": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "A-000",
+          "score": 0.739328,
+          "est_tokens": 200,
+          "in_context": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "A-001",
+          "score": 0.738323,
+          "est_tokens": 200,
+          "in_context": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "A-010",
+          "score": 0.736349,
+          "est_tokens": 84,
+          "in_context": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "A-009",
+          "score": 0.730204,
+          "est_tokens": 200,
+          "in_context": false
+        }
+      ]
+    },
+    {
+      "id": "Q10",
+      "question": "What symptoms should prompt someone to seek emergency medical care?",
+      "context_ids": [
+        "A-008",
+        "A-009",
+        "A-007"
+      ],
+      "context_tokens": 600,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "A-008",
+          "score": 0.743228,
+          "est_tokens": 200,
+          "in_context": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "A-009",
+          "score": 0.693331,
+          "est_tokens": 200,
+          "in_context": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "A-007",
+          "score": 0.647484,
+          "est_tokens": 200,
+          "in_context": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "A-002",
+          "score": 0.647219,
+          "est_tokens": 200,
+          "in_context": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "A-006",
+          "score": 0.614273,
+          "est_tokens": 200,
+          "in_context": false
+        }
+      ]
+    }
+  ]
+}

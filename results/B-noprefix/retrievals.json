@@ -1,0 +1,480 @@
+{
+  "run_id": "B-noprefix",
+  "mode": "top_k",
+  "k": 3,
+  "token_budget": null,
+  "retrieve_n": 5,
+  "mean_context_tokens": 462.2,
+  "questions": [
+    {
+      "id": "Q1",
+      "question": "What are the two main diagnostic criteria for Type 2 diabetes based on HbA1c and fasting plasma glucose?",
+      "context_ids": [
+        "B-4-diagnostic-criteria",
+        "B-1-overview",
+        "B-2-epidemiology-and-risk-factors"
+      ],
+      "context_tokens": 498,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "B-4-diagnostic-criteria",
+          "score": 0.780023,
+          "est_tokens": 190,
+          "in_context": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "B-1-overview",
+          "score": 0.743265,
+          "est_tokens": 144,
+          "in_context": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "B-2-epidemiology-and-risk-factors",
+          "score": 0.73096,
+          "est_tokens": 164,
+          "in_context": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "B-3-symptoms",
+          "score": 0.723166,
+          "est_tokens": 130,
+          "in_context": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "B-10-frequently-asked-questions",
+          "score": 0.705966,
+          "est_tokens": 213,
+          "in_context": false
+        }
+      ]
+    },
+    {
+      "id": "Q2",
+      "question": "What HbA1c range indicates prediabetes?",
+      "context_ids": [
+        "B-4-diagnostic-criteria",
+        "B-7-monitoring-and-follow-up",
+        "B-2-epidemiology-and-risk-factors"
+      ],
+      "context_tokens": 476,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "B-4-diagnostic-criteria",
+          "score": 0.720337,
+          "est_tokens": 190,
+          "in_context": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "B-7-monitoring-and-follow-up",
+          "score": 0.660525,
+          "est_tokens": 122,
+          "in_context": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "B-2-epidemiology-and-risk-factors",
+          "score": 0.658862,
+          "est_tokens": 164,
+          "in_context": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "B-1-overview",
+          "score": 0.651614,
+          "est_tokens": 144,
+          "in_context": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "B-10-frequently-asked-questions",
+          "score": 0.642331,
+          "est_tokens": 213,
+          "in_context": false
+        }
+      ]
+    },
+    {
+      "id": "Q3",
+      "question": "Name three first-line oral medications used to treat Type 2 diabetes.",
+      "context_ids": [
+        "B-5-treatment-approaches",
+        "B-5-1-lifestyle-modifications",
+        "B-10-frequently-asked-questions"
+      ],
+      "context_tokens": 600,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "B-5-treatment-approaches",
+          "score": 0.793091,
+          "est_tokens": 269,
+          "in_context": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "B-5-1-lifestyle-modifications",
+          "score": 0.743344,
+          "est_tokens": 118,
+          "in_context": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "B-10-frequently-asked-questions",
+          "score": 0.733837,
+          "est_tokens": 213,
+          "in_context": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "B-1-overview",
+          "score": 0.70352,
+          "est_tokens": 144,
+          "in_context": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "B-2-epidemiology-and-risk-factors",
+          "score": 0.680609,
+          "est_tokens": 164,
+          "in_context": false
+        }
+      ]
+    },
+    {
+      "id": "Q4",
+      "question": "What are the classic symptoms of hyperglycemia?",
+      "context_ids": [
+        "B-3-symptoms",
+        "B-9-when-to-seek-emergency-care",
+        "B-4-diagnostic-criteria"
+      ],
+      "context_tokens": 450,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "B-3-symptoms",
+          "score": 0.773003,
+          "est_tokens": 130,
+          "in_context": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "B-9-when-to-seek-emergency-care",
+          "score": 0.73111,
+          "est_tokens": 130,
+          "in_context": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "B-4-diagnostic-criteria",
+          "score": 0.713905,
+          "est_tokens": 190,
+          "in_context": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "B-1-overview",
+          "score": 0.689022,
+          "est_tokens": 144,
+          "in_context": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "B-8-self-management-and-lifestyle-tips",
+          "score": 0.663964,
+          "est_tokens": 123,
+          "in_context": false
+        }
+      ]
+    },
+    {
+      "id": "Q5",
+      "question": "What lifestyle modifications are recommended for managing Type 2 diabetes?",
+      "context_ids": [
+        "B-5-1-lifestyle-modifications",
+        "B-10-frequently-asked-questions",
+        "B-1-overview"
+      ],
+      "context_tokens": 475,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "B-5-1-lifestyle-modifications",
+          "score": 0.877673,
+          "est_tokens": 118,
+          "in_context": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "B-10-frequently-asked-questions",
+          "score": 0.798678,
+          "est_tokens": 213,
+          "in_context": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "B-1-overview",
+          "score": 0.752992,
+          "est_tokens": 144,
+          "in_context": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "B-8-self-management-and-lifestyle-tips",
+          "score": 0.750472,
+          "est_tokens": 123,
+          "in_context": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "B-2-epidemiology-and-risk-factors",
+          "score": 0.748863,
+          "est_tokens": 164,
+          "in_context": false
+        }
+      ]
+    },
+    {
+      "id": "Q6",
+      "question": "Name two microvascular complications of diabetes.",
+      "context_ids": [
+        "B-6-complications",
+        "B-7-monitoring-and-follow-up",
+        "B-1-overview"
+      ],
+      "context_tokens": 451,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "B-6-complications",
+          "score": 0.825487,
+          "est_tokens": 185,
+          "in_context": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "B-7-monitoring-and-follow-up",
+          "score": 0.723425,
+          "est_tokens": 122,
+          "in_context": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "B-1-overview",
+          "score": 0.71717,
+          "est_tokens": 144,
+          "in_context": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "B-3-symptoms",
+          "score": 0.685197,
+          "est_tokens": 130,
+          "in_context": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "B-9-when-to-seek-emergency-care",
+          "score": 0.678629,
+          "est_tokens": 130,
+          "in_context": false
+        }
+      ]
+    },
+    {
+      "id": "Q7",
+      "question": "Name two macrovascular complications of diabetes.",
+      "context_ids": [
+        "B-6-complications",
+        "B-1-overview",
+        "B-7-monitoring-and-follow-up"
+      ],
+      "context_tokens": 451,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "B-6-complications",
+          "score": 0.8309,
+          "est_tokens": 185,
+          "in_context": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "B-1-overview",
+          "score": 0.724124,
+          "est_tokens": 144,
+          "in_context": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "B-7-monitoring-and-follow-up",
+          "score": 0.695587,
+          "est_tokens": 122,
+          "in_context": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "B-3-symptoms",
+          "score": 0.689745,
+          "est_tokens": 130,
+          "in_context": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "B-9-when-to-seek-emergency-care",
+          "score": 0.678661,
+          "est_tokens": 130,
+          "in_context": false
+        }
+      ]
+    },
+    {
+      "id": "Q8",
+      "question": "How often should HbA1c be monitored in someone with stable Type 2 diabetes?",
+      "context_ids": [
+        "B-7-monitoring-and-follow-up",
+        "B-5-1-lifestyle-modifications",
+        "B-8-self-management-and-lifestyle-tips"
+      ],
+      "context_tokens": 363,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "B-7-monitoring-and-follow-up",
+          "score": 0.800602,
+          "est_tokens": 122,
+          "in_context": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "B-5-1-lifestyle-modifications",
+          "score": 0.705331,
+          "est_tokens": 118,
+          "in_context": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "B-8-self-management-and-lifestyle-tips",
+          "score": 0.702024,
+          "est_tokens": 123,
+          "in_context": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "B-4-diagnostic-criteria",
+          "score": 0.696461,
+          "est_tokens": 190,
+          "in_context": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "B-10-frequently-asked-questions",
+          "score": 0.691274,
+          "est_tokens": 213,
+          "in_context": false
+        }
+      ]
+    },
+    {
+      "id": "Q9",
+      "question": "What blood glucose target range is recommended for most adults with Type 2 diabetes?",
+      "context_ids": [
+        "B-1-overview",
+        "B-5-1-lifestyle-modifications",
+        "B-10-frequently-asked-questions"
+      ],
+      "context_tokens": 475,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "B-1-overview",
+          "score": 0.737988,
+          "est_tokens": 144,
+          "in_context": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "B-5-1-lifestyle-modifications",
+          "score": 0.723469,
+          "est_tokens": 118,
+          "in_context": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "B-10-frequently-asked-questions",
+          "score": 0.721913,
+          "est_tokens": 213,
+          "in_context": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "B-2-epidemiology-and-risk-factors",
+          "score": 0.718025,
+          "est_tokens": 164,
+          "in_context": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "B-4-diagnostic-criteria",
+          "score": 0.715991,
+          "est_tokens": 190,
+          "in_context": false
+        }
+      ]
+    },
+    {
+      "id": "Q10",
+      "question": "What symptoms should prompt someone to seek emergency medical care?",
+      "context_ids": [
+        "B-9-when-to-seek-emergency-care",
+        "B-8-self-management-and-lifestyle-tips",
+        "B-3-symptoms"
+      ],
+      "context_tokens": 383,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "B-9-when-to-seek-emergency-care",
+          "score": 0.800441,
+          "est_tokens": 130,
+          "in_context": true
+        },
+        {
+          "rank": 2,
+          "chunk_id": "B-8-self-management-and-lifestyle-tips",
+          "score": 0.661712,
+          "est_tokens": 123,
+          "in_context": true
+        },
+        {
+          "rank": 3,
+          "chunk_id": "B-3-symptoms",
+          "score": 0.646604,
+          "est_tokens": 130,
+          "in_context": true
+        },
+        {
+          "rank": 4,
+          "chunk_id": "B-7-monitoring-and-follow-up",
+          "score": 0.614092,
+          "est_tokens": 122,
+          "in_context": false
+        },
+        {
+          "rank": 5,
+          "chunk_id": "B-6-complications",
+          "score": 0.613839,
+          "est_tokens": 185,
+          "in_context": false
+        }
+      ]
+    }
+  ]
+}

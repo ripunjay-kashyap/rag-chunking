@@ -74,9 +74,10 @@ def _cmd_run(config: Config, run_ids: list[str]) -> int:
         print(
             f"{run_id:<16} chunks={m['chunk_stats']['chunks']:<3} "
             f"embedding calls={m['api_calls']['embedding']} "
-            f"(cache hits={cache['hits']}, misses={cache['misses']})"
+            f"(cache hits={cache['hits']}, misses={cache['misses']}) "
+            f"mean context tokens={m['mean_context_tokens']}"
         )
-    print("retrieval and generation are not implemented yet (P7, P8).")
+    print("generation is not implemented yet (P8).")
     return 0
 
 

@@ -1,17 +1,15 @@
 {
-  "run_id": "B-min100",
+  "run_id": "A-500-budget",
   "created_at": "2026-10-05T18:35:34+00:00",
   "git_commit": "7c154d24ac213685a5f714425b4c83e28ea5f86f-dirty",
   "run": {
-    "id": "B-min100",
-    "strategy": "structure",
+    "id": "A-500-budget",
+    "strategy": "fixed",
     "params": {
-      "min_tokens": 100,
-      "max_tokens": 512,
-      "overlap_tokens": 50,
-      "prefix": true
+      "size_chars": 500,
+      "overlap_chars": 50
     },
-    "retrieval": "top_k",
+    "retrieval": "token_budget",
     "generate": true
   },
   "document_sha256": "fe88894b2506a02447e6c745cc1189dc54771e700edb49bd7a04c0687184c259",
@@ -35,19 +33,19 @@
     "token_budget": 400
   },
   "chunk_stats": {
-    "chunks": 11,
-    "mean_tokens": 184.1,
-    "min_tokens": 144,
-    "max_tokens": 289,
-    "total_tokens": 2025,
-    "redundancy": 1.07
+    "chunks": 17,
+    "mean_tokens": 122.6,
+    "min_tokens": 84,
+    "max_tokens": 125,
+    "total_tokens": 2084,
+    "redundancy": 1.11
   },
-  "mean_context_tokens": 529.0,
+  "mean_context_tokens": 366.8,
   "api_calls": {
     "embedding": 0
   },
   "embedding_cache": {
-    "hits": 21,
+    "hits": 27,
     "misses": 0
   }
 }

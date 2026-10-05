@@ -1,15 +1,15 @@
 {
-  "run_id": "B-min100",
+  "run_id": "B-noprefix",
   "created_at": "2026-10-05T18:35:34+00:00",
   "git_commit": "7c154d24ac213685a5f714425b4c83e28ea5f86f-dirty",
   "run": {
-    "id": "B-min100",
+    "id": "B-noprefix",
     "strategy": "structure",
     "params": {
       "min_tokens": 100,
       "max_tokens": 512,
       "overlap_tokens": 50,
-      "prefix": true
+      "prefix": false
     },
     "retrieval": "top_k",
     "generate": true
@@ -36,13 +36,13 @@
   },
   "chunk_stats": {
     "chunks": 11,
-    "mean_tokens": 184.1,
-    "min_tokens": 144,
-    "max_tokens": 289,
-    "total_tokens": 2025,
-    "redundancy": 1.07
+    "mean_tokens": 162.5,
+    "min_tokens": 118,
+    "max_tokens": 269,
+    "total_tokens": 1788,
+    "redundancy": 0.95
   },
-  "mean_context_tokens": 529.0,
+  "mean_context_tokens": 462.2,
   "api_calls": {
     "embedding": 0
   },

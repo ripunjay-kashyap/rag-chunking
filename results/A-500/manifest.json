@@ -1,7 +1,7 @@
 {
   "run_id": "A-500",
-  "created_at": "2026-10-05T18:08:50+00:00",
-  "git_commit": "11fdeb0be4e4807fe6842731924d79e57a51c127-dirty",
+  "created_at": "2026-10-05T18:35:34+00:00",
+  "git_commit": "7c154d24ac213685a5f714425b4c83e28ea5f86f-dirty",
   "run": {
     "id": "A-500",
     "strategy": "fixed",
@@ -40,6 +40,7 @@
     "total_tokens": 2084,
     "redundancy": 1.11
   },
+  "mean_context_tokens": 366.8,
   "api_calls": {
     "embedding": 0
   },

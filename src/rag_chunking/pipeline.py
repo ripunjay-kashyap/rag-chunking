@@ -20,6 +20,7 @@ from rag_chunking.evaluation.answer_key import (
 from rag_chunking.inspection import Cut, cut_summary, find_cuts, summary_stats
 from rag_chunking.normalize import normalize
 from rag_chunking.results import sha256, write_json
+from rag_chunking.retrieval import Index, select_context
 
 
 @dataclass(frozen=True)
@@ -60,6 +61,50 @@ def load_checked_key(config: Config, document: str) -> AnswerKey:
     return key
 
 
+def retrieve(
+    config: Config, run: RunConfig, key: AnswerKey, index: Index, query_vectors: np.ndarray
+) -> dict[str, Any]:
+    """Rank every chunk for every question and write retrievals.json."""
+    s = config.settings
+    questions = []
+    for question, vector in zip(key.questions, query_vectors, strict=True):
+        ranked = index.search(vector)
+        context = select_context(ranked, run.retrieval, s.k, s.token_budget)
+        in_context = {h.chunk.id for h in context}
+        # Log at least retrieve_n hits (for hit@1 / MRR) and every hit in the context.
+        logged = ranked[: max(s.retrieve_n, len(context))]
+        questions.append(
+            {
+                "id": question.id,
+                "question": question.question,
+                "context_ids": [h.chunk.id for h in context],
+                "context_tokens": sum(h.chunk.est_tokens for h in context),
+                "hits": [
+                    {
+                        "rank": h.rank,
+                        "chunk_id": h.chunk.id,
+                        "score": round(h.score, 6),
+                        "est_tokens": h.chunk.est_tokens,
+                        "in_context": h.chunk.id in in_context,
+                    }
+                    for h in logged
+                ],
+            }
+        )
+    tokens = [q["context_tokens"] for q in questions]
+    result = {
+        "run_id": run.id,
+        "mode": run.retrieval,
+        "k": s.k if run.retrieval == "top_k" else None,
+        "token_budget": s.token_budget if run.retrieval == "token_budget" else None,
+        "retrieve_n": s.retrieve_n,
+        "mean_context_tokens": round(sum(tokens) / len(tokens), 1),
+        "questions": questions,
+    }
+    write_json(s.results_dir / run.id / "retrievals.json", result)
+    return result
+
+
 def _git_commit() -> str:
     try:
         sha = subprocess.run(
@@ -95,6 +140,8 @@ def execute(config: Config, run: RunConfig, embedder: GeminiEmbedder) -> dict[st
         if vectors.shape[1] != embedder.config.dimensions or not np.allclose(norms, 1, atol=1e-3):
             raise RuntimeError(f"{name} vectors have shape {vectors.shape} / norms {norms}")
 
+    retrievals = retrieve(config, run, key, Index(chunked.chunks, chunk_vectors), query_vectors)
+
     manifest = {
         "run_id": run.id,
         "created_at": datetime.now(UTC).isoformat(timespec="seconds"),
@@ -114,6 +161,7 @@ def execute(config: Config, run: RunConfig, embedder: GeminiEmbedder) -> dict[st
             "token_budget": config.settings.token_budget,
         },
         "chunk_stats": chunked.stats,
+        "mean_context_tokens": retrievals["mean_context_tokens"],
         "api_calls": {"embedding": embedder.api_calls - calls_before},
         "embedding_cache": {
             "hits": embedder.cache.hits - hits_before,
