@@ -7,8 +7,18 @@ __pycache__/
 # Secrets
 .env
 
-# Embedding cache (regenerable)
+# Embedding / generation cache (regenerable)
 .cache/
+
+# Tool caches
+.pytest_cache/
+.ruff_cache/
+
+# Dev / assistant files (not part of the deliverable)
+CLAUDE.md
+implementationplan.md
+.claude/
+dev/
 
 # Assignment brief (not part of the deliverable)
 RAG_Chunking_Assignment.pdf

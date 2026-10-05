@@ -1,0 +1,117 @@
+# Every experiment run lives here. Each comparison changes exactly one thing;
+# see the experiment matrix in implementationplan.md.
+
+[settings]
+document = "data/diabetes_reference_document.md"
+answer_key = "data/answer_key.json"
+results_dir = "results"
+cache_dir = ".cache"
+k = 3               # chunks scored and passed to the LLM in top-k mode
+retrieve_n = 5      # chunks logged per query, for hit@1 / MRR
+token_budget = 400  # context size in token-budget mode
+
+[embedding]
+provider = "gemini"
+model = "gemini-embedding-2"
+dimensions = 768
+# Gemini Embedding 2 has no task_type parameter; retrieval intent goes in the text.
+# Identical for both strategies, so it doesn't favour either one.
+document_template = "title: none | text: {text}"
+query_template = "task: search result | query: {text}"
+
+[generation]
+active = "gemini"   # which [llm.*] profile to use
+temperature = 0.0
+
+[llm.gemini]
+provider = "gemini"
+model = "gemini-3.8-flash"
+api_key_env = "GEMINI_API_KEY"
+
+[llm.groq]
+provider = "openai_compat"
+model = "llama-3.3-70b-versatile"
+base_url = "https://api.groq.com/openai/v1"
+api_key_env = "GROQ_API_KEY"
+
+[llm.ollama]
+provider = "openai_compat"
+model = "llama3.1:8b"
+base_url = "http://localhost:11434/v1"
+api_key_env = ""    # Ollama needs no key
+
+# --- Strategy A: fixed-size, raw character slicing ---------------------------
+
+[[runs]]
+id = "A-500"
+strategy = "fixed"
+size_chars = 500
+overlap_chars = 50
+retrieval = "top_k"
+generate = true
+
+[[runs]]
+id = "A-300"
+strategy = "fixed"
+size_chars = 300
+overlap_chars = 30
+retrieval = "top_k"
+generate = false
+
+[[runs]]
+id = "A-800"
+strategy = "fixed"
+size_chars = 800
+overlap_chars = 80
+retrieval = "top_k"
+generate = false
+
+[[runs]]
+id = "A-500-budget"
+strategy = "fixed"
+size_chars = 500
+overlap_chars = 50
+retrieval = "token_budget"
+generate = true
+
+# --- Strategy B: structure-aware + recursive fallback ------------------------
+
+[[runs]]
+id = "B-min100"
+strategy = "structure"
+min_tokens = 100
+max_tokens = 512
+overlap_tokens = 50
+prefix = true
+retrieval = "top_k"
+generate = true
+
+[[runs]]
+id = "B-min40"
+strategy = "structure"
+min_tokens = 40
+max_tokens = 512
+overlap_tokens = 50
+prefix = true
+retrieval = "top_k"
+generate = true
+
+[[runs]]
+id = "B-noprefix"
+strategy = "structure"
+min_tokens = 100
+max_tokens = 512
+overlap_tokens = 50
+prefix = false
+retrieval = "top_k"
+generate = true
+
+[[runs]]
+id = "B-min100-budget"
+strategy = "structure"
+min_tokens = 100
+max_tokens = 512
+overlap_tokens = 50
+prefix = true
+retrieval = "token_budget"
+generate = true
