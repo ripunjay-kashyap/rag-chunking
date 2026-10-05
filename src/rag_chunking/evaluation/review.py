@@ -1,6 +1,11 @@
-"""review.csv: automatic labels next to empty columns for the manual review.
+"""review.csv: automatic labels, suggested labels and the reviewer's final labels.
 
-Re-running refreshes the automatic columns but never touches what the reviewer typed.
+Three sources, kept in separate columns so it is always clear who decided what:
+- *_auto: the automatic check against the frozen answer key (reproducible).
+- *_suggested: a second, by-hand reading, loaded from results/review_suggestions.json.
+- retrieval_label_final / answer_label: the human reviewer's decision, typed into the CSV.
+
+Re-running refreshes the first two but never touches what the reviewer typed.
 """
 
 from __future__ import annotations
@@ -14,6 +19,8 @@ from rag_chunking.evaluation.answer_key import AnswerKey
 from rag_chunking.evaluation.autocheck import check_answer, check_retrieval
 
 MANUAL_COLUMNS = ("retrieval_label_final", "answer_label", "notes")
+SUGGESTION_COLUMNS = ("retrieval_label_suggested", "answer_label_suggested", "suggestion_reason")
+SUGGESTIONS_FILE = "review_suggestions.json"
 COLUMNS = (
     "question_id",
     "question",
@@ -24,6 +31,7 @@ COLUMNS = (
     "answer",
     "answer_auto",
     "facts_in_answer",
+    *SUGGESTION_COLUMNS,
     *MANUAL_COLUMNS,
 )
 VALID_LABELS = {"", "yes", "partial", "no", "N/A"}
@@ -43,6 +51,19 @@ def read_review(path: Path) -> dict[str, dict[str, str]]:
             if row.get(col, "").strip() not in VALID_LABELS:
                 raise ValueError(f"{path}: {qid} {col} = {row[col]!r}; use yes/partial/no")
     return rows
+
+
+def load_suggestions(path: Path) -> dict[str, dict[str, dict[str, str]]]:
+    """{run_id: {question_id: {"retrieval", "answer", "reason"}}}, validated."""
+    data = _load(path) or {}
+    for run_id, questions in data.items():
+        for qid, s in questions.items():
+            for field in ("retrieval", "answer"):
+                if s.get(field, "") not in VALID_LABELS:
+                    raise ValueError(f"{path}: {run_id} {qid} {field} = {s[field]!r}")
+            if not s.get("reason"):
+                raise ValueError(f"{path}: {run_id} {qid} has no reason")
+    return data
 
 
 def build_rows(key: AnswerKey, run_dir: Path) -> list[dict[str, str]]:
@@ -80,8 +101,13 @@ def build_rows(key: AnswerKey, run_dir: Path) -> list[dict[str, str]]:
 def write_review(key: AnswerKey, run_dir: Path) -> list[dict[str, str]]:
     path = run_dir / "review.csv"
     existing = read_review(path)
+    suggestions = load_suggestions(run_dir.parent / SUGGESTIONS_FILE).get(run_dir.name, {})
     rows = build_rows(key, run_dir)
     for row in rows:
+        suggestion = suggestions.get(row["question_id"], {})
+        row["retrieval_label_suggested"] = suggestion.get("retrieval", "")
+        row["answer_label_suggested"] = suggestion.get("answer", "")
+        row["suggestion_reason"] = suggestion.get("reason", "")
         old = existing.get(row["question_id"], {})
         for col in MANUAL_COLUMNS:
             row[col] = old.get(col, "")

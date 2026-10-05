@@ -21,6 +21,27 @@ def _accuracy(labels: list[str]) -> float | None:
     return round(100 * sum(SCORES[label] for label in labels) / len(labels), 1)
 
 
+def resolve(row: dict[str, str], kind: str) -> tuple[str, str]:
+    """(label, source): the reviewer's final label wins, then the suggestion, then auto."""
+    final_col = "retrieval_label_final" if kind == "retrieval" else "answer_label"
+    for source, col in (
+        ("final", final_col),
+        ("suggested", f"{kind}_label_suggested"),
+        ("auto", f"{kind}_auto"),
+    ):
+        if row.get(col, "").strip():
+            return row[col].strip(), source
+    return "", "none"
+
+
+def _sources(resolved: list[tuple[str, str]]) -> dict[str, int]:
+    counts = {"final": 0, "suggested": 0, "auto": 0}
+    for _, source in resolved:
+        if source in counts:
+            counts[source] += 1
+    return counts
+
+
 def run_metrics(key: AnswerKey, run_dir: Path, rows: list[dict[str, str]]) -> dict[str, Any]:
     chunks = json.loads((run_dir / "chunks.json").read_text(encoding="utf-8"))
     retrievals = json.loads((run_dir / "retrievals.json").read_text(encoding="utf-8"))
@@ -35,33 +56,31 @@ def run_metrics(key: AnswerKey, run_dir: Path, rows: list[dict[str, str]]) -> di
         hit_at_1.append(1.0 if ranks and ranks[0] == 1 else 0.0)
         reciprocal_ranks.append(1 / ranks[0] if ranks else 0.0)
 
-    # Manual labels win; the automatic label stands in until the reviewer fills one in.
-    retrieval_final = [
-        row_by_id[q.id]["retrieval_label_final"] or row_by_id[q.id]["retrieval_auto"]
-        for q in answerable
-    ]
+    retrieval = [resolve(row_by_id[q.id], "retrieval") for q in answerable]
     retrieval_auto = [row_by_id[q.id]["retrieval_auto"] for q in answerable]
     has_answers = any(r["answer"] for r in rows)
-    answer_auto = [r["answer_auto"] for r in rows]
-    manual_answers = [r["answer_label"] for r in rows]
+    answers = [resolve(r, "answer") for r in rows] if has_answers else []
+    n = retrievals["retrieve_n"]
     return {
         "run_id": retrievals["run_id"],
         "chunks": chunks["stats"],
         "mean_context_tokens": retrievals["mean_context_tokens"],
+        "retrieval_accuracy": _accuracy([label for label, _ in retrieval]),
         "retrieval_accuracy_auto": _accuracy(retrieval_auto),
-        "retrieval_accuracy": _accuracy(retrieval_final),
-        "retrieval_manually_reviewed": sum(
-            bool(row_by_id[q.id]["retrieval_label_final"]) for q in answerable
+        "retrieval_label_sources": _sources(retrieval),
+        f"hit_at_1_top{n}": _mean(hit_at_1),
+        f"mrr_top{n}": _mean(reciprocal_ranks),
+        "answer_accuracy": _accuracy([label for label, _ in answers]) if has_answers else None,
+        "answer_accuracy_auto": (
+            _accuracy([r["answer_auto"] for r in rows]) if has_answers else None
         ),
-        f"hit_at_1_top{retrievals['retrieve_n']}": _mean(hit_at_1),
-        f"mrr_top{retrievals['retrieve_n']}": _mean(reciprocal_ranks),
-        "answer_accuracy_auto": _accuracy(answer_auto) if has_answers else None,
-        # Only reported once every answer has a manual label.
-        "answer_accuracy": _accuracy(manual_answers) if has_answers else None,
+        "answer_label_sources": _sources(answers) if has_answers else None,
+        # Final only when every label came from the human reviewer.
+        "provisional": any(source != "final" for _, source in retrieval + answers),
         "per_question": {
             r["question_id"]: {
-                "retrieval": r["retrieval_label_final"] or r["retrieval_auto"],
-                "answer": r["answer_label"] or r["answer_auto"] or None,
+                "retrieval": resolve(r, "retrieval")[0],
+                "answer": resolve(r, "answer")[0] or None,
             }
             for r in rows
         },

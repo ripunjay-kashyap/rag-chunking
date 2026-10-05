@@ -102,7 +102,10 @@ def test_metrics_end_to_end_on_dummy_run(tmp_path):
     assert m["retrieval_accuracy_auto"] == pytest.approx(100 * 2 / 9, abs=0.1)
     assert m["hit_at_1_top5"] == pytest.approx(2 / 9, abs=1e-3)
     assert m["answer_accuracy_auto"] == 10.0  # only the Q9 refusal is right
-    assert m["answer_accuracy"] is None  # no manual labels yet
+    # No human labels yet: the auto labels stand in, and the result is flagged provisional.
+    assert m["answer_accuracy"] == 10.0
+    assert m["answer_label_sources"] == {"final": 0, "suggested": 0, "auto": 10}
+    assert m["provisional"] is True
 
 
 def test_review_round_trip_keeps_manual_labels(tmp_path):
@@ -128,7 +131,44 @@ def test_review_round_trip_keeps_manual_labels(tmp_path):
     assert kept["Q4"]["answer_label"] == "partial"
     m = run_metrics(KEY, run_dir, rows_again)
     assert m["answer_accuracy"] == 5.0  # all 10 labelled: one partial
-    assert m["retrieval_manually_reviewed"] == 1
+    assert m["answer_label_sources"]["final"] == 10
+    assert m["retrieval_label_sources"] == {"final": 1, "suggested": 0, "auto": 8}
+    assert m["provisional"] is True  # 8 retrieval labels are still automatic
+
+
+def test_suggestions_fill_their_own_columns_and_final_labels_win(tmp_path):
+    run_dir = tmp_path / "dummy"
+    _fake_run(run_dir)
+    suggestions = {
+        "dummy": {
+            "Q1": {"retrieval": "partial", "answer": "no", "reason": "header missing"},
+            "Q8": {"retrieval": "yes", "answer": "yes", "reason": "fine"},
+        }
+    }
+    (tmp_path / "review_suggestions.json").write_text(json.dumps(suggestions), encoding="utf-8")
+    rows = {r["question_id"]: r for r in write_review(KEY, run_dir)}
+    assert rows["Q1"]["retrieval_label_suggested"] == "partial"
+    assert rows["Q1"]["retrieval_label_final"] == ""  # suggestions never fill final columns
+    assert rows["Q1"]["suggestion_reason"] == "header missing"
+    m = run_metrics(KEY, run_dir, list(rows.values()))
+    assert m["per_question"]["Q1"]["retrieval"] == "partial"  # suggestion beats auto (yes)
+    assert m["retrieval_label_sources"] == {"final": 0, "suggested": 2, "auto": 7}
+
+    path = run_dir / "review.csv"
+    text = path.read_text(encoding="utf-8").replace("header missing,,,", "header missing,yes,,", 1)
+    path.write_text(text, encoding="utf-8")
+    rows = write_review(KEY, run_dir)
+    m = run_metrics(KEY, run_dir, rows)
+    assert m["per_question"]["Q1"]["retrieval"] == "yes"  # the reviewer's label wins
+
+
+def test_suggestion_without_reason_is_rejected(tmp_path):
+    run_dir = tmp_path / "dummy"
+    _fake_run(run_dir)
+    bad = {"dummy": {"Q1": {"retrieval": "yes", "answer": "", "reason": ""}}}
+    (tmp_path / "review_suggestions.json").write_text(json.dumps(bad), encoding="utf-8")
+    with pytest.raises(ValueError, match="no reason"):
+        write_review(KEY, run_dir)
 
 
 def test_invalid_manual_label_is_rejected(tmp_path):

@@ -1,11 +1,11 @@
-question_id,question,context_ids,context_tokens,retrieval_auto,facts_in_context,answer,answer_auto,facts_in_answer,retrieval_label_final,answer_label,notes
+question_id,question,context_ids,context_tokens,retrieval_auto,facts_in_context,answer,answer_auto,facts_in_answer,retrieval_label_suggested,answer_label_suggested,suggestion_reason,retrieval_label_final,answer_label,notes
 Q1,What are the two main diagnostic criteria for Type 2 diabetes based on HbA1c and fasting plasma glucose?,B-4-diagnostic-criteria B-1-overview B-2-epidemiology-and-risk-factors,498,yes,HbA1c threshold; FPG threshold,"Based on the provided sources, the standard thresholds for diagnosing diabetes are:
 * **Fasting Plasma Glucose (FPG):** 126 mg/dL or higher [1].
 * **HbA1c (glycated hemoglobin):** 6.5% or higher [1].
 
-A diagnosis is usually confirmed by repeating an abnormal test on a second occasion, unless the patient has clear symptoms of hyperglycemia alongside a random glucose reading above 200 mg/dL [1].",yes,HbA1c threshold; FPG threshold,,,
-Q2,What HbA1c range indicates prediabetes?,B-4-diagnostic-criteria B-7-monitoring-and-follow-up B-2-epidemiology-and-risk-factors,476,yes,lower bound; upper bound,An HbA1c range of 5.7%–6.4% indicates prediabetes [1].,yes,lower bound; upper bound,,,
-Q3,Name three first-line oral medications used to treat Type 2 diabetes.,B-5-treatment-approaches B-5-1-lifestyle-modifications B-10-frequently-asked-questions,600,yes,Metformin; Sulfonylureas; DPP-4 inhibitors; SGLT2 inhibitors; GLP-1 receptor agonists,"The sources do not state that there are three first-line oral medications. Instead, the sources state that Metformin is usually the first-line drug [1].",partial,Metformin,,,
+A diagnosis is usually confirmed by repeating an abnormal test on a second occasion, unless the patient has clear symptoms of hyperglycemia alongside a random glucose reading above 200 mg/dL [1].",yes,HbA1c threshold; FPG threshold,yes,,"Confirmed auto label: HbA1c threshold; FPG threshold present in context, with their labels/headings.",,,
+Q2,What HbA1c range indicates prediabetes?,B-4-diagnostic-criteria B-7-monitoring-and-follow-up B-2-epidemiology-and-risk-factors,476,yes,lower bound; upper bound,An HbA1c range of 5.7%–6.4% indicates prediabetes [1].,yes,lower bound; upper bound,yes,,"Confirmed auto label: lower bound; upper bound present in context, with their labels/headings.",,,
+Q3,Name three first-line oral medications used to treat Type 2 diabetes.,B-5-treatment-approaches B-5-1-lifestyle-modifications B-10-frequently-asked-questions,600,yes,Metformin; Sulfonylureas; DPP-4 inhibitors; SGLT2 inhibitors; GLP-1 receptor agonists,"The sources do not state that there are three first-line oral medications. Instead, the sources state that Metformin is usually the first-line drug [1].",partial,Metformin,yes,,"Confirmed auto label: Metformin; Sulfonylureas; DPP-4 inhibitors; SGLT2 inhibitors; GLP-1 receptor agonists present in context, with their labels/headings.",,,
 Q4,What are the classic symptoms of hyperglycemia?,B-3-symptoms B-9-when-to-seek-emergency-care B-4-diagnostic-criteria,450,yes,thirst; frequent urination; hunger; weight loss; fatigue; blurred vision; slow-healing sores / infections; tingling / numbness,"The provided sources do not specifically list ""classic symptoms of hyperglycemia,"" but they state that the common symptoms of Type 2 diabetes arise primarily from persistently elevated blood glucose (hyperglycemia) [1]. These symptoms include:
 
 - Increased thirst and frequent urination [1]
@@ -14,29 +14,29 @@ Q4,What are the classic symptoms of hyperglycemia?,B-3-symptoms B-9-when-to-seek
 - Fatigue [1]
 - Blurred vision [1]
 - Slow-healing sores or frequent infections [1]
-- Tingling or numbness in the hands or feet [1]",yes,thirst; frequent urination; hunger; weight loss; fatigue; blurred vision; slow-healing sores / infections; tingling / numbness,,,
+- Tingling or numbness in the hands or feet [1]",yes,thirst; frequent urination; hunger; weight loss; fatigue; blurred vision; slow-healing sores / infections; tingling / numbness,yes,,"Confirmed auto label: thirst; frequent urination; hunger; weight loss; fatigue; blurred vision; slow-healing sores / infections; tingling / numbness present in context, with their labels/headings.",,,
 Q5,What lifestyle modifications are recommended for managing Type 2 diabetes?,B-5-1-lifestyle-modifications B-10-frequently-asked-questions B-1-overview,475,partial,weight loss 5-7%; 150 min/week exercise; diet; smoking cessation; limit alcohol,"The recommended lifestyle modifications for managing Type 2 diabetes are:
 
 - Weight loss of even 5-7% of body weight [1]
 - Regular physical activity (at least 150 minutes per week of moderate exercise) [1]
 - A diet emphasizing whole grains, vegetables, lean protein, and reduced refined sugar and processed carbohydrates [1]
 - Smoking cessation [1]
-- Limiting alcohol intake [1]",partial,weight loss 5-7%; 150 min/week exercise; diet; smoking cessation; limit alcohol,,,
+- Limiting alcohol intake [1]",partial,weight loss 5-7%; 150 min/week exercise; diet; smoking cessation; limit alcohol,partial,,§8 (Self-Management and Lifestyle Tips) not retrieved: without the heading prefix the §8 list of tips ranks below the FAQ and overview. Only §5.1 facts in context.,,,
 Q6,Name two microvascular complications of diabetes.,B-6-complications B-7-monitoring-and-follow-up B-1-overview,451,yes,retinopathy; nephropathy; neuropathy,"Two microvascular complications of diabetes are:
 - Diabetic retinopathy
 - Diabetic nephropathy
-(Diabetic neuropathy is also a microvascular complication listed.) [1]",yes,retinopathy; nephropathy; neuropathy,,,
+(Diabetic neuropathy is also a microvascular complication listed.) [1]",yes,retinopathy; nephropathy; neuropathy,yes,,"Confirmed auto label: retinopathy; nephropathy; neuropathy present in context, with their labels/headings.",,,
 Q7,Name two macrovascular complications of diabetes.,B-6-complications B-1-overview B-7-monitoring-and-follow-up,451,yes,coronary artery disease; cerebrovascular disease; peripheral vascular disease,"Based on the provided sources, two macrovascular complications of diabetes are:
 
 1. Coronary artery disease [1]
 2. Cerebrovascular disease [1] 
 
-*(Note: Peripheral vascular disease is also listed as a macrovascular complication [1].)*",yes,coronary artery disease; cerebrovascular disease; peripheral vascular disease,,,
-Q8,How often should HbA1c be monitored in someone with stable Type 2 diabetes?,B-7-monitoring-and-follow-up B-5-1-lifestyle-modifications B-8-self-management-and-lifestyle-tips,363,yes,every 3-6 months,"HbA1c testing should be done every 3-6 months, depending on how stable blood sugar control is [1].",yes,every 3-6 months,,,
-Q9,What blood glucose target range is recommended for most adults with Type 2 diabetes?,B-1-overview B-5-1-lifestyle-modifications B-10-frequently-asked-questions,475,N/A,,The document does not contain this information.,yes,,,,
+*(Note: Peripheral vascular disease is also listed as a macrovascular complication [1].)*",yes,coronary artery disease; cerebrovascular disease; peripheral vascular disease,yes,,"Confirmed auto label: coronary artery disease; cerebrovascular disease; peripheral vascular disease present in context, with their labels/headings.",,,
+Q8,How often should HbA1c be monitored in someone with stable Type 2 diabetes?,B-7-monitoring-and-follow-up B-5-1-lifestyle-modifications B-8-self-management-and-lifestyle-tips,363,yes,every 3-6 months,"HbA1c testing should be done every 3-6 months, depending on how stable blood sugar control is [1].",yes,every 3-6 months,yes,,"Confirmed auto label: every 3-6 months present in context, with their labels/headings.",,,
+Q9,What blood glucose target range is recommended for most adults with Type 2 diabetes?,B-1-overview B-5-1-lifestyle-modifications B-10-frequently-asked-questions,475,N/A,,The document does not contain this information.,yes,,N/A,,"Unanswerable: the document gives no glucose target range, so retrieval is not scored.",,,
 Q10,What symptoms should prompt someone to seek emergency medical care?,B-9-when-to-seek-emergency-care B-8-self-management-and-lifestyle-tips B-3-symptoms,383,yes,very high glucose (>300 mg/dL) with nausea/vomiting/confusion; severe low blood sugar; heart attack / stroke signs; worsening foot wound,"You should seek immediate medical attention for:
 
 - Blood glucose readings that are very high (typically above 300 mg/dL) accompanied by nausea, vomiting, confusion, or rapid breathing
 - Signs of severe low blood sugar: confusion, slurred speech, seizures, or loss of consciousness
 - Sudden chest pain, shortness of breath, or one-sided weakness
-- A foot wound that is rapidly worsening, especially with redness, swelling, or fever",yes,very high glucose (>300 mg/dL) with nausea/vomiting/confusion; severe low blood sugar; heart attack / stroke signs; worsening foot wound,,,
+- A foot wound that is rapidly worsening, especially with redness, swelling, or fever",yes,very high glucose (>300 mg/dL) with nausea/vomiting/confusion; severe low blood sugar; heart attack / stroke signs; worsening foot wound,yes,,"Confirmed auto label: very high glucose (>300 mg/dL) with nausea/vomiting/confusion; severe low blood sugar; heart attack / stroke signs; worsening foot wound present in context, with their labels/headings.",,,

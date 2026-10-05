@@ -9,13 +9,23 @@
     "redundancy": 0.95
   },
   "mean_context_tokens": 462.2,
-  "retrieval_accuracy_auto": 94.4,
   "retrieval_accuracy": 94.4,
-  "retrieval_manually_reviewed": 0,
+  "retrieval_accuracy_auto": 94.4,
+  "retrieval_label_sources": {
+    "final": 0,
+    "suggested": 9,
+    "auto": 0
+  },
   "hit_at_1_top5": 1.0,
   "mrr_top5": 1.0,
+  "answer_accuracy": 90.0,
   "answer_accuracy_auto": 90.0,
-  "answer_accuracy": null,
+  "answer_label_sources": {
+    "final": 0,
+    "suggested": 0,
+    "auto": 10
+  },
+  "provisional": true,
   "per_question": {
     "Q1": {
       "retrieval": "yes",

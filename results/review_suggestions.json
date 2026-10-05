@@ -1,0 +1,418 @@
+{
+  "A-500": {
+    "Q1": {
+      "retrieval": "yes",
+      "answer": "yes",
+      "reason": "Retrieval: Confirmed auto label: HbA1c threshold; FPG threshold present in context, with their labels/headings. Answer: Answer matches the expected answer; numbers and terms as in the document."
+    },
+    "Q2": {
+      "retrieval": "yes",
+      "answer": "yes",
+      "reason": "Retrieval: A-004 (header + HbA1c row) is in context. Note: rank-1 chunk A-005 is a headerless table fragment starting mid-row ('w 5.7% | 5.7%–6.4% | …') with no row label, so hit@1 overstates A here. Answer: Answer matches the expected answer; numbers and terms as in the document."
+    },
+    "Q3": {
+      "retrieval": "yes",
+      "answer": "partial",
+      "reason": "Retrieval: Confirmed auto label: Metformin; Sulfonylureas; DPP-4 inhibitors; SGLT2 inhibitors; GLP-1 receptor agonists present in context, with their labels/headings. Answer: Correctly flags the false premise (only Metformin is called first-line) but does not name the other oral classes the document lists, which the expected answer includes."
+    },
+    "Q4": {
+      "retrieval": "yes",
+      "answer": "yes",
+      "reason": "Retrieval: Confirmed auto label: thirst; frequent urination; hunger; weight loss; fatigue; blurred vision; slow-healing sores / infections; tingling / numbness present in context, with their labels/headings. Answer: Lists all seven §3 symptoms with a caveat that the sources don't use the word 'classic'; correct and grounded."
+    },
+    "Q5": {
+      "retrieval": "partial",
+      "answer": "partial",
+      "reason": "Retrieval: Only §5.1 facts in context; §8 (self-management tips) not retrieved, so one of the two source sections is missing. Answer: Lists every §5.1 modification but nothing from §8 (self-management tips), one of the two source sections."
+    },
+    "Q6": {
+      "retrieval": "yes",
+      "answer": "yes",
+      "reason": "Retrieval: Confirmed auto label: retinopathy; nephropathy; neuropathy present in context, with their labels/headings. Answer: Answer matches the expected answer; numbers and terms as in the document."
+    },
+    "Q7": {
+      "retrieval": "yes",
+      "answer": "yes",
+      "reason": "Retrieval: Confirmed auto label: coronary artery disease; cerebrovascular disease; peripheral vascular disease present in context, with their labels/headings. Answer: Answer matches the expected answer; numbers and terms as in the document."
+    },
+    "Q8": {
+      "retrieval": "yes",
+      "answer": "yes",
+      "reason": "Retrieval: Confirmed auto label: every 3-6 months present in context, with their labels/headings. Answer: Answer matches the expected answer; numbers and terms as in the document."
+    },
+    "Q9": {
+      "retrieval": "N/A",
+      "answer": "yes",
+      "reason": "Retrieval: Unanswerable: the document gives no glucose target range, so retrieval is not scored. Answer: Correct refusal; no target range invented."
+    },
+    "Q10": {
+      "retrieval": "yes",
+      "answer": "yes",
+      "reason": "Retrieval: Confirmed auto label: very high glucose (>300 mg/dL) with nausea/vomiting/confusion; severe low blood sugar; heart attack / stroke signs; worsening foot wound present in context, with their labels/headings. Answer: Answer matches the expected answer; numbers and terms as in the document."
+    }
+  },
+  "A-300": {
+    "Q1": {
+      "retrieval": "no",
+      "answer": "",
+      "reason": "Table split: A-007 has the header and the FPG row label but is cut before '126'; the values (126 mg/dL, 6.5%) are in A-008, which has no header and was not retrieved."
+    },
+    "Q2": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "A-008 holds the HbA1c row without the header; A-007 (header) is also in context, so the range can be read correctly."
+    },
+    "Q3": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: Metformin; Sulfonylureas; DPP-4 inhibitors; SGLT2 inhibitors; GLP-1 receptor agonists present in context, with their labels/headings."
+    },
+    "Q4": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: thirst; frequent urination; hunger; weight loss; fatigue; blurred vision; slow-healing sores / infections; tingling / numbness present in context, with their labels/headings."
+    },
+    "Q5": {
+      "retrieval": "partial",
+      "answer": "",
+      "reason": "Only §5.1 facts in context; §8 (self-management tips) not retrieved, so one of the two source sections is missing."
+    },
+    "Q6": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "A-016 has all three complications; the '6.1 Microvascular' heading is cut off but the chunk says 'These affect small blood vessels', which carries the meaning."
+    },
+    "Q7": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: coronary artery disease; cerebrovascular disease; peripheral vascular disease present in context, with their labels/headings."
+    },
+    "Q8": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: every 3-6 months present in context, with their labels/headings."
+    },
+    "Q9": {
+      "retrieval": "N/A",
+      "answer": "",
+      "reason": "Unanswerable: the document gives no glucose target range, so retrieval is not scored."
+    },
+    "Q10": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: very high glucose (>300 mg/dL) with nausea/vomiting/confusion; severe low blood sugar; heart attack / stroke signs; worsening foot wound present in context, with their labels/headings."
+    }
+  },
+  "A-800": {
+    "Q1": {
+      "retrieval": "partial",
+      "answer": "",
+      "reason": "DISAGREES with auto (yes). A-003 starts mid-row: '126 mg/dL or higher' has neither its row label (FPG) nor the column headers; the header chunk A-002 is not in context. HbA1c 6.5% keeps its row label but not the 'Diabetes' column header."
+    },
+    "Q2": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "A-002 (header) and A-003 (HbA1c row) are both in context."
+    },
+    "Q3": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: Metformin; Sulfonylureas; DPP-4 inhibitors; SGLT2 inhibitors; GLP-1 receptor agonists present in context, with their labels/headings."
+    },
+    "Q4": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: thirst; frequent urination; hunger; weight loss; fatigue; blurred vision; slow-healing sores / infections; tingling / numbness present in context, with their labels/headings."
+    },
+    "Q5": {
+      "retrieval": "partial",
+      "answer": "",
+      "reason": "Only §5.1 facts in context; §8 (self-management tips) not retrieved, so one of the two source sections is missing."
+    },
+    "Q6": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "A-006 has all three complications; the '6.1 Microvascular' heading is cut off but 'These affect small blood vessels' is present."
+    },
+    "Q7": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: coronary artery disease; cerebrovascular disease; peripheral vascular disease present in context, with their labels/headings."
+    },
+    "Q8": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: every 3-6 months present in context, with their labels/headings."
+    },
+    "Q9": {
+      "retrieval": "N/A",
+      "answer": "",
+      "reason": "Unanswerable: the document gives no glucose target range, so retrieval is not scored."
+    },
+    "Q10": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: very high glucose (>300 mg/dL) with nausea/vomiting/confusion; severe low blood sugar; heart attack / stroke signs; worsening foot wound present in context, with their labels/headings."
+    }
+  },
+  "A-500-budget": {
+    "Q1": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: HbA1c threshold; FPG threshold present in context, with their labels/headings."
+    },
+    "Q2": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Same context as A-500: A-004 with header is in context; rank-1 A-005 is a headerless fragment."
+    },
+    "Q3": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: Metformin; Sulfonylureas; DPP-4 inhibitors; SGLT2 inhibitors; GLP-1 receptor agonists present in context, with their labels/headings."
+    },
+    "Q4": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: thirst; frequent urination; hunger; weight loss; fatigue; blurred vision; slow-healing sores / infections; tingling / numbness present in context, with their labels/headings."
+    },
+    "Q5": {
+      "retrieval": "partial",
+      "answer": "",
+      "reason": "Only §5.1 facts in context; §8 (self-management tips) not retrieved, so one of the two source sections is missing."
+    },
+    "Q6": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: retinopathy; nephropathy; neuropathy present in context, with their labels/headings."
+    },
+    "Q7": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: coronary artery disease; cerebrovascular disease; peripheral vascular disease present in context, with their labels/headings."
+    },
+    "Q8": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: every 3-6 months present in context, with their labels/headings."
+    },
+    "Q9": {
+      "retrieval": "N/A",
+      "answer": "",
+      "reason": "Unanswerable: the document gives no glucose target range, so retrieval is not scored."
+    },
+    "Q10": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: very high glucose (>300 mg/dL) with nausea/vomiting/confusion; severe low blood sugar; heart attack / stroke signs; worsening foot wound present in context, with their labels/headings."
+    }
+  },
+  "B-min100": {
+    "Q1": {
+      "retrieval": "yes",
+      "answer": "yes",
+      "reason": "Retrieval: Confirmed auto label: HbA1c threshold; FPG threshold present in context, with their labels/headings. Answer: Answer matches the expected answer; numbers and terms as in the document."
+    },
+    "Q2": {
+      "retrieval": "yes",
+      "answer": "yes",
+      "reason": "Retrieval: Confirmed auto label: lower bound; upper bound present in context, with their labels/headings. Answer: Answer matches the expected answer; numbers and terms as in the document."
+    },
+    "Q3": {
+      "retrieval": "yes",
+      "answer": "partial",
+      "reason": "Retrieval: Confirmed auto label: Metformin; Sulfonylureas; DPP-4 inhibitors; SGLT2 inhibitors; GLP-1 receptor agonists present in context, with their labels/headings. Answer: Correctly flags the false premise (only Metformin is called first-line) but does not name the other oral classes the document lists, which the expected answer includes."
+    },
+    "Q4": {
+      "retrieval": "yes",
+      "answer": "no",
+      "reason": "Retrieval: Confirmed auto label: thirst; frequent urination; hunger; weight loss; fatigue; blurred vision; slow-healing sores / infections; tingling / numbness present in context, with their labels/headings. Answer: Refusal although B-3-symptoms (the full §3 list) is ranked #1 in context: a generation failure, not a retrieval failure. Retrieval label is yes."
+    },
+    "Q5": {
+      "retrieval": "yes",
+      "answer": "partial",
+      "reason": "Retrieval: Confirmed auto label: weight loss 5-7%; 150 min/week exercise; diet; smoking cessation; limit alcohol; home glucose log; regular meals; daily foot checks; vaccinations present in context, with their labels/headings. Answer: Lists every §5.1 modification but nothing from §8 (self-management tips), one of the two source sections."
+    },
+    "Q6": {
+      "retrieval": "yes",
+      "answer": "yes",
+      "reason": "Retrieval: Merged chunk B-6-complications holds §6.1 with its sub-heading (plus §6.2). Answer: Answer matches the expected answer; numbers and terms as in the document."
+    },
+    "Q7": {
+      "retrieval": "yes",
+      "answer": "yes",
+      "reason": "Retrieval: Merged chunk B-6-complications holds §6.2 with its sub-heading (plus §6.1). Answer: Answer matches the expected answer; numbers and terms as in the document."
+    },
+    "Q8": {
+      "retrieval": "yes",
+      "answer": "yes",
+      "reason": "Retrieval: Confirmed auto label: every 3-6 months present in context, with their labels/headings. Answer: Answer matches the expected answer; numbers and terms as in the document."
+    },
+    "Q9": {
+      "retrieval": "N/A",
+      "answer": "yes",
+      "reason": "Retrieval: Unanswerable: the document gives no glucose target range, so retrieval is not scored. Answer: Correct refusal; no target range invented."
+    },
+    "Q10": {
+      "retrieval": "yes",
+      "answer": "yes",
+      "reason": "Retrieval: Confirmed auto label: very high glucose (>300 mg/dL) with nausea/vomiting/confusion; severe low blood sugar; heart attack / stroke signs; worsening foot wound present in context, with their labels/headings. Answer: Answer matches the expected answer; numbers and terms as in the document."
+    }
+  },
+  "B-min40": {
+    "Q1": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: HbA1c threshold; FPG threshold present in context, with their labels/headings."
+    },
+    "Q2": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: lower bound; upper bound present in context, with their labels/headings."
+    },
+    "Q3": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: Metformin; Sulfonylureas; DPP-4 inhibitors; SGLT2 inhibitors; GLP-1 receptor agonists present in context, with their labels/headings."
+    },
+    "Q4": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: thirst; frequent urination; hunger; weight loss; fatigue; blurred vision; slow-healing sores / infections; tingling / numbness present in context, with their labels/headings."
+    },
+    "Q5": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: weight loss 5-7%; 150 min/week exercise; diet; smoking cessation; limit alcohol; home glucose log; regular meals; daily foot checks; vaccinations present in context, with their labels/headings."
+    },
+    "Q6": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: retinopathy; nephropathy; neuropathy present in context, with their labels/headings."
+    },
+    "Q7": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: coronary artery disease; cerebrovascular disease; peripheral vascular disease present in context, with their labels/headings."
+    },
+    "Q8": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: every 3-6 months present in context, with their labels/headings."
+    },
+    "Q9": {
+      "retrieval": "N/A",
+      "answer": "",
+      "reason": "Unanswerable: the document gives no glucose target range, so retrieval is not scored."
+    },
+    "Q10": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: very high glucose (>300 mg/dL) with nausea/vomiting/confusion; severe low blood sugar; heart attack / stroke signs; worsening foot wound present in context, with their labels/headings."
+    }
+  },
+  "B-noprefix": {
+    "Q1": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: HbA1c threshold; FPG threshold present in context, with their labels/headings."
+    },
+    "Q2": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: lower bound; upper bound present in context, with their labels/headings."
+    },
+    "Q3": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: Metformin; Sulfonylureas; DPP-4 inhibitors; SGLT2 inhibitors; GLP-1 receptor agonists present in context, with their labels/headings."
+    },
+    "Q4": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: thirst; frequent urination; hunger; weight loss; fatigue; blurred vision; slow-healing sores / infections; tingling / numbness present in context, with their labels/headings."
+    },
+    "Q5": {
+      "retrieval": "partial",
+      "answer": "",
+      "reason": "§8 (Self-Management and Lifestyle Tips) not retrieved: without the heading prefix the §8 list of tips ranks below the FAQ and overview. Only §5.1 facts in context."
+    },
+    "Q6": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: retinopathy; nephropathy; neuropathy present in context, with their labels/headings."
+    },
+    "Q7": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: coronary artery disease; cerebrovascular disease; peripheral vascular disease present in context, with their labels/headings."
+    },
+    "Q8": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: every 3-6 months present in context, with their labels/headings."
+    },
+    "Q9": {
+      "retrieval": "N/A",
+      "answer": "",
+      "reason": "Unanswerable: the document gives no glucose target range, so retrieval is not scored."
+    },
+    "Q10": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: very high glucose (>300 mg/dL) with nausea/vomiting/confusion; severe low blood sugar; heart attack / stroke signs; worsening foot wound present in context, with their labels/headings."
+    }
+  },
+  "B-min100-budget": {
+    "Q1": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: HbA1c threshold; FPG threshold present in context, with their labels/headings."
+    },
+    "Q2": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: lower bound; upper bound present in context, with their labels/headings."
+    },
+    "Q3": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: Metformin; Sulfonylureas; DPP-4 inhibitors; SGLT2 inhibitors; GLP-1 receptor agonists present in context, with their labels/headings."
+    },
+    "Q4": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: thirst; frequent urination; hunger; weight loss; fatigue; blurred vision; slow-healing sores / infections; tingling / numbness present in context, with their labels/headings."
+    },
+    "Q5": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: weight loss 5-7%; 150 min/week exercise; diet; smoking cessation; limit alcohol; home glucose log; regular meals; daily foot checks; vaccinations present in context, with their labels/headings."
+    },
+    "Q6": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: retinopathy; nephropathy; neuropathy present in context, with their labels/headings."
+    },
+    "Q7": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: coronary artery disease; cerebrovascular disease; peripheral vascular disease present in context, with their labels/headings."
+    },
+    "Q8": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: every 3-6 months present in context, with their labels/headings."
+    },
+    "Q9": {
+      "retrieval": "N/A",
+      "answer": "",
+      "reason": "Unanswerable: the document gives no glucose target range, so retrieval is not scored."
+    },
+    "Q10": {
+      "retrieval": "yes",
+      "answer": "",
+      "reason": "Confirmed auto label: very high glucose (>300 mg/dL) with nausea/vomiting/confusion; severe low blood sugar; heart attack / stroke signs; worsening foot wound present in context, with their labels/headings."
+    }
+  }
+}
