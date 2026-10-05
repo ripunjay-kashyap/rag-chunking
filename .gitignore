@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+
+# Secrets
+.env
+
+# Embedding cache (regenerable)
+.cache/
+
+# Assignment brief (not part of the deliverable)
+RAG_Chunking_Assignment.pdf
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
