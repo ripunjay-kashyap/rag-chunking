@@ -1,0 +1,770 @@
+{
+  "run_id": "A-300",
+  "strategy": "fixed",
+  "params": {
+    "size_chars": 300,
+    "overlap_chars": 30
+  },
+  "document_sha256": "fe88894b2506a02447e6c745cc1189dc54771e700edb49bd7a04c0687184c259",
+  "stats": {
+    "chunks": 28,
+    "mean_tokens": 74.5,
+    "min_tokens": 62,
+    "max_tokens": 75,
+    "total_tokens": 2087,
+    "redundancy": 1.11
+  },
+  "cut_summary": {
+    "table-row": 4,
+    "list-item": 23,
+    "heading": 4,
+    "mid-sentence": 20,
+    "sentence-end": 0,
+    "clean": 3,
+    "mid-word": 32
+  },
+  "cuts": [
+    {
+      "chunk_id": "A-000",
+      "side": "end",
+      "position": 300,
+      "kind": "mid-sentence",
+      "mid_word": false,
+      "context": " Unlike Type 1 diabetes, |which is an autoimmune co"
+    },
+    {
+      "chunk_id": "A-001",
+      "side": "start",
+      "position": 270,
+      "kind": "mid-sentence",
+      "mid_word": true,
+      "context": "in production by the panc|reas. Unlike Type 1 diabe"
+    },
+    {
+      "chunk_id": "A-001",
+      "side": "end",
+      "position": 570,
+      "kind": "mid-sentence",
+      "mid_word": true,
+      "context": "ldwide and a leading caus|e of cardiovascular disea"
+    },
+    {
+      "chunk_id": "A-002",
+      "side": "start",
+      "position": 540,
+      "kind": "mid-sentence",
+      "mid_word": true,
+      "context": "st common chronic disease|s worldwide and a leading"
+    },
+    {
+      "chunk_id": "A-002",
+      "side": "end",
+      "position": 840,
+      "kind": "mid-sentence",
+      "mid_word": false,
+      "context": "decades, closely tracking| increases in obesity and"
+    },
+    {
+      "chunk_id": "A-003",
+      "side": "start",
+      "position": 810,
+      "kind": "mid-sentence",
+      "mid_word": false,
+      "context": "sen sharply over the past| few decades, closely tra"
+    },
+    {
+      "chunk_id": "A-003",
+      "side": "end",
+      "position": 1110,
+      "kind": "list-item",
+      "mid_word": false,
+      "context": "een in younger adults)⏎- |History of gestational di"
+    },
+    {
+      "chunk_id": "A-004",
+      "side": "start",
+      "position": 1080,
+      "kind": "list-item",
+      "mid_word": true,
+      "context": "though onset is increasin|gly seen in younger adult"
+    },
+    {
+      "chunk_id": "A-004",
+      "side": "end",
+      "position": 1380,
+      "kind": "mid-sentence",
+      "mid_word": true,
+      "context": "toms⏎⏎Many people with Ty|pe 2 diabetes have no sym"
+    },
+    {
+      "chunk_id": "A-005",
+      "side": "start",
+      "position": 1350,
+      "kind": "heading",
+      "mid_word": false,
+      "context": "carry higher risk)⏎⏎## 3.| Symptoms⏎⏎Many people wi"
+    },
+    {
+      "chunk_id": "A-005",
+      "side": "end",
+      "position": 1650,
+      "kind": "list-item",
+      "mid_word": false,
+      "context": "sion⏎- Slow-healing sores| or frequent infections⏎-"
+    },
+    {
+      "chunk_id": "A-006",
+      "side": "start",
+      "position": 1620,
+      "kind": "list-item",
+      "mid_word": true,
+      "context": "ht loss⏎- Fatigue⏎- Blurr|ed vision⏎- Slow-healing "
+    },
+    {
+      "chunk_id": "A-006",
+      "side": "end",
+      "position": 1920,
+      "kind": "mid-sentence",
+      "mid_word": false,
+      "context": "c Criteria⏎⏎Diagnosis is |based on laboratory blood"
+    },
+    {
+      "chunk_id": "A-007",
+      "side": "start",
+      "position": 1890,
+      "kind": "heading",
+      "mid_word": true,
+      "context": "lar function.⏎⏎## 4. Diag|nostic Criteria⏎⏎Diagnosi"
+    },
+    {
+      "chunk_id": "A-007",
+      "side": "end",
+      "position": 2190,
+      "kind": "table-row",
+      "mid_word": false,
+      "context": "00 mg/dL | 100–125 mg/dL || 126 mg/dL or higher |⏎|"
+    },
+    {
+      "chunk_id": "A-008",
+      "side": "start",
+      "position": 2160,
+      "kind": "table-row",
+      "mid_word": true,
+      "context": "Plasma Glucose (FPG) | Be|low 100 mg/dL | 100–125 m"
+    },
+    {
+      "chunk_id": "A-008",
+      "side": "end",
+      "position": 2460,
+      "kind": "table-row",
+      "mid_word": false,
+      "context": "| — | 200 mg/dL or higher| |⏎⏎A diagnosis of diabet"
+    },
+    {
+      "chunk_id": "A-009",
+      "side": "start",
+      "position": 2430,
+      "kind": "table-row",
+      "mid_word": false,
+      "context": "a Glucose (with symptoms)| | — | — | 200 mg/dL or h"
+    },
+    {
+      "chunk_id": "A-009",
+      "side": "end",
+      "position": 2730,
+      "kind": "clean",
+      "mid_word": false,
+      "context": "Lifestyle Modifications⏎⏎|Lifestyle change is the f"
+    },
+    {
+      "chunk_id": "A-010",
+      "side": "start",
+      "position": 2700,
+      "kind": "heading",
+      "mid_word": false,
+      "context": "Treatment Approaches⏎⏎###| 5.1 Lifestyle Modificati"
+    },
+    {
+      "chunk_id": "A-010",
+      "side": "end",
+      "position": 3000,
+      "kind": "list-item",
+      "mid_word": false,
+      "context": "l activity (at least 150 |minutes per week of moder"
+    },
+    {
+      "chunk_id": "A-011",
+      "side": "start",
+      "position": 2970,
+      "kind": "list-item",
+      "mid_word": true,
+      "context": "ugar control⏎- Regular ph|ysical activity (at least"
+    },
+    {
+      "chunk_id": "A-011",
+      "side": "end",
+      "position": 3270,
+      "kind": "mid-sentence",
+      "mid_word": true,
+      "context": "nges alone are insufficie|nt, oral medications are "
+    },
+    {
+      "chunk_id": "A-012",
+      "side": "start",
+      "position": 3240,
+      "kind": "mid-sentence",
+      "mid_word": true,
+      "context": "edications⏎⏎When lifestyl|e changes alone are insuf"
+    },
+    {
+      "chunk_id": "A-012",
+      "side": "end",
+      "position": 3540,
+      "kind": "clean",
+      "mid_word": false,
+      "context": "s to release more insulin|⏎- **DPP-4 inhibitors** ("
+    },
+    {
+      "chunk_id": "A-013",
+      "side": "start",
+      "position": 3510,
+      "kind": "list-item",
+      "mid_word": true,
+      "context": "iride) — stimulate the pa|ncreas to release more in"
+    },
+    {
+      "chunk_id": "A-013",
+      "side": "end",
+      "position": 3810,
+      "kind": "list-item",
+      "mid_word": true,
+      "context": "ts⏎- **GLP-1 receptor ago|nists** (e.g., semaglutid"
+    },
+    {
+      "chunk_id": "A-014",
+      "side": "start",
+      "position": 3780,
+      "kind": "list-item",
+      "mid_word": true,
+      "context": "rdiovascular and kidney b|enefits⏎- **GLP-1 recepto"
+    },
+    {
+      "chunk_id": "A-014",
+      "side": "end",
+      "position": 4080,
+      "kind": "mid-sentence",
+      "mid_word": true,
+      "context": " blood sugar levels are v|ery high at diagnosis. In"
+    },
+    {
+      "chunk_id": "A-015",
+      "side": "start",
+      "position": 4050,
+      "kind": "mid-sentence",
+      "mid_word": true,
+      "context": "de adequate control or be|cause blood sugar levels "
+    },
+    {
+      "chunk_id": "A-015",
+      "side": "end",
+      "position": 4350,
+      "kind": "mid-sentence",
+      "mid_word": true,
+      "context": "cations⏎⏎These affect sma|ll blood vessels and incl"
+    },
+    {
+      "chunk_id": "A-016",
+      "side": "start",
+      "position": 4320,
+      "kind": "heading",
+      "mid_word": true,
+      "context": "⏎⏎### 6.1 Microvascular C|omplications⏎⏎These affec"
+    },
+    {
+      "chunk_id": "A-016",
+      "side": "end",
+      "position": 4620,
+      "kind": "list-item",
+      "mid_word": false,
+      "context": "ropathy** — nerve damage,| most often causing numbn"
+    },
+    {
+      "chunk_id": "A-017",
+      "side": "start",
+      "position": 4590,
+      "kind": "list-item",
+      "mid_word": true,
+      "context": "idney failure⏎- **Diabeti|c neuropathy** — nerve da"
+    },
+    {
+      "chunk_id": "A-017",
+      "side": "end",
+      "position": 4890,
+      "kind": "list-item",
+      "mid_word": true,
+      "context": "e** — increased risk of s|troke⏎- **Peripheral vasc"
+    },
+    {
+      "chunk_id": "A-018",
+      "side": "start",
+      "position": 4860,
+      "kind": "list-item",
+      "mid_word": true,
+      "context": "ack⏎- **Cerebrovascular d|isease** — increased risk"
+    },
+    {
+      "chunk_id": "A-018",
+      "side": "end",
+      "position": 5160,
+      "kind": "clean",
+      "mid_word": false,
+      "context": "just treatment as needed:|⏎⏎- HbA1c testing every 3"
+    },
+    {
+      "chunk_id": "A-019",
+      "side": "start",
+      "position": 5130,
+      "kind": "mid-sentence",
+      "mid_word": true,
+      "context": "tch complications early a|nd adjust treatment as ne"
+    },
+    {
+      "chunk_id": "A-019",
+      "side": "end",
+      "position": 5430,
+      "kind": "list-item",
+      "mid_word": true,
+      "context": "ion (microalbumin) and pe|riodic blood tests for ki"
+    },
+    {
+      "chunk_id": "A-020",
+      "side": "start",
+      "position": 5400,
+      "kind": "list-item",
+      "mid_word": false,
+      "context": "al urine test for kidney |function (microalbumin) a"
+    },
+    {
+      "chunk_id": "A-020",
+      "side": "end",
+      "position": 5700,
+      "kind": "list-item",
+      "mid_word": true,
+      "context": "og to spot patterns⏎- Lea|rn to recognize the signs"
+    },
+    {
+      "chunk_id": "A-021",
+      "side": "start",
+      "position": 5670,
+      "kind": "list-item",
+      "mid_word": true,
+      "context": "y your care team, and kee|p a log to spot patterns⏎"
+    },
+    {
+      "chunk_id": "A-021",
+      "side": "end",
+      "position": 5970,
+      "kind": "list-item",
+      "mid_word": false,
+      "context": "cuts, blisters, or sores |that might not be felt du"
+    },
+    {
+      "chunk_id": "A-022",
+      "side": "start",
+      "position": 5940,
+      "kind": "list-item",
+      "mid_word": false,
+      "context": "eals⏎- Inspect feet daily| for cuts, blisters, or s"
+    },
+    {
+      "chunk_id": "A-022",
+      "side": "end",
+      "position": 6240,
+      "kind": "list-item",
+      "mid_word": true,
+      "context": "lly above 300 mg/dL) acco|mpanied by nausea, vomiti"
+    },
+    {
+      "chunk_id": "A-023",
+      "side": "start",
+      "position": 6210,
+      "kind": "list-item",
+      "mid_word": true,
+      "context": "ngs that are very high (t|ypically above 300 mg/dL)"
+    },
+    {
+      "chunk_id": "A-023",
+      "side": "end",
+      "position": 6510,
+      "kind": "list-item",
+      "mid_word": false,
+      "context": "ortness of breath, or one|-sided weakness (possible"
+    },
+    {
+      "chunk_id": "A-024",
+      "side": "start",
+      "position": 6480,
+      "kind": "list-item",
+      "mid_word": true,
+      "context": "usness⏎- Sudden chest pai|n, shortness of breath, o"
+    },
+    {
+      "chunk_id": "A-024",
+      "side": "end",
+      "position": 6780,
+      "kind": "mid-sentence",
+      "mid_word": true,
+      "context": "nosed early and able to a|chieve substantial weight"
+    },
+    {
+      "chunk_id": "A-025",
+      "side": "start",
+      "position": 6750,
+      "kind": "mid-sentence",
+      "mid_word": false,
+      "context": " people, especially those| diagnosed early and able"
+    },
+    {
+      "chunk_id": "A-025",
+      "side": "end",
+      "position": 7050,
+      "kind": "mid-sentence",
+      "mid_word": true,
+      "context": "etes be prevented?** In p|eople at high risk (such "
+    },
+    {
+      "chunk_id": "A-026",
+      "side": "start",
+      "position": 7020,
+      "kind": "mid-sentence",
+      "mid_word": false,
+      "context": "aintain it.⏎⏎**Can Type 2| diabetes be prevented?**"
+    },
+    {
+      "chunk_id": "A-026",
+      "side": "end",
+      "position": 7320,
+      "kind": "mid-sentence",
+      "mid_word": true,
+      "context": "diabetes always require i|nsulin?** No. Many people"
+    },
+    {
+      "chunk_id": "A-027",
+      "side": "start",
+      "position": 7290,
+      "kind": "mid-sentence",
+      "mid_word": true,
+      "context": "full diabetes.⏎⏎**Does Ty|pe 2 diabetes always requ"
+    }
+  ],
+  "chunks": [
+    {
+      "id": "A-000",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 0,
+      "end_char": 300,
+      "est_tokens": 75,
+      "meta": {},
+      "text": "# Type 2 Diabetes Mellitus: A Clinical and Patient Guide\n\n## 1. Overview\n\nType 2 diabetes mellitus (T2DM) is a chronic metabolic condition characterized by high blood glucose levels resulting from insulin resistance and, over time, reduced insulin production by the pancreas. Unlike Type 1 diabetes, ",
+      "body": "# Type 2 Diabetes Mellitus: A Clinical and Patient Guide\n\n## 1. Overview\n\nType 2 diabetes mellitus (T2DM) is a chronic metabolic condition characterized by high blood glucose levels resulting from insulin resistance and, over time, reduced insulin production by the pancreas. Unlike Type 1 diabetes, "
+    },
+    {
+      "id": "A-001",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 270,
+      "end_char": 570,
+      "est_tokens": 75,
+      "meta": {},
+      "text": "reas. Unlike Type 1 diabetes, which is an autoimmune condition typically diagnosed in childhood, Type 2 diabetes usually develops gradually in adults, though rising obesity rates have led to more cases in younger populations. It is one of the most common chronic diseases worldwide and a leading caus",
+      "body": "reas. Unlike Type 1 diabetes, which is an autoimmune condition typically diagnosed in childhood, Type 2 diabetes usually develops gradually in adults, though rising obesity rates have led to more cases in younger populations. It is one of the most common chronic diseases worldwide and a leading caus"
+    },
+    {
+      "id": "A-002",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 540,
+      "end_char": 840,
+      "est_tokens": 75,
+      "meta": {},
+      "text": "s worldwide and a leading cause of cardiovascular disease, kidney failure, and vision loss if left unmanaged.\n\n## 2. Epidemiology and Risk Factors\n\nType 2 diabetes accounts for roughly 90-95% of all diabetes cases globally. Its prevalence has risen sharply over the past few decades, closely tracking",
+      "body": "s worldwide and a leading cause of cardiovascular disease, kidney failure, and vision loss if left unmanaged.\n\n## 2. Epidemiology and Risk Factors\n\nType 2 diabetes accounts for roughly 90-95% of all diabetes cases globally. Its prevalence has risen sharply over the past few decades, closely tracking"
+    },
+    {
+      "id": "A-003",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 810,
+      "end_char": 1110,
+      "est_tokens": 75,
+      "meta": {},
+      "text": " few decades, closely tracking increases in obesity and sedentary lifestyles.\n\nCommon risk factors include:\n\n- Being overweight or obese, particularly with excess abdominal fat\n- A family history of diabetes\n- Physical inactivity\n- Age over 45 (though onset is increasingly seen in younger adults)\n- ",
+      "body": " few decades, closely tracking increases in obesity and sedentary lifestyles.\n\nCommon risk factors include:\n\n- Being overweight or obese, particularly with excess abdominal fat\n- A family history of diabetes\n- Physical inactivity\n- Age over 45 (though onset is increasingly seen in younger adults)\n- "
+    },
+    {
+      "id": "A-004",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 1080,
+      "end_char": 1380,
+      "est_tokens": 75,
+      "meta": {},
+      "text": "gly seen in younger adults)\n- History of gestational diabetes\n- Polycystic ovary syndrome (PCOS)\n- High blood pressure or abnormal cholesterol levels\n- Certain ethnic backgrounds (e.g., South Asian, African, Hispanic, and Indigenous populations carry higher risk)\n\n## 3. Symptoms\n\nMany people with Ty",
+      "body": "gly seen in younger adults)\n- History of gestational diabetes\n- Polycystic ovary syndrome (PCOS)\n- High blood pressure or abnormal cholesterol levels\n- Certain ethnic backgrounds (e.g., South Asian, African, Hispanic, and Indigenous populations carry higher risk)\n\n## 3. Symptoms\n\nMany people with Ty"
+    },
+    {
+      "id": "A-005",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 1350,
+      "end_char": 1650,
+      "est_tokens": 75,
+      "meta": {},
+      "text": " Symptoms\n\nMany people with Type 2 diabetes have no symptoms for years, which is why routine screening is important. When symptoms do appear, they commonly include:\n\n- Increased thirst and frequent urination\n- Increased hunger\n- Unexplained weight loss\n- Fatigue\n- Blurred vision\n- Slow-healing sores",
+      "body": " Symptoms\n\nMany people with Type 2 diabetes have no symptoms for years, which is why routine screening is important. When symptoms do appear, they commonly include:\n\n- Increased thirst and frequent urination\n- Increased hunger\n- Unexplained weight loss\n- Fatigue\n- Blurred vision\n- Slow-healing sores"
+    },
+    {
+      "id": "A-006",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 1620,
+      "end_char": 1920,
+      "est_tokens": 75,
+      "meta": {},
+      "text": "ed vision\n- Slow-healing sores or frequent infections\n- Tingling or numbness in the hands or feet\n\nThese symptoms arise primarily from persistently elevated blood glucose (hyperglycemia), which draws fluid out of tissues and impairs normal cellular function.\n\n## 4. Diagnostic Criteria\n\nDiagnosis is ",
+      "body": "ed vision\n- Slow-healing sores or frequent infections\n- Tingling or numbness in the hands or feet\n\nThese symptoms arise primarily from persistently elevated blood glucose (hyperglycemia), which draws fluid out of tissues and impairs normal cellular function.\n\n## 4. Diagnostic Criteria\n\nDiagnosis is "
+    },
+    {
+      "id": "A-007",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 1890,
+      "end_char": 2190,
+      "est_tokens": 75,
+      "meta": {},
+      "text": "nostic Criteria\n\nDiagnosis is based on laboratory blood tests. The table below summarizes the standard thresholds used by most clinical guidelines:\n\n| Test | Normal | Prediabetes | Diabetes |\n|------|--------|-------------|----------|\n| Fasting Plasma Glucose (FPG) | Below 100 mg/dL | 100–125 mg/dL ",
+      "body": "nostic Criteria\n\nDiagnosis is based on laboratory blood tests. The table below summarizes the standard thresholds used by most clinical guidelines:\n\n| Test | Normal | Prediabetes | Diabetes |\n|------|--------|-------------|----------|\n| Fasting Plasma Glucose (FPG) | Below 100 mg/dL | 100–125 mg/dL "
+    },
+    {
+      "id": "A-008",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 2160,
+      "end_char": 2460,
+      "est_tokens": 75,
+      "meta": {},
+      "text": "low 100 mg/dL | 100–125 mg/dL | 126 mg/dL or higher |\n| HbA1c (glycated hemoglobin) | Below 5.7% | 5.7%–6.4% | 6.5% or higher |\n| Oral Glucose Tolerance Test (2-hour, OGTT) | Below 140 mg/dL | 140–199 mg/dL | 200 mg/dL or higher |\n| Random Plasma Glucose (with symptoms) | — | — | 200 mg/dL or higher",
+      "body": "low 100 mg/dL | 100–125 mg/dL | 126 mg/dL or higher |\n| HbA1c (glycated hemoglobin) | Below 5.7% | 5.7%–6.4% | 6.5% or higher |\n| Oral Glucose Tolerance Test (2-hour, OGTT) | Below 140 mg/dL | 140–199 mg/dL | 200 mg/dL or higher |\n| Random Plasma Glucose (with symptoms) | — | — | 200 mg/dL or higher"
+    },
+    {
+      "id": "A-009",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 2430,
+      "end_char": 2730,
+      "est_tokens": 75,
+      "meta": {},
+      "text": " | — | — | 200 mg/dL or higher |\n\nA diagnosis of diabetes is usually confirmed by repeating an abnormal test on a second occasion, unless the patient has clear symptoms of hyperglycemia alongside a random glucose reading above 200 mg/dL.\n\n## 5. Treatment Approaches\n\n### 5.1 Lifestyle Modifications\n\n",
+      "body": " | — | — | 200 mg/dL or higher |\n\nA diagnosis of diabetes is usually confirmed by repeating an abnormal test on a second occasion, unless the patient has clear symptoms of hyperglycemia alongside a random glucose reading above 200 mg/dL.\n\n## 5. Treatment Approaches\n\n### 5.1 Lifestyle Modifications\n\n"
+    },
+    {
+      "id": "A-010",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 2700,
+      "end_char": 3000,
+      "est_tokens": 75,
+      "meta": {},
+      "text": " 5.1 Lifestyle Modifications\n\nLifestyle change is the foundation of Type 2 diabetes management, and is often effective enough to delay or reduce the need for medication:\n\n- Weight loss of even 5-7% of body weight can meaningfully improve blood sugar control\n- Regular physical activity (at least 150 ",
+      "body": " 5.1 Lifestyle Modifications\n\nLifestyle change is the foundation of Type 2 diabetes management, and is often effective enough to delay or reduce the need for medication:\n\n- Weight loss of even 5-7% of body weight can meaningfully improve blood sugar control\n- Regular physical activity (at least 150 "
+    },
+    {
+      "id": "A-011",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 2970,
+      "end_char": 3270,
+      "est_tokens": 75,
+      "meta": {},
+      "text": "ysical activity (at least 150 minutes per week of moderate exercise)\n- A diet emphasizing whole grains, vegetables, lean protein, and reduced refined sugar and processed carbohydrates\n- Smoking cessation\n- Limiting alcohol intake\n\n### 5.2 Oral Medications\n\nWhen lifestyle changes alone are insufficie",
+      "body": "ysical activity (at least 150 minutes per week of moderate exercise)\n- A diet emphasizing whole grains, vegetables, lean protein, and reduced refined sugar and processed carbohydrates\n- Smoking cessation\n- Limiting alcohol intake\n\n### 5.2 Oral Medications\n\nWhen lifestyle changes alone are insufficie"
+    },
+    {
+      "id": "A-012",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 3240,
+      "end_char": 3540,
+      "est_tokens": 75,
+      "meta": {},
+      "text": "e changes alone are insufficient, oral medications are typically the next step:\n\n- **Metformin** — usually the first-line drug; reduces glucose production by the liver and improves insulin sensitivity\n- **Sulfonylureas** (e.g., glipizide, glimepiride) — stimulate the pancreas to release more insulin",
+      "body": "e changes alone are insufficient, oral medications are typically the next step:\n\n- **Metformin** — usually the first-line drug; reduces glucose production by the liver and improves insulin sensitivity\n- **Sulfonylureas** (e.g., glipizide, glimepiride) — stimulate the pancreas to release more insulin"
+    },
+    {
+      "id": "A-013",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 3510,
+      "end_char": 3810,
+      "est_tokens": 75,
+      "meta": {},
+      "text": "ncreas to release more insulin\n- **DPP-4 inhibitors** (e.g., sitagliptin) — help the body produce more insulin after meals\n- **SGLT2 inhibitors** (e.g., empagliflozin) — cause the kidneys to remove excess glucose through urine, and have added cardiovascular and kidney benefits\n- **GLP-1 receptor ago",
+      "body": "ncreas to release more insulin\n- **DPP-4 inhibitors** (e.g., sitagliptin) — help the body produce more insulin after meals\n- **SGLT2 inhibitors** (e.g., empagliflozin) — cause the kidneys to remove excess glucose through urine, and have added cardiovascular and kidney benefits\n- **GLP-1 receptor ago"
+    },
+    {
+      "id": "A-014",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 3780,
+      "end_char": 4080,
+      "est_tokens": 75,
+      "meta": {},
+      "text": "enefits\n- **GLP-1 receptor agonists** (e.g., semaglutide) — slow digestion and increase insulin release; also support weight loss\n\n### 5.3 Insulin Therapy\n\nSome patients eventually require insulin, either because oral medications no longer provide adequate control or because blood sugar levels are v",
+      "body": "enefits\n- **GLP-1 receptor agonists** (e.g., semaglutide) — slow digestion and increase insulin release; also support weight loss\n\n### 5.3 Insulin Therapy\n\nSome patients eventually require insulin, either because oral medications no longer provide adequate control or because blood sugar levels are v"
+    },
+    {
+      "id": "A-015",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 4050,
+      "end_char": 4350,
+      "est_tokens": 75,
+      "meta": {},
+      "text": "cause blood sugar levels are very high at diagnosis. Insulin regimens range from a single long-acting daily injection to more intensive multiple-injection regimens combining long-acting and rapid-acting insulin around meals.\n\n## 6. Complications\n\n### 6.1 Microvascular Complications\n\nThese affect sma",
+      "body": "cause blood sugar levels are very high at diagnosis. Insulin regimens range from a single long-acting daily injection to more intensive multiple-injection regimens combining long-acting and rapid-acting insulin around meals.\n\n## 6. Complications\n\n### 6.1 Microvascular Complications\n\nThese affect sma"
+    },
+    {
+      "id": "A-016",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 4320,
+      "end_char": 4620,
+      "est_tokens": 75,
+      "meta": {},
+      "text": "omplications\n\nThese affect small blood vessels and include:\n\n- **Diabetic retinopathy** — damage to the blood vessels of the retina, a leading cause of blindness in adults\n- **Diabetic nephropathy** — progressive kidney damage that can lead to kidney failure\n- **Diabetic neuropathy** — nerve damage,",
+      "body": "omplications\n\nThese affect small blood vessels and include:\n\n- **Diabetic retinopathy** — damage to the blood vessels of the retina, a leading cause of blindness in adults\n- **Diabetic nephropathy** — progressive kidney damage that can lead to kidney failure\n- **Diabetic neuropathy** — nerve damage,"
+    },
+    {
+      "id": "A-017",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 4590,
+      "end_char": 4890,
+      "est_tokens": 75,
+      "meta": {},
+      "text": "c neuropathy** — nerve damage, most often causing numbness, tingling, or pain in the feet and hands\n\n### 6.2 Macrovascular Complications\n\nThese affect larger blood vessels and include:\n\n- **Coronary artery disease** — increased risk of heart attack\n- **Cerebrovascular disease** — increased risk of s",
+      "body": "c neuropathy** — nerve damage, most often causing numbness, tingling, or pain in the feet and hands\n\n### 6.2 Macrovascular Complications\n\nThese affect larger blood vessels and include:\n\n- **Coronary artery disease** — increased risk of heart attack\n- **Cerebrovascular disease** — increased risk of s"
+    },
+    {
+      "id": "A-018",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 4860,
+      "end_char": 5160,
+      "est_tokens": 75,
+      "meta": {},
+      "text": "isease** — increased risk of stroke\n- **Peripheral vascular disease** — reduced blood flow to the limbs, which can lead to poor wound healing and, in severe cases, amputation\n\n## 7. Monitoring and Follow-up\n\nOngoing monitoring is essential to catch complications early and adjust treatment as needed:",
+      "body": "isease** — increased risk of stroke\n- **Peripheral vascular disease** — reduced blood flow to the limbs, which can lead to poor wound healing and, in severe cases, amputation\n\n## 7. Monitoring and Follow-up\n\nOngoing monitoring is essential to catch complications early and adjust treatment as needed:"
+    },
+    {
+      "id": "A-019",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 5130,
+      "end_char": 5430,
+      "est_tokens": 75,
+      "meta": {},
+      "text": "nd adjust treatment as needed:\n\n- HbA1c testing every 3-6 months, depending on how stable blood sugar control is\n- Annual comprehensive eye exam to screen for retinopathy\n- Annual foot exam to check for neuropathy and circulation problems\n- Annual urine test for kidney function (microalbumin) and pe",
+      "body": "nd adjust treatment as needed:\n\n- HbA1c testing every 3-6 months, depending on how stable blood sugar control is\n- Annual comprehensive eye exam to screen for retinopathy\n- Annual foot exam to check for neuropathy and circulation problems\n- Annual urine test for kidney function (microalbumin) and pe"
+    },
+    {
+      "id": "A-020",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 5400,
+      "end_char": 5700,
+      "est_tokens": 75,
+      "meta": {},
+      "text": "function (microalbumin) and periodic blood tests for kidney function\n- Regular blood pressure and cholesterol checks, since cardiovascular risk is elevated\n\n## 8. Self-Management and Lifestyle Tips\n\n- Check blood glucose at home as recommended by your care team, and keep a log to spot patterns\n- Lea",
+      "body": "function (microalbumin) and periodic blood tests for kidney function\n- Regular blood pressure and cholesterol checks, since cardiovascular risk is elevated\n\n## 8. Self-Management and Lifestyle Tips\n\n- Check blood glucose at home as recommended by your care team, and keep a log to spot patterns\n- Lea"
+    },
+    {
+      "id": "A-021",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 5670,
+      "end_char": 5970,
+      "est_tokens": 75,
+      "meta": {},
+      "text": "p a log to spot patterns\n- Learn to recognize the signs of both high and low blood sugar\n- Carry a fast-acting source of sugar (like glucose tablets) if on medications that can cause low blood sugar\n- Keep regular meal times and avoid skipping meals\n- Inspect feet daily for cuts, blisters, or sores ",
+      "body": "p a log to spot patterns\n- Learn to recognize the signs of both high and low blood sugar\n- Carry a fast-acting source of sugar (like glucose tablets) if on medications that can cause low blood sugar\n- Keep regular meal times and avoid skipping meals\n- Inspect feet daily for cuts, blisters, or sores "
+    },
+    {
+      "id": "A-022",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 5940,
+      "end_char": 6240,
+      "est_tokens": 75,
+      "meta": {},
+      "text": " for cuts, blisters, or sores that might not be felt due to neuropathy\n- Stay up to date on vaccinations, since diabetes can increase infection risk\n\n## 9. When to Seek Emergency Care\n\nSeek immediate medical attention for:\n\n- Blood glucose readings that are very high (typically above 300 mg/dL) acco",
+      "body": " for cuts, blisters, or sores that might not be felt due to neuropathy\n- Stay up to date on vaccinations, since diabetes can increase infection risk\n\n## 9. When to Seek Emergency Care\n\nSeek immediate medical attention for:\n\n- Blood glucose readings that are very high (typically above 300 mg/dL) acco"
+    },
+    {
+      "id": "A-023",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 6210,
+      "end_char": 6510,
+      "est_tokens": 75,
+      "meta": {},
+      "text": "ypically above 300 mg/dL) accompanied by nausea, vomiting, confusion, or rapid breathing (possible signs of diabetic ketoacidosis or a hyperosmolar state)\n- Signs of severe low blood sugar: confusion, slurred speech, seizures, or loss of consciousness\n- Sudden chest pain, shortness of breath, or one",
+      "body": "ypically above 300 mg/dL) accompanied by nausea, vomiting, confusion, or rapid breathing (possible signs of diabetic ketoacidosis or a hyperosmolar state)\n- Signs of severe low blood sugar: confusion, slurred speech, seizures, or loss of consciousness\n- Sudden chest pain, shortness of breath, or one"
+    },
+    {
+      "id": "A-024",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 6480,
+      "end_char": 6780,
+      "est_tokens": 75,
+      "meta": {},
+      "text": "n, shortness of breath, or one-sided weakness (possible heart attack or stroke)\n- A foot wound that is rapidly worsening, especially with redness, swelling, or fever\n\n## 10. Frequently Asked Questions\n\n**Is Type 2 diabetes reversible?** For some people, especially those diagnosed early and able to a",
+      "body": "n, shortness of breath, or one-sided weakness (possible heart attack or stroke)\n- A foot wound that is rapidly worsening, especially with redness, swelling, or fever\n\n## 10. Frequently Asked Questions\n\n**Is Type 2 diabetes reversible?** For some people, especially those diagnosed early and able to a"
+    },
+    {
+      "id": "A-025",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 6750,
+      "end_char": 7050,
+      "est_tokens": 75,
+      "meta": {},
+      "text": " diagnosed early and able to achieve substantial weight loss, blood sugar can return to a non-diabetic range without medication — often referred to as remission. It is not considered a permanent \"cure,\" and ongoing healthy habits are needed to maintain it.\n\n**Can Type 2 diabetes be prevented?** In p",
+      "body": " diagnosed early and able to achieve substantial weight loss, blood sugar can return to a non-diabetic range without medication — often referred to as remission. It is not considered a permanent \"cure,\" and ongoing healthy habits are needed to maintain it.\n\n**Can Type 2 diabetes be prevented?** In p"
+    },
+    {
+      "id": "A-026",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 7020,
+      "end_char": 7320,
+      "est_tokens": 75,
+      "meta": {},
+      "text": " diabetes be prevented?** In people at high risk (such as those with prediabetes), structured lifestyle programs focusing on modest weight loss and increased physical activity have been shown to significantly reduce the chance of progressing to full diabetes.\n\n**Does Type 2 diabetes always require i",
+      "body": " diabetes be prevented?** In people at high risk (such as those with prediabetes), structured lifestyle programs focusing on modest weight loss and increased physical activity have been shown to significantly reduce the chance of progressing to full diabetes.\n\n**Does Type 2 diabetes always require i"
+    },
+    {
+      "id": "A-027",
+      "strategy": "fixed",
+      "heading_path": [],
+      "start_char": 7290,
+      "end_char": 7535,
+      "est_tokens": 62,
+      "meta": {},
+      "text": "pe 2 diabetes always require insulin?** No. Many people manage the condition for years, or indefinitely, with lifestyle changes and oral medications alone. Insulin becomes necessary only when other treatments no longer provide adequate control.\n",
+      "body": "pe 2 diabetes always require insulin?** No. Many people manage the condition for years, or indefinitely, with lifestyle changes and oral medications alone. Insulin becomes necessary only when other treatments no longer provide adequate control.\n"
+    }
+  ]
+}

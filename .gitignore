@@ -19,6 +19,7 @@ CLAUDE.md
 implementationplan.md
 .claude/
 dev/
+results/chunk_inspection.md
 
 # Assignment brief (not part of the deliverable)
 RAG_Chunking_Assignment.pdf

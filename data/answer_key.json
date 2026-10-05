@@ -1,0 +1,158 @@
+{
+  "version": 1,
+  "status": "frozen",
+  "scoring": {
+    "labels": {"yes": 1.0, "partial": 0.5, "no": 0.0},
+    "yes_rule": "at least min_facts_for_yes facts matched AND every source section has at least one matched fact",
+    "partial_rule": "at least one fact matched, but the yes rule is not met",
+    "matching": "case-insensitive substring after unifying dashes, collapsing whitespace and writing numeric ranges as N-M (\"3 to 6\", \"3 – 6\" -> \"3-6\"); a fact matches if any of its accepted strings matches"
+  },
+  "questions": [
+    {
+      "id": "Q1",
+      "question": "What are the two main diagnostic criteria for Type 2 diabetes based on HbA1c and fasting plasma glucose?",
+      "answerable": true,
+      "source_sections": ["4. Diagnostic Criteria"],
+      "required_facts": [
+        {"name": "HbA1c threshold", "accept": ["6.5%"], "section": "4. Diagnostic Criteria"},
+        {"name": "FPG threshold", "accept": ["126 mg/dL"], "section": "4. Diagnostic Criteria"}
+      ],
+      "min_facts_for_yes": 2,
+      "expected_answer": "HbA1c of 6.5% or higher, and fasting plasma glucose of 126 mg/dL or higher (usually confirmed by repeating the test).",
+      "notes": "Both values live in one table. A fixed-size cut through the table can separate a value from its column header (Normal / Prediabetes / Diabetes), so a chunk may contain '126 mg/dL' without saying it is the diabetes column. The manual reviewer should check that the column is clear."
+    },
+    {
+      "id": "Q2",
+      "question": "What HbA1c range indicates prediabetes?",
+      "answerable": true,
+      "source_sections": ["4. Diagnostic Criteria"],
+      "required_facts": [
+        {"name": "lower bound", "accept": ["5.7%"], "section": "4. Diagnostic Criteria"},
+        {"name": "upper bound", "accept": ["6.4%"], "section": "4. Diagnostic Criteria"}
+      ],
+      "min_facts_for_yes": 2,
+      "expected_answer": "An HbA1c of 5.7% to 6.4%.",
+      "notes": "'5.7%' also appears in the Normal column ('Below 5.7%'), so an answer saying only 'below 5.7%' matches one fact and is partial. Same table-header risk as Q1."
+    },
+    {
+      "id": "Q3",
+      "question": "Name three first-line oral medications used to treat Type 2 diabetes.",
+      "answerable": true,
+      "source_sections": ["5.2 Oral Medications"],
+      "required_facts": [
+        {"name": "Metformin", "accept": ["Metformin"], "section": "5.2 Oral Medications"},
+        {"name": "Sulfonylureas", "accept": ["sulfonylurea", "glipizide", "glimepiride"], "section": "5.2 Oral Medications"},
+        {"name": "DPP-4 inhibitors", "accept": ["DPP-4", "sitagliptin"], "section": "5.2 Oral Medications"},
+        {"name": "SGLT2 inhibitors", "accept": ["SGLT2", "empagliflozin"], "section": "5.2 Oral Medications"},
+        {"name": "GLP-1 receptor agonists", "accept": ["GLP-1", "semaglutide"], "section": "5.2 Oral Medications"}
+      ],
+      "min_facts_for_yes": 3,
+      "expected_answer": "The document calls only Metformin first-line. Other oral options it lists are sulfonylureas (e.g. glipizide), DPP-4 inhibitors (e.g. sitagliptin), SGLT2 inhibitors (e.g. empagliflozin) and GLP-1 receptor agonists (e.g. semaglutide).",
+      "notes": "False-premise trap: the question asks for three first-line drugs, the document names one. The automatic check only counts drug names. For the answer label, the manual reviewer gives 'yes' only if the answer also says that only Metformin is first-line; an answer that calls all three first-line is 'partial'. GLP-1 agonists like semaglutide are mostly injected in practice, but the document lists them under oral medications, so they count."
+    },
+    {
+      "id": "Q4",
+      "question": "What are the classic symptoms of hyperglycemia?",
+      "answerable": true,
+      "source_sections": ["3. Symptoms"],
+      "required_facts": [
+        {"name": "thirst", "accept": ["thirst"], "section": "3. Symptoms"},
+        {"name": "frequent urination", "accept": ["urination"], "section": "3. Symptoms"},
+        {"name": "hunger", "accept": ["hunger"], "section": "3. Symptoms"},
+        {"name": "weight loss", "accept": ["unexplained weight loss"], "section": "3. Symptoms"},
+        {"name": "fatigue", "accept": ["fatigue"], "section": "3. Symptoms"},
+        {"name": "blurred vision", "accept": ["blurred vision"], "section": "3. Symptoms"},
+        {"name": "slow-healing sores / infections", "accept": ["slow-healing", "frequent infections"], "section": "3. Symptoms"},
+        {"name": "tingling / numbness", "accept": ["tingling", "numbness"], "section": "3. Symptoms"}
+      ],
+      "min_facts_for_yes": 4,
+      "expected_answer": "Increased thirst, frequent urination, increased hunger, unexplained weight loss, fatigue, blurred vision, slow-healing sores or frequent infections, and tingling or numbness in the hands or feet.",
+      "notes": "The word 'hyperglycemia' appears in §3, §4 and §9, so it is a lexical lure: §9's emergency signs (nausea, confusion) are not the classic symptoms. 'tingling'/'numbness' also appear in §6.1 (neuropathy), so a §6.1 chunk can partly match. The manual reviewer should check the matched facts come from §3. 'weight loss' alone is not accepted because §5.1 talks about intentional weight loss."
+    },
+    {
+      "id": "Q5",
+      "question": "What lifestyle modifications are recommended for managing Type 2 diabetes?",
+      "answerable": true,
+      "source_sections": ["5.1 Lifestyle Modifications", "8. Self-Management and Lifestyle Tips"],
+      "required_facts": [
+        {"name": "weight loss 5-7%", "accept": ["5-7%"], "section": "5.1 Lifestyle Modifications"},
+        {"name": "150 min/week exercise", "accept": ["150 minutes"], "section": "5.1 Lifestyle Modifications"},
+        {"name": "diet", "accept": ["whole grains", "refined sugar"], "section": "5.1 Lifestyle Modifications"},
+        {"name": "smoking cessation", "accept": ["smoking"], "section": "5.1 Lifestyle Modifications"},
+        {"name": "limit alcohol", "accept": ["alcohol"], "section": "5.1 Lifestyle Modifications"},
+        {"name": "home glucose log", "accept": ["keep a log", "blood glucose at home"], "section": "8. Self-Management and Lifestyle Tips"},
+        {"name": "regular meals", "accept": ["regular meal times", "skipping meals"], "section": "8. Self-Management and Lifestyle Tips"},
+        {"name": "daily foot checks", "accept": ["inspect feet"], "section": "8. Self-Management and Lifestyle Tips"},
+        {"name": "vaccinations", "accept": ["vaccinations"], "section": "8. Self-Management and Lifestyle Tips"}
+      ],
+      "min_facts_for_yes": 5,
+      "expected_answer": "Lose 5-7% of body weight, get at least 150 minutes a week of moderate exercise, eat whole grains, vegetables and lean protein with less refined sugar, stop smoking and limit alcohol (§5.1). Self-management tips add home glucose checks with a log, regular meal times, daily foot checks and keeping vaccinations up to date (§8).",
+      "notes": "Two source sections. If only §5.1 or only §8 is retrieved, the result is 'partial' even when 5+ facts match, because every source section needs at least one matched fact. This tests whether a strategy retrieves across sections, not just the best one."
+    },
+    {
+      "id": "Q6",
+      "question": "Name two microvascular complications of diabetes.",
+      "answerable": true,
+      "source_sections": ["6.1 Microvascular Complications"],
+      "required_facts": [
+        {"name": "retinopathy", "accept": ["retinopathy"], "section": "6.1 Microvascular Complications"},
+        {"name": "nephropathy", "accept": ["nephropathy"], "section": "6.1 Microvascular Complications"},
+        {"name": "neuropathy", "accept": ["neuropathy"], "section": "6.1 Microvascular Complications"}
+      ],
+      "min_facts_for_yes": 2,
+      "expected_answer": "Any two of: diabetic retinopathy, diabetic nephropathy, diabetic neuropathy.",
+      "notes": "Lure: §7 mentions 'retinopathy' and 'neuropathy' and §8 mentions 'neuropathy', so a monitoring chunk can pass the automatic check without saying these are microvascular complications. The manual reviewer decides whether such a chunk really answers the question. §6.1's opening line ('These affect small blood vessels') has no heading context on its own: a fixed-size chunk starting there doesn't say 'microvascular'."
+    },
+    {
+      "id": "Q7",
+      "question": "Name two macrovascular complications of diabetes.",
+      "answerable": true,
+      "source_sections": ["6.2 Macrovascular Complications"],
+      "required_facts": [
+        {"name": "coronary artery disease", "accept": ["coronary artery"], "section": "6.2 Macrovascular Complications"},
+        {"name": "cerebrovascular disease", "accept": ["cerebrovascular"], "section": "6.2 Macrovascular Complications"},
+        {"name": "peripheral vascular disease", "accept": ["peripheral vascular"], "section": "6.2 Macrovascular Complications"}
+      ],
+      "min_facts_for_yes": 2,
+      "expected_answer": "Any two of: coronary artery disease (heart attack), cerebrovascular disease (stroke), peripheral vascular disease.",
+      "notes": "Disease names only, not 'heart attack' or 'stroke', because those also appear in §9 (emergency care). An answer saying 'heart attack and stroke' without the disease names fails the automatic check; the manual reviewer may upgrade it. Same missing-context risk as Q6: 'These affect larger blood vessels' needs the heading to mean 'macrovascular'."
+    },
+    {
+      "id": "Q8",
+      "question": "How often should HbA1c be monitored in someone with stable Type 2 diabetes?",
+      "answerable": true,
+      "source_sections": ["7. Monitoring and Follow-up"],
+      "required_facts": [
+        {"name": "every 3-6 months", "accept": ["3-6 months"], "section": "7. Monitoring and Follow-up"}
+      ],
+      "min_facts_for_yes": 1,
+      "expected_answer": "Every 3-6 months, depending on how stable blood sugar control is. The document gives no separate interval for stable patients.",
+      "notes": "Ambiguity trap: the document gives a range tied to stability, not a single number for 'stable'. Inferring '6 months' for stable patients is reasonable clinically but is not in the text; such an answer fails the automatic check and is 'partial' at best on manual review. An answer that keeps the range and the condition is 'yes'. '3 to 6 months' (words instead of a dash) fails the automatic check and needs a manual override."
+    },
+    {
+      "id": "Q9",
+      "question": "What blood glucose target range is recommended for most adults with Type 2 diabetes?",
+      "answerable": false,
+      "source_sections": [],
+      "required_facts": [],
+      "min_facts_for_yes": 0,
+      "expected_answer": "The document does not give a recommended blood glucose target range.",
+      "notes": "Not answerable from the document. Excluded from retrieval accuracy (reported as N/A). The answer is scored only on correct refusal: 'yes' if it says the document doesn't specify a target, 'no' if it gives any range. Lures: §4 diagnostic thresholds (e.g. 'below 100 mg/dL' normal fasting), §9 '300 mg/dL', and the FAQ's 'non-diabetic range'. Quoting a diagnostic threshold as a target is a hallucination."
+    },
+    {
+      "id": "Q10",
+      "question": "What symptoms should prompt someone to seek emergency medical care?",
+      "answerable": true,
+      "source_sections": ["9. When to Seek Emergency Care"],
+      "required_facts": [
+        {"name": "very high glucose (>300 mg/dL) with nausea/vomiting/confusion", "accept": ["300 mg/dL", "vomiting", "rapid breathing"], "section": "9. When to Seek Emergency Care"},
+        {"name": "severe low blood sugar", "accept": ["slurred speech", "seizures", "loss of consciousness"], "section": "9. When to Seek Emergency Care"},
+        {"name": "heart attack / stroke signs", "accept": ["chest pain", "shortness of breath", "one-sided weakness"], "section": "9. When to Seek Emergency Care"},
+        {"name": "worsening foot wound", "accept": ["foot wound"], "section": "9. When to Seek Emergency Care"}
+      ],
+      "min_facts_for_yes": 3,
+      "expected_answer": "Very high blood glucose (above ~300 mg/dL) with nausea, vomiting, confusion or rapid breathing; signs of severe low blood sugar (confusion, slurred speech, seizures, loss of consciousness); sudden chest pain, shortness of breath or one-sided weakness; and a rapidly worsening foot wound.",
+      "notes": "Four bullets in one section; 3 of 4 counts as 'yes'. The section is ~170 tokens, so fixed-size chunks at 500 chars are likely to split it across two chunks and lose a bullet or two."
+    }
+  ]
+}

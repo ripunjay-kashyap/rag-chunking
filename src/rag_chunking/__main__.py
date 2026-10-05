@@ -4,11 +4,16 @@ from __future__ import annotations
 
 import argparse
 import sys
+from dataclasses import asdict
 from pathlib import Path
 
 from dotenv import load_dotenv
 
+from rag_chunking.chunking import make_chunker
 from rag_chunking.config import DEFAULT_CONFIG, Config, ConfigError, load_config
+from rag_chunking.inspection import cut_summary, find_cuts, format_table, summary_stats
+from rag_chunking.normalize import normalize
+from rag_chunking.results import sha256, write_json
 
 
 def _build_parser() -> argparse.ArgumentParser:
@@ -42,6 +47,39 @@ def _not_implemented(command: str, phase: str) -> int:
     return 2
 
 
+def _cmd_chunk(config: Config, run_id: str) -> int:
+    run = config.run(run_id)
+    document = normalize(config.settings.document.read_text(encoding="utf-8"))
+    chunks = make_chunker(run.params).chunk(document)
+    stats = summary_stats(chunks, document)
+    cuts = find_cuts(chunks, document)
+    out = config.settings.results_dir / run.id / "chunks.json"
+    write_json(
+        out,
+        {
+            "run_id": run.id,
+            "strategy": run.strategy,
+            "params": asdict(run.params),
+            "document_sha256": sha256(document),
+            "stats": stats,
+            "cut_summary": cut_summary(cuts),
+            "cuts": [asdict(c) for c in cuts],
+            "chunks": [c.to_dict() for c in chunks],
+        },
+    )
+    print(format_table(chunks))
+    print()
+    print("stats:", ", ".join(f"{k}={v}" for k, v in stats.items()))
+    summary = ", ".join(f"{k}={v}" for k, v in cut_summary(cuts).items())
+    print(f"boundaries ({len(cuts)} chunk starts + ends): {summary}")
+    for cut in cuts:
+        if cut.side == "end" and (cut.mid_word or cut.kind not in ("clean", "sentence-end")):
+            flag = "mid-word" if cut.mid_word else ""
+            print(f"  {cut.chunk_id:<12} {cut.kind:<13} {flag:<9} {cut.context}")
+    print(f"\nwrote {out}")
+    return 0
+
+
 def _cmd_list(config: Config) -> int:
     for run in config.runs.values():
         print(f"{run.id:<18} {run.strategy:<10} {run.retrieval:<13} {run.params}")
@@ -56,8 +94,7 @@ def main(argv: list[str] | None = None) -> int:
         if args.command == "list":
             return _cmd_list(config)
         if args.command == "chunk":
-            config.run(args.run)
-            return _not_implemented("chunk", "P3–P5")
+            return _cmd_chunk(config, args.run)
         if args.command == "run":
             if args.run_id:
                 config.run(args.run_id)

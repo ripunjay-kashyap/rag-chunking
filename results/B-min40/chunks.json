@@ -1,0 +1,419 @@
+{
+  "run_id": "B-min40",
+  "strategy": "structure",
+  "params": {
+    "min_tokens": 40,
+    "max_tokens": 512,
+    "overlap_tokens": 50,
+    "prefix": true
+  },
+  "document_sha256": "fe88894b2506a02447e6c745cc1189dc54771e700edb49bd7a04c0687184c259",
+  "stats": {
+    "chunks": 13,
+    "mean_tokens": 158.5,
+    "min_tokens": 104,
+    "max_tokens": 236,
+    "total_tokens": 2061,
+    "redundancy": 1.09
+  },
+  "cut_summary": {
+    "table-row": 0,
+    "list-item": 0,
+    "heading": 0,
+    "mid-sentence": 0,
+    "sentence-end": 0,
+    "clean": 25,
+    "mid-word": 0
+  },
+  "cuts": [
+    {
+      "chunk_id": "B-1-overview",
+      "side": "start",
+      "position": 74,
+      "kind": "clean",
+      "mid_word": false,
+      "context": "t Guide⏎⏎## 1. Overview⏎⏎|Type 2 diabetes mellitus "
+    },
+    {
+      "chunk_id": "B-1-overview",
+      "side": "end",
+      "position": 649,
+      "kind": "clean",
+      "mid_word": false,
+      "context": "n loss if left unmanaged.|⏎⏎## 2. Epidemiology and "
+    },
+    {
+      "chunk_id": "B-2-epidemiology-and-risk-factors",
+      "side": "start",
+      "position": 688,
+      "kind": "clean",
+      "mid_word": false,
+      "context": "iology and Risk Factors⏎⏎|Type 2 diabetes accounts "
+    },
+    {
+      "chunk_id": "B-2-epidemiology-and-risk-factors",
+      "side": "end",
+      "position": 1343,
+      "kind": "clean",
+      "mid_word": false,
+      "context": "ations carry higher risk)|⏎⏎## 3. Symptoms⏎⏎Many pe"
+    },
+    {
+      "chunk_id": "B-3-symptoms",
+      "side": "start",
+      "position": 1361,
+      "kind": "clean",
+      "mid_word": false,
+      "context": "r risk)⏎⏎## 3. Symptoms⏎⏎|Many people with Type 2 d"
+    },
+    {
+      "chunk_id": "B-3-symptoms",
+      "side": "end",
+      "position": 1878,
+      "kind": "clean",
+      "mid_word": false,
+      "context": "normal cellular function.|⏎⏎## 4. Diagnostic Criter"
+    },
+    {
+      "chunk_id": "B-4-diagnostic-criteria",
+      "side": "start",
+      "position": 1907,
+      "kind": "clean",
+      "mid_word": false,
+      "context": " 4. Diagnostic Criteria⏎⏎|Diagnosis is based on lab"
+    },
+    {
+      "chunk_id": "B-4-diagnostic-criteria",
+      "side": "end",
+      "position": 2667,
+      "kind": "clean",
+      "mid_word": false,
+      "context": " reading above 200 mg/dL.|⏎⏎## 5. Treatment Approac"
+    },
+    {
+      "chunk_id": "B-5-1-lifestyle-modifications",
+      "side": "start",
+      "position": 2730,
+      "kind": "clean",
+      "mid_word": false,
+      "context": "Lifestyle Modifications⏎⏎|Lifestyle change is the f"
+    },
+    {
+      "chunk_id": "B-5-1-lifestyle-modifications",
+      "side": "end",
+      "position": 3199,
+      "kind": "clean",
+      "mid_word": false,
+      "context": "- Limiting alcohol intake|⏎⏎### 5.2 Oral Medication"
+    },
+    {
+      "chunk_id": "B-5-2-oral-medications",
+      "side": "start",
+      "position": 3227,
+      "kind": "clean",
+      "mid_word": false,
+      "context": "## 5.2 Oral Medications⏎⏎|When lifestyle changes al"
+    },
+    {
+      "chunk_id": "B-5-2-oral-medications",
+      "side": "end",
+      "position": 3909,
+      "kind": "clean",
+      "mid_word": false,
+      "context": " also support weight loss|⏎⏎### 5.3 Insulin Therapy"
+    },
+    {
+      "chunk_id": "B-5-3-insulin-therapy",
+      "side": "start",
+      "position": 3936,
+      "kind": "clean",
+      "mid_word": false,
+      "context": "### 5.3 Insulin Therapy⏎⏎|Some patients eventually "
+    },
+    {
+      "chunk_id": "B-5-3-insulin-therapy",
+      "side": "end",
+      "position": 4274,
+      "kind": "clean",
+      "mid_word": false,
+      "context": "ing insulin around meals.|⏎⏎## 6. Complications⏎⏎##"
+    },
+    {
+      "chunk_id": "B-6-1-microvascular-complications",
+      "side": "start",
+      "position": 4334,
+      "kind": "clean",
+      "mid_word": false,
+      "context": "ovascular Complications⏎⏎|These affect small blood "
+    },
+    {
+      "chunk_id": "B-6-1-microvascular-complications",
+      "side": "end",
+      "position": 4689,
+      "kind": "clean",
+      "mid_word": false,
+      "context": "ain in the feet and hands|⏎⏎### 6.2 Macrovascular C"
+    },
+    {
+      "chunk_id": "B-6-2-macrovascular-complications",
+      "side": "start",
+      "position": 4728,
+      "kind": "clean",
+      "mid_word": false,
+      "context": "ovascular Complications⏎⏎|These affect larger blood"
+    },
+    {
+      "chunk_id": "B-6-2-macrovascular-complications",
+      "side": "end",
+      "position": 5034,
+      "kind": "clean",
+      "mid_word": false,
+      "context": " severe cases, amputation|⏎⏎## 7. Monitoring and Fo"
+    },
+    {
+      "chunk_id": "B-7-monitoring-and-follow-up",
+      "side": "start",
+      "position": 5068,
+      "kind": "clean",
+      "mid_word": false,
+      "context": "onitoring and Follow-up⏎⏎|Ongoing monitoring is ess"
+    },
+    {
+      "chunk_id": "B-7-monitoring-and-follow-up",
+      "side": "end",
+      "position": 5555,
+      "kind": "clean",
+      "mid_word": false,
+      "context": "vascular risk is elevated|⏎⏎## 8. Self-Management a"
+    },
+    {
+      "chunk_id": "B-8-self-management-and-lifestyle-tips",
+      "side": "start",
+      "position": 5599,
+      "kind": "clean",
+      "mid_word": false,
+      "context": "ment and Lifestyle Tips⏎⏎|- Check blood glucose at "
+    },
+    {
+      "chunk_id": "B-8-self-management-and-lifestyle-tips",
+      "side": "end",
+      "position": 6088,
+      "kind": "clean",
+      "mid_word": false,
+      "context": "n increase infection risk|⏎⏎## 9. When to Seek Emer"
+    },
+    {
+      "chunk_id": "B-9-when-to-seek-emergency-care",
+      "side": "start",
+      "position": 6125,
+      "kind": "clean",
+      "mid_word": false,
+      "context": " to Seek Emergency Care⏎⏎|Seek immediate medical at"
+    },
+    {
+      "chunk_id": "B-9-when-to-seek-emergency-care",
+      "side": "end",
+      "position": 6645,
+      "kind": "clean",
+      "mid_word": false,
+      "context": "dness, swelling, or fever|⏎⏎## 10. Frequently Asked"
+    },
+    {
+      "chunk_id": "B-10-frequently-asked-questions",
+      "side": "start",
+      "position": 6682,
+      "kind": "clean",
+      "mid_word": false,
+      "context": "quently Asked Questions⏎⏎|**Is Type 2 diabetes reve"
+    }
+  ],
+  "chunks": [
+    {
+      "id": "B-1-overview",
+      "strategy": "structure",
+      "heading_path": [
+        "Type 2 Diabetes Mellitus: A Clinical and Patient Guide",
+        "1. Overview"
+      ],
+      "start_char": 74,
+      "end_char": 649,
+      "est_tokens": 162,
+      "meta": {},
+      "text": "Type 2 Diabetes Mellitus: A Clinical and Patient Guide > 1. Overview\n\nType 2 diabetes mellitus (T2DM) is a chronic metabolic condition characterized by high blood glucose levels resulting from insulin resistance and, over time, reduced insulin production by the pancreas. Unlike Type 1 diabetes, which is an autoimmune condition typically diagnosed in childhood, Type 2 diabetes usually develops gradually in adults, though rising obesity rates have led to more cases in younger populations. It is one of the most common chronic diseases worldwide and a leading cause of cardiovascular disease, kidney failure, and vision loss if left unmanaged.",
+      "body": "Type 2 diabetes mellitus (T2DM) is a chronic metabolic condition characterized by high blood glucose levels resulting from insulin resistance and, over time, reduced insulin production by the pancreas. Unlike Type 1 diabetes, which is an autoimmune condition typically diagnosed in childhood, Type 2 diabetes usually develops gradually in adults, though rising obesity rates have led to more cases in younger populations. It is one of the most common chronic diseases worldwide and a leading cause of cardiovascular disease, kidney failure, and vision loss if left unmanaged."
+    },
+    {
+      "id": "B-2-epidemiology-and-risk-factors",
+      "strategy": "structure",
+      "heading_path": [
+        "Type 2 Diabetes Mellitus: A Clinical and Patient Guide",
+        "2. Epidemiology and Risk Factors"
+      ],
+      "start_char": 688,
+      "end_char": 1343,
+      "est_tokens": 187,
+      "meta": {},
+      "text": "Type 2 Diabetes Mellitus: A Clinical and Patient Guide > 2. Epidemiology and Risk Factors\n\nType 2 diabetes accounts for roughly 90-95% of all diabetes cases globally. Its prevalence has risen sharply over the past few decades, closely tracking increases in obesity and sedentary lifestyles.\n\nCommon risk factors include:\n\n- Being overweight or obese, particularly with excess abdominal fat\n- A family history of diabetes\n- Physical inactivity\n- Age over 45 (though onset is increasingly seen in younger adults)\n- History of gestational diabetes\n- Polycystic ovary syndrome (PCOS)\n- High blood pressure or abnormal cholesterol levels\n- Certain ethnic backgrounds (e.g., South Asian, African, Hispanic, and Indigenous populations carry higher risk)",
+      "body": "Type 2 diabetes accounts for roughly 90-95% of all diabetes cases globally. Its prevalence has risen sharply over the past few decades, closely tracking increases in obesity and sedentary lifestyles.\n\nCommon risk factors include:\n\n- Being overweight or obese, particularly with excess abdominal fat\n- A family history of diabetes\n- Physical inactivity\n- Age over 45 (though onset is increasingly seen in younger adults)\n- History of gestational diabetes\n- Polycystic ovary syndrome (PCOS)\n- High blood pressure or abnormal cholesterol levels\n- Certain ethnic backgrounds (e.g., South Asian, African, Hispanic, and Indigenous populations carry higher risk)"
+    },
+    {
+      "id": "B-3-symptoms",
+      "strategy": "structure",
+      "heading_path": [
+        "Type 2 Diabetes Mellitus: A Clinical and Patient Guide",
+        "3. Symptoms"
+      ],
+      "start_char": 1361,
+      "end_char": 1878,
+      "est_tokens": 147,
+      "meta": {},
+      "text": "Type 2 Diabetes Mellitus: A Clinical and Patient Guide > 3. Symptoms\n\nMany people with Type 2 diabetes have no symptoms for years, which is why routine screening is important. When symptoms do appear, they commonly include:\n\n- Increased thirst and frequent urination\n- Increased hunger\n- Unexplained weight loss\n- Fatigue\n- Blurred vision\n- Slow-healing sores or frequent infections\n- Tingling or numbness in the hands or feet\n\nThese symptoms arise primarily from persistently elevated blood glucose (hyperglycemia), which draws fluid out of tissues and impairs normal cellular function.",
+      "body": "Many people with Type 2 diabetes have no symptoms for years, which is why routine screening is important. When symptoms do appear, they commonly include:\n\n- Increased thirst and frequent urination\n- Increased hunger\n- Unexplained weight loss\n- Fatigue\n- Blurred vision\n- Slow-healing sores or frequent infections\n- Tingling or numbness in the hands or feet\n\nThese symptoms arise primarily from persistently elevated blood glucose (hyperglycemia), which draws fluid out of tissues and impairs normal cellular function."
+    },
+    {
+      "id": "B-4-diagnostic-criteria",
+      "strategy": "structure",
+      "heading_path": [
+        "Type 2 Diabetes Mellitus: A Clinical and Patient Guide",
+        "4. Diagnostic Criteria"
+      ],
+      "start_char": 1907,
+      "end_char": 2667,
+      "est_tokens": 211,
+      "meta": {},
+      "text": "Type 2 Diabetes Mellitus: A Clinical and Patient Guide > 4. Diagnostic Criteria\n\nDiagnosis is based on laboratory blood tests. The table below summarizes the standard thresholds used by most clinical guidelines:\n\n| Test | Normal | Prediabetes | Diabetes |\n|------|--------|-------------|----------|\n| Fasting Plasma Glucose (FPG) | Below 100 mg/dL | 100–125 mg/dL | 126 mg/dL or higher |\n| HbA1c (glycated hemoglobin) | Below 5.7% | 5.7%–6.4% | 6.5% or higher |\n| Oral Glucose Tolerance Test (2-hour, OGTT) | Below 140 mg/dL | 140–199 mg/dL | 200 mg/dL or higher |\n| Random Plasma Glucose (with symptoms) | — | — | 200 mg/dL or higher |\n\nA diagnosis of diabetes is usually confirmed by repeating an abnormal test on a second occasion, unless the patient has clear symptoms of hyperglycemia alongside a random glucose reading above 200 mg/dL.",
+      "body": "Diagnosis is based on laboratory blood tests. The table below summarizes the standard thresholds used by most clinical guidelines:\n\n| Test | Normal | Prediabetes | Diabetes |\n|------|--------|-------------|----------|\n| Fasting Plasma Glucose (FPG) | Below 100 mg/dL | 100–125 mg/dL | 126 mg/dL or higher |\n| HbA1c (glycated hemoglobin) | Below 5.7% | 5.7%–6.4% | 6.5% or higher |\n| Oral Glucose Tolerance Test (2-hour, OGTT) | Below 140 mg/dL | 140–199 mg/dL | 200 mg/dL or higher |\n| Random Plasma Glucose (with symptoms) | — | — | 200 mg/dL or higher |\n\nA diagnosis of diabetes is usually confirmed by repeating an abnormal test on a second occasion, unless the patient has clear symptoms of hyperglycemia alongside a random glucose reading above 200 mg/dL."
+    },
+    {
+      "id": "B-5-1-lifestyle-modifications",
+      "strategy": "structure",
+      "heading_path": [
+        "Type 2 Diabetes Mellitus: A Clinical and Patient Guide",
+        "5. Treatment Approaches",
+        "5.1 Lifestyle Modifications"
+      ],
+      "start_char": 2730,
+      "end_char": 3199,
+      "est_tokens": 146,
+      "meta": {},
+      "text": "Type 2 Diabetes Mellitus: A Clinical and Patient Guide > 5. Treatment Approaches > 5.1 Lifestyle Modifications\n\nLifestyle change is the foundation of Type 2 diabetes management, and is often effective enough to delay or reduce the need for medication:\n\n- Weight loss of even 5-7% of body weight can meaningfully improve blood sugar control\n- Regular physical activity (at least 150 minutes per week of moderate exercise)\n- A diet emphasizing whole grains, vegetables, lean protein, and reduced refined sugar and processed carbohydrates\n- Smoking cessation\n- Limiting alcohol intake",
+      "body": "Lifestyle change is the foundation of Type 2 diabetes management, and is often effective enough to delay or reduce the need for medication:\n\n- Weight loss of even 5-7% of body weight can meaningfully improve blood sugar control\n- Regular physical activity (at least 150 minutes per week of moderate exercise)\n- A diet emphasizing whole grains, vegetables, lean protein, and reduced refined sugar and processed carbohydrates\n- Smoking cessation\n- Limiting alcohol intake"
+    },
+    {
+      "id": "B-5-2-oral-medications",
+      "strategy": "structure",
+      "heading_path": [
+        "Type 2 Diabetes Mellitus: A Clinical and Patient Guide",
+        "5. Treatment Approaches",
+        "5.2 Oral Medications"
+      ],
+      "start_char": 3227,
+      "end_char": 3909,
+      "est_tokens": 197,
+      "meta": {},
+      "text": "Type 2 Diabetes Mellitus: A Clinical and Patient Guide > 5. Treatment Approaches > 5.2 Oral Medications\n\nWhen lifestyle changes alone are insufficient, oral medications are typically the next step:\n\n- **Metformin** — usually the first-line drug; reduces glucose production by the liver and improves insulin sensitivity\n- **Sulfonylureas** (e.g., glipizide, glimepiride) — stimulate the pancreas to release more insulin\n- **DPP-4 inhibitors** (e.g., sitagliptin) — help the body produce more insulin after meals\n- **SGLT2 inhibitors** (e.g., empagliflozin) — cause the kidneys to remove excess glucose through urine, and have added cardiovascular and kidney benefits\n- **GLP-1 receptor agonists** (e.g., semaglutide) — slow digestion and increase insulin release; also support weight loss",
+      "body": "When lifestyle changes alone are insufficient, oral medications are typically the next step:\n\n- **Metformin** — usually the first-line drug; reduces glucose production by the liver and improves insulin sensitivity\n- **Sulfonylureas** (e.g., glipizide, glimepiride) — stimulate the pancreas to release more insulin\n- **DPP-4 inhibitors** (e.g., sitagliptin) — help the body produce more insulin after meals\n- **SGLT2 inhibitors** (e.g., empagliflozin) — cause the kidneys to remove excess glucose through urine, and have added cardiovascular and kidney benefits\n- **GLP-1 receptor agonists** (e.g., semaglutide) — slow digestion and increase insulin release; also support weight loss"
+    },
+    {
+      "id": "B-5-3-insulin-therapy",
+      "strategy": "structure",
+      "heading_path": [
+        "Type 2 Diabetes Mellitus: A Clinical and Patient Guide",
+        "5. Treatment Approaches",
+        "5.3 Insulin Therapy"
+      ],
+      "start_char": 3936,
+      "end_char": 4274,
+      "est_tokens": 111,
+      "meta": {},
+      "text": "Type 2 Diabetes Mellitus: A Clinical and Patient Guide > 5. Treatment Approaches > 5.3 Insulin Therapy\n\nSome patients eventually require insulin, either because oral medications no longer provide adequate control or because blood sugar levels are very high at diagnosis. Insulin regimens range from a single long-acting daily injection to more intensive multiple-injection regimens combining long-acting and rapid-acting insulin around meals.",
+      "body": "Some patients eventually require insulin, either because oral medications no longer provide adequate control or because blood sugar levels are very high at diagnosis. Insulin regimens range from a single long-acting daily injection to more intensive multiple-injection regimens combining long-acting and rapid-acting insulin around meals."
+    },
+    {
+      "id": "B-6-1-microvascular-complications",
+      "strategy": "structure",
+      "heading_path": [
+        "Type 2 Diabetes Mellitus: A Clinical and Patient Guide",
+        "6. Complications",
+        "6.1 Microvascular Complications"
+      ],
+      "start_char": 4334,
+      "end_char": 4689,
+      "est_tokens": 116,
+      "meta": {},
+      "text": "Type 2 Diabetes Mellitus: A Clinical and Patient Guide > 6. Complications > 6.1 Microvascular Complications\n\nThese affect small blood vessels and include:\n\n- **Diabetic retinopathy** — damage to the blood vessels of the retina, a leading cause of blindness in adults\n- **Diabetic nephropathy** — progressive kidney damage that can lead to kidney failure\n- **Diabetic neuropathy** — nerve damage, most often causing numbness, tingling, or pain in the feet and hands",
+      "body": "These affect small blood vessels and include:\n\n- **Diabetic retinopathy** — damage to the blood vessels of the retina, a leading cause of blindness in adults\n- **Diabetic nephropathy** — progressive kidney damage that can lead to kidney failure\n- **Diabetic neuropathy** — nerve damage, most often causing numbness, tingling, or pain in the feet and hands"
+    },
+    {
+      "id": "B-6-2-macrovascular-complications",
+      "strategy": "structure",
+      "heading_path": [
+        "Type 2 Diabetes Mellitus: A Clinical and Patient Guide",
+        "6. Complications",
+        "6.2 Macrovascular Complications"
+      ],
+      "start_char": 4728,
+      "end_char": 5034,
+      "est_tokens": 104,
+      "meta": {},
+      "text": "Type 2 Diabetes Mellitus: A Clinical and Patient Guide > 6. Complications > 6.2 Macrovascular Complications\n\nThese affect larger blood vessels and include:\n\n- **Coronary artery disease** — increased risk of heart attack\n- **Cerebrovascular disease** — increased risk of stroke\n- **Peripheral vascular disease** — reduced blood flow to the limbs, which can lead to poor wound healing and, in severe cases, amputation",
+      "body": "These affect larger blood vessels and include:\n\n- **Coronary artery disease** — increased risk of heart attack\n- **Cerebrovascular disease** — increased risk of stroke\n- **Peripheral vascular disease** — reduced blood flow to the limbs, which can lead to poor wound healing and, in severe cases, amputation"
+    },
+    {
+      "id": "B-7-monitoring-and-follow-up",
+      "strategy": "structure",
+      "heading_path": [
+        "Type 2 Diabetes Mellitus: A Clinical and Patient Guide",
+        "7. Monitoring and Follow-up"
+      ],
+      "start_char": 5068,
+      "end_char": 5555,
+      "est_tokens": 144,
+      "meta": {},
+      "text": "Type 2 Diabetes Mellitus: A Clinical and Patient Guide > 7. Monitoring and Follow-up\n\nOngoing monitoring is essential to catch complications early and adjust treatment as needed:\n\n- HbA1c testing every 3-6 months, depending on how stable blood sugar control is\n- Annual comprehensive eye exam to screen for retinopathy\n- Annual foot exam to check for neuropathy and circulation problems\n- Annual urine test for kidney function (microalbumin) and periodic blood tests for kidney function\n- Regular blood pressure and cholesterol checks, since cardiovascular risk is elevated",
+      "body": "Ongoing monitoring is essential to catch complications early and adjust treatment as needed:\n\n- HbA1c testing every 3-6 months, depending on how stable blood sugar control is\n- Annual comprehensive eye exam to screen for retinopathy\n- Annual foot exam to check for neuropathy and circulation problems\n- Annual urine test for kidney function (microalbumin) and periodic blood tests for kidney function\n- Regular blood pressure and cholesterol checks, since cardiovascular risk is elevated"
+    },
+    {
+      "id": "B-8-self-management-and-lifestyle-tips",
+      "strategy": "structure",
+      "heading_path": [
+        "Type 2 Diabetes Mellitus: A Clinical and Patient Guide",
+        "8. Self-Management and Lifestyle Tips"
+      ],
+      "start_char": 5599,
+      "end_char": 6088,
+      "est_tokens": 147,
+      "meta": {},
+      "text": "Type 2 Diabetes Mellitus: A Clinical and Patient Guide > 8. Self-Management and Lifestyle Tips\n\n- Check blood glucose at home as recommended by your care team, and keep a log to spot patterns\n- Learn to recognize the signs of both high and low blood sugar\n- Carry a fast-acting source of sugar (like glucose tablets) if on medications that can cause low blood sugar\n- Keep regular meal times and avoid skipping meals\n- Inspect feet daily for cuts, blisters, or sores that might not be felt due to neuropathy\n- Stay up to date on vaccinations, since diabetes can increase infection risk",
+      "body": "- Check blood glucose at home as recommended by your care team, and keep a log to spot patterns\n- Learn to recognize the signs of both high and low blood sugar\n- Carry a fast-acting source of sugar (like glucose tablets) if on medications that can cause low blood sugar\n- Keep regular meal times and avoid skipping meals\n- Inspect feet daily for cuts, blisters, or sores that might not be felt due to neuropathy\n- Stay up to date on vaccinations, since diabetes can increase infection risk"
+    },
+    {
+      "id": "B-9-when-to-seek-emergency-care",
+      "strategy": "structure",
+      "heading_path": [
+        "Type 2 Diabetes Mellitus: A Clinical and Patient Guide",
+        "9. When to Seek Emergency Care"
+      ],
+      "start_char": 6125,
+      "end_char": 6645,
+      "est_tokens": 153,
+      "meta": {},
+      "text": "Type 2 Diabetes Mellitus: A Clinical and Patient Guide > 9. When to Seek Emergency Care\n\nSeek immediate medical attention for:\n\n- Blood glucose readings that are very high (typically above 300 mg/dL) accompanied by nausea, vomiting, confusion, or rapid breathing (possible signs of diabetic ketoacidosis or a hyperosmolar state)\n- Signs of severe low blood sugar: confusion, slurred speech, seizures, or loss of consciousness\n- Sudden chest pain, shortness of breath, or one-sided weakness (possible heart attack or stroke)\n- A foot wound that is rapidly worsening, especially with redness, swelling, or fever",
+      "body": "Seek immediate medical attention for:\n\n- Blood glucose readings that are very high (typically above 300 mg/dL) accompanied by nausea, vomiting, confusion, or rapid breathing (possible signs of diabetic ketoacidosis or a hyperosmolar state)\n- Signs of severe low blood sugar: confusion, slurred speech, seizures, or loss of consciousness\n- Sudden chest pain, shortness of breath, or one-sided weakness (possible heart attack or stroke)\n- A foot wound that is rapidly worsening, especially with redness, swelling, or fever"
+    },
+    {
+      "id": "B-10-frequently-asked-questions",
+      "strategy": "structure",
+      "heading_path": [
+        "Type 2 Diabetes Mellitus: A Clinical and Patient Guide",
+        "10. Frequently Asked Questions"
+      ],
+      "start_char": 6682,
+      "end_char": 7534,
+      "est_tokens": 236,
+      "meta": {},
+      "text": "Type 2 Diabetes Mellitus: A Clinical and Patient Guide > 10. Frequently Asked Questions\n\n**Is Type 2 diabetes reversible?** For some people, especially those diagnosed early and able to achieve substantial weight loss, blood sugar can return to a non-diabetic range without medication — often referred to as remission. It is not considered a permanent \"cure,\" and ongoing healthy habits are needed to maintain it.\n\n**Can Type 2 diabetes be prevented?** In people at high risk (such as those with prediabetes), structured lifestyle programs focusing on modest weight loss and increased physical activity have been shown to significantly reduce the chance of progressing to full diabetes.\n\n**Does Type 2 diabetes always require insulin?** No. Many people manage the condition for years, or indefinitely, with lifestyle changes and oral medications alone. Insulin becomes necessary only when other treatments no longer provide adequate control.",
+      "body": "**Is Type 2 diabetes reversible?** For some people, especially those diagnosed early and able to achieve substantial weight loss, blood sugar can return to a non-diabetic range without medication — often referred to as remission. It is not considered a permanent \"cure,\" and ongoing healthy habits are needed to maintain it.\n\n**Can Type 2 diabetes be prevented?** In people at high risk (such as those with prediabetes), structured lifestyle programs focusing on modest weight loss and increased physical activity have been shown to significantly reduce the chance of progressing to full diabetes.\n\n**Does Type 2 diabetes always require insulin?** No. Many people manage the condition for years, or indefinitely, with lifestyle changes and oral medications alone. Insulin becomes necessary only when other treatments no longer provide adequate control."
+    }
+  ]
+}
