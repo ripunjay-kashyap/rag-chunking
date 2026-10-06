@@ -90,3 +90,14 @@ def test_readme_analysis_is_200_to_400_words():
     assert analysis, "analysis markers missing"
     words = re.findall(r"[A-Za-z0-9§%][^\s]*", analysis.group(1))
     assert 200 <= len(words) <= 400, len(words)
+
+
+def test_demo_renders_from_committed_results_without_writing():
+    from rag_chunking.demo import render
+
+    results = Path("results")
+    before = {p: p.stat().st_mtime_ns for p in results.rglob("*") if p.is_file()}
+    text = render(load_config(Path("configs/experiments.toml")))
+    after = {p: p.stat().st_mtime_ns for p in results.rglob("*") if p.is_file()}
+    assert before == after
+    assert "Takeaways" in text and "A-500" in text and "B-min100" in text

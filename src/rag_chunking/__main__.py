@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 
 from rag_chunking import pipeline
 from rag_chunking.config import DEFAULT_CONFIG, Config, ConfigError, load_config
+from rag_chunking.demo import render as render_demo
 from rag_chunking.embeddings import make_embedder
 from rag_chunking.embeddings.throttle import RetryError
 from rag_chunking.evaluation.answer_key import AnswerKeyError
@@ -53,6 +54,7 @@ def _build_parser() -> argparse.ArgumentParser:
         "--other", type=Path, required=True, help="results dir of the second generation"
     )
     sub.add_parser("list", help="list the runs defined in the config")
+    sub.add_parser("demo", help="one-screen walkthrough of the results (read-only, no API calls)")
     return parser
 
 
@@ -133,6 +135,9 @@ def main(argv: list[str] | None = None) -> int:
         config = load_config(args.config)
         if args.command == "list":
             return _cmd_list(config)
+        if args.command == "demo":
+            print(render_demo(config))
+            return 0
         if args.command == "chunk":
             return _cmd_chunk(config, args.run)
         if args.command == "run":

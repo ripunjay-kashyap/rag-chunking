@@ -48,6 +48,7 @@ uv run python -m rag_chunking chunk --run B-min100    # inspect chunks (no API c
 uv run python -m rag_chunking run --all               # chunk → embed → retrieve → generate → auto-check
 uv run python -m rag_chunking review --all            # refresh review.csv + metrics.json
 uv run python -m rag_chunking report                  # results/comparison.md + tables in this README
+uv run python -m rag_chunking demo                    # one-screen walkthrough of the results (read-only)
 uv run python -m rag_chunking stability --other results/rerun   # answer noise between two generations
 ```
 
