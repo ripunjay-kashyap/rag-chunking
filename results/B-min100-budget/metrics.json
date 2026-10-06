@@ -12,8 +12,8 @@
   "retrieval_accuracy": 100.0,
   "retrieval_accuracy_auto": 100.0,
   "retrieval_label_sources": {
-    "final": 0,
-    "suggested": 9,
+    "final": 9,
+    "suggested": 0,
     "auto": 0
   },
   "hit_at_1_top5": 1.0,

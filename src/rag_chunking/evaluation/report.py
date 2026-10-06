@@ -81,6 +81,15 @@ def _sources_note(runs: list[dict[str, Any]]) -> str:
     ans = _count_sources(runs, "answer_label_sources")
     if not ret["suggested"] + ret["auto"] + ans["suggested"] + ans["auto"]:
         return "All labels are the reviewer's final manual labels."
+    # Ablation runs get a retrieval-only review by design, so their automatic answer
+    # labels don't make the report provisional.
+    if not ret["suggested"] + ret["auto"] + ans["suggested"]:
+        return (
+            f"**Labels.** All {ret['final']} retrieval labels and the {ans['final']} answer "
+            f"labels of the two main runs are the reviewer's final manual labels. The "
+            f"{ans['auto']} answer labels of the ablation runs are automatic (frozen-key "
+            f"match): ablations were reviewed for retrieval only."
+        )
 
     def describe(c: dict[str, int]) -> str:
         return f"{c['final']} final manual, {c['suggested']} suggested, {c['auto']} automatic"
